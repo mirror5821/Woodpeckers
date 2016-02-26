@@ -27,18 +27,19 @@ public interface Constants {
     public final static int PAY_TYPE3 = 3;//支付入口3 //直接购买进入
 
 
-    //	public final static String BASE_URL = "http://192.168.0.210/LXYG/";
-    public final static String BASE_URL = "http://www.lexiangyungou.cn/LXYG/";
+//    public final static String BASE_URL = "http://192.168.0.156/index.php?s=/";
+    public final static String BASE_URL = "http://zmnyw.cn/index.php?s=/";
+//    public final static String BASE_URL = "http://www.lexiangyungou.cn/LXYG/";
+
+//    http://zmnyw.cn/index.php?s=/Home/Api/login
+//    http://zmnyw.cn/index.php?s=/Home/Api/register
 
     //正式上线用这个
     public static final String WECHAT_APP_ID = "wx2d2b54b6349d8ef7";
     public static final String WECHAT_SECRET = "d4624c36b6795d1d99dcf0547af5443d";
     public static final String WECHAT_VALUE = "android_pub";
 
-//	//测试上线用这个
-//	public static final String WECHAT_APP_ID = "wx9e721ab3631bd8bb";
-//	public static final String WECHAT_SECRET = "e1a4a71e1c2946b485df5d9da251b371";
-//	public static final String WECHAT_VALUE = "android_in_test";
+
 
     //地址
     public final static String LAT = "LAT";
@@ -64,10 +65,12 @@ public interface Constants {
 
 
     //请求都和地址
-    public final static String HOST_HEADER = BASE_URL+"app/user/";
-    public final static String HOST_IMG_HEADER = BASE_URL+"res/";
+    public final static String HOST_HEADER = BASE_URL+"Home/Api/";
+    public final static String HOST_IMG_HEADER = BASE_URL+"Home/Api/";
 
     public final static String ALIPAY_NOTIFY_URL = BASE_URL+"app/pay/alipayNotify";
+
+    public final static String LOGIN_TEST = "login";
 
     public final static String INDEX = "homePage1";//首页
     public final static String PRODUCT_LIST ="products";//产品列表
