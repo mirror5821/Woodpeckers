@@ -40,7 +40,7 @@ public class TestNetActivity extends  BaseActivity{
 
         switch (v.getId()){
             case R.id.btn:
-                testLogin2();
+                testLogin();
                 break;
         }
     }
@@ -77,7 +77,7 @@ public class TestNetActivity extends  BaseActivity{
         AppAjaxParam param = new AppAjaxParam(LOGIN_TEST,sb.toString());
         JSONObject jb = new JSONObject();
         try{
-            jb.put("username", "师小兰");
+            jb.put("username", "smm");
             jb.put("password", "asd123456");
         }catch (JSONException e){
 
@@ -91,6 +91,7 @@ public class TestNetActivity extends  BaseActivity{
         x.http().post(param, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
+                System.out.println("------------" + result);
                 showToast(result);
             }
 

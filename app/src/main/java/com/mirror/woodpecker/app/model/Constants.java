@@ -27,7 +27,7 @@ public interface Constants {
     public final static int PAY_TYPE3 = 3;//支付入口3 //直接购买进入
 
 
-//    public final static String BASE_URL = "http://192.168.0.156/index.php?s=/";
+//    public final static String BASE_URL = "http://192.168.0.13/index.php?s=/";
     public final static String BASE_URL = "http://zmnyw.cn/index.php?s=/";
 //    public final static String BASE_URL = "http://www.lexiangyungou.cn/LXYG/";
 
@@ -71,6 +71,7 @@ public interface Constants {
     public final static String ALIPAY_NOTIFY_URL = BASE_URL+"app/pay/alipayNotify";
 
     public final static String LOGIN_TEST = "login";
+    public final static String TEST = "json";
 
     public final static String INDEX = "homePage1";//首页
     public final static String PRODUCT_LIST ="products";//产品列表
