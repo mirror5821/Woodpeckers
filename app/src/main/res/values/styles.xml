@@ -8,4 +8,21 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="BtnCommon">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">@dimen/btn_normal_height</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="BtnBlue" parent="BtnCommon">
+        <item name="android:background">@drawable/bg_btn_blue</item>
+    </style>
+
+    <style name="BtnBlueR" parent="BtnCommon">
+        <item name="android:background">@drawable/bg_btn_blue_r</item>
+    </style>
+
 </resources>
