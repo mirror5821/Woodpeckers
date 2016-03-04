@@ -18,7 +18,12 @@ public class MainActivity extends BaseActivity {
 //        startActivity(new Intent(MainActivity.this, TestPhoneInfoActivity.class));
 //        startActivity(new Intent(MainActivity.this, TestSelectContactsActivity.class));
 //        startActivity(new Intent(MainActivity.this, TestQQServiceActivity.class));
-        startActivity(new Intent(MainActivity.this, TestViewPageActivity.class));
+//        startActivity(new Intent(MainActivity.this, TestViewPageActivity.class));
+//        startActivity(new Intent(MainActivity.this, TestNetActivity.class));
+//        startActivity(new Intent(MainActivity.this, TestSpinnerActivity.class));
+        startActivity(new Intent(MainActivity.this, TestSpinnerRecyclerViewActivity.class));
+
+
 
 
 

@@ -25,4 +25,23 @@
         <item name="android:background">@drawable/bg_btn_blue_r</item>
     </style>
 
+    <style name="Line1">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1sp</item>
+    </style>
+
+
+    <style name="EtLogin">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/et_normal_height</item>
+    </style>
+
+    <style name="SP">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/tv_normal</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:paddingLeft">@dimen/d8</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
 </resources>

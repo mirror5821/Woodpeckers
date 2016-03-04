@@ -33,7 +33,8 @@
         <activity android:name=".activity.TestQQServiceActivity"/>
         <activity android:name=".activity.TestNetActivity"/>
         <activity android:name=".activity.TestViewPageActivity"/>
-
+        <activity android:name=".activity.TestSpinnerActivity"/>
+        <activity android:name=".activity.TestSpinnerRecyclerViewActivity"/>
 
 
         <activity

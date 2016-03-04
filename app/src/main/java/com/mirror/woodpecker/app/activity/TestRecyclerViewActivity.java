@@ -10,12 +10,11 @@ import com.mirror.woodpecker.app.R;
 import java.util.ArrayList;
 
 import dev.mirror.library.android.Holder.DevRecyclerViewHolder;
-import dev.mirror.library.android.activity.DevBaseRecyclerViewActivity;
 
 /**
  * Created by 王沛栋 on 2016/1/12.
  */
-public class TestRecyclerViewActivity extends DevBaseRecyclerViewActivity {
+public class TestRecyclerViewActivity extends BaseRecyclerViewActivity {
     @Override
     public int setLayoutById() {
         mList = new ArrayList();

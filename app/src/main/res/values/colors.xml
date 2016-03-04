@@ -25,5 +25,10 @@
     <color name="btn_dark">#cccccc</color>
     <color name="btn_yellow">#f9bd27</color>
 
+    <color name="spinners_d">#3e95da</color>
+    <color name="spinners_l">#4cabf1</color>
+
+    <color name="driver">#dadada</color>
+
 
 </resources>
