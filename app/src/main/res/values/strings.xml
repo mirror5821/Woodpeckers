@@ -14,5 +14,9 @@
     <string name="enable">是</string>
     <string name="disable">否</string>
     <string name="go_select">图片选择</string>
+    <string name="index_btn1">报修\n400-138-0089</string>
+    <string name="index_btn2">维修\n进度查询</string>
+    <string name="index_btn3">业务\n咨询</string>
+    <string name="index_btn4">了解\n啄木鸟运维</string>
 
 </resources>

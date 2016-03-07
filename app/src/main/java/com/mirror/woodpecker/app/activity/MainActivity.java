@@ -12,7 +12,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        startActivity(new Intent(MainActivity.this, MainTabActivity.class));
+        startActivity(new Intent(MainActivity.this, MainTabActivity.class));
 //        startActivity(new Intent(MainActivity.this, TestCameraActivity.class));
 //        startActivity(new Intent(MainActivity.this, TestNetActivity.class));
 //        startActivity(new Intent(MainActivity.this, TestPhoneInfoActivity.class));
@@ -21,7 +21,7 @@ public class MainActivity extends BaseActivity {
 //        startActivity(new Intent(MainActivity.this, TestViewPageActivity.class));
 //        startActivity(new Intent(MainActivity.this, TestNetActivity.class));
 //        startActivity(new Intent(MainActivity.this, TestSpinnerActivity.class));
-        startActivity(new Intent(MainActivity.this, TestSpinnerRecyclerViewActivity.class));
+//        startActivity(new Intent(MainActivity.this, TestSpinnerRecyclerViewActivity.class));
 
 
 

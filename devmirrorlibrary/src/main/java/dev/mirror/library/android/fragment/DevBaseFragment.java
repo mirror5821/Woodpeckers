@@ -59,6 +59,13 @@ public class DevBaseFragment  extends Fragment implements View.OnClickListener{
         }
     }
 
+    /**
+     * showToast
+     * @param str
+     */
+    public void showToast(String str){
+        Toast.makeText(getActivity(),str,Toast.LENGTH_LONG).show();
+    }
 
 
 

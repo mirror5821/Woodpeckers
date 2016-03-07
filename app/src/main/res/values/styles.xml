@@ -44,4 +44,14 @@
         <item name="android:gravity">center_vertical</item>
     </style>
 
+    <style name="BtnIndex">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:button">@null</item>
+        <item name="android:background">@null</item>
+    </style>
+
+    <!--<item name="android:button">@null</item>-->
+
 </resources>
