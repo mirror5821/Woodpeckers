@@ -19,9 +19,20 @@ public class AppHttpClient{
         sb.append(fName);
 
         AppAjaxParam param = new AppAjaxParam(fName,sb.toString());
-        param.addParameter("info", p);
+        param.addParameter(Constants.JSONG_KEY, p);
         x.http().post(param,new AppAjaxCallback<>(listener));
 
+    }
+
+
+    public <T> void postData(String fName,String p,AppAjaxCallback.onRecevierDataListener<T> listener){
+        StringBuilder sb = new StringBuilder();
+        sb.append(SERVIER_HEADER);
+        sb.append(fName);
+
+        AppAjaxParam param = new AppAjaxParam(fName,sb.toString());
+        param.addParameter(Constants.JSONG_KEY, p);
+        x.http().post(param, new AppAjaxCallback<>(listener));
     }
 
 
@@ -29,7 +40,7 @@ public class AppHttpClient{
 
         StringBuilder sb = new StringBuilder();
         sb.append(Constants.HOST_IMG_HEADER);
-        sb.append(Constants.UPLOAD_IMG);
+//        sb.append(Constants.UPLOAD_IMG);
         AppAjaxParam param = new AppAjaxParam(sb.toString());
 
         param.addParameter("ImgData",imgData);

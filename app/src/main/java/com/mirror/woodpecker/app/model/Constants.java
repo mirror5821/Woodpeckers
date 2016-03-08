@@ -71,24 +71,11 @@ public interface Constants {
     public final static String ALIPAY_NOTIFY_URL = BASE_URL+"app/pay/alipayNotify";
 
     public final static String LOGIN_TEST = "login";
+    public final static String REGISTERS = "register";
+    public final static String REPAIR_COM = "select_company";
     public final static String TEST = "json";
 
-    public final static String INDEX = "homePage1";//首页
-    public final static String PRODUCT_LIST ="products";//产品列表
-    public final static String PRODUCT_DETAILS ="showProductInfo";//产品详情
-    public final static String SHOPPING_CAR_LIST ="SCProduct";//购物车列表
-    public final static String ADDRESS_LIST ="addressList";//收货地址列表
-    public final static String ADDRESS_ADD = "addAddress";//添加收货地址
-    public final static String CURRENT_TIME = "currentTime";//添加收货地址
-    public final static String ORDER_MAKE = "addOrderInfo";//下单
-    public final static String ORDER_LIST = "userOrderList";//订单列表
-    public final static String WECHAT_LOGIN = "weLogin";//微信登陆
-    public final static String SCAN = "scanCode";
-    public final static String FEED_BACK = "v2/feedBack";//意见反馈
-    public final static String TRACK = "orderTail";//意见反馈
-    public final static String USER_CASH_TOTAL = "loadCash";//用户电子现金余额
-    public final static String ORDER_NUM = "orderStatusNum";//用户电子现金余额
-    public final static String USER_CASH_LIST = "loadCashs";//用户电子现金余额
+
 
     public final static int ORDER_STATUS_ALL = 1;//订单列表状态
     public final static int ORDER_STATUS1 = 1;//订单列表状态
@@ -97,54 +84,5 @@ public interface Constants {
     public final static int ORDER_STATUS4 = 4;//订单列表状态
     public final static int ORDER_STATUS5 = 5;//订单列表状态
 
-    public final static String UPDATA_ADDRESS = "updateAddress";//修改地址信息
 
-    public final static String WX_PAY_NO = "wxPayNo";
-    public final static String WX_PAY = "wxPay";
-
-    public final static String GET_CODE = "messageCode";//发送验证码
-    public final static String USER_LOGIN = "userLogin";//用户手机登录
-
-    public final static String RECEIVER_GOODS = "receiveGoods";
-    public final static String ORDER_REF = "refuseOrder";
-
-    public final static String UPLOAD_IMG = "addImg";//上传图片
-    public final static String ACTIVITY_AUTUMN = "activityProducts";//获取中秋活动产品列表
-    public final static String ACTIVITY_AUTUMN_BUY = "addActivityOrder";//中秋活动提交订单
-    public final static String ACTIVITY_AUTUMN_BUY_OK = "activityOrderPay";//中秋活动提交订单完成后调用
-
-    public final static String INDEXT2 = "v2/homePage";//新的首页
-    public final static String FB_PRODUCT_DETAILS = "v2/FBProduct";//非标商品详情
-    public final static String SHOPPING_CAR_LIST2 ="v2/SCProduct";//购物车列表
-    public final static String ORDER_MAKE2 = "v2/addOrderInfo";//下单
-    public final static String FB_SHOP_LIST = "v2/findShopsByType";//非标准店铺列表
-    public final static String FB_SHOP_PRODUCT_LIST = "v2/FBProducts";//非标准店铺列表
-    public final static String RECOMMEND_PRODUCT_LIST = "v2/recommProducts";//非标准店铺列表
-    public final static String CITY_LIST = "v2/cityList";//城市列表
-    public final static String SEARCH_LIST = "v2/searchName?";//搜索列表
-    public final static String PRODUCT_TYPE ="v2/types";//产品分类1
-    public final static String PRODUCT_BRAND = "v2/searchBands";//产品分类二级
-    public final static String FORUM_ADD = "v2/addForm";//论坛添加
-    public final static String FORUM_LIST = "v2/listForm";//论坛帖子列表
-    public final static String FORUM_ZAN_ADD = "v2/zan";//论坛点赞
-    public final static String FORUM_DETAILS = "v2/form";//帖子详情
-    public final static String FORUM_COMMENT = "v2/replay";//帖子评论
-    public final static String GET_SHOP_COORDINATE = "v2/getShopLatLng";//获取店铺经纬度
-    public final static String MY_FOURM = "v2/myForms";//我的帖子
-    public final static String FOURM_DELETE = "v2/delForm";//删除帖子
-    public final static String SHOP_LIST_BY_AREA = "v2/shopList";//根据地区id获取店铺列表  需要传经纬度
-    public final static String SHOP_LIST_BY_SEARCH = "v2/searchShop";//搜索店铺
-    public final static String SHOP_LIST_BY_LAT_LNG = "v2/getShopsByLatLng";//
-    public final static String SIGN_HISTORY = "v2/signLog";
-    public final static String SIGN = "v2/addSign";
-    public final static String CATEGORY_ALL = "v2/categorys";
-    public final static String ACTIVITY_PRODUCT_LIST = "activityPros";
-    public final static String RED_BAG = "v2/hb";
-    public final static String ADDRESS_DELETE = "delAddress";
-    public final static String SHOP_AREA = "v2/shopScope";
-
-
-    public final static String SHOP_SHUIGUO = "http://7xk59r.com2.z0.glb.qiniucdn.com/ic_shop_f.jpg";//水果店店铺封面
-    public final static String SHOP_XIAJIUXIAOCAI = "http://7xk59r.com2.z0.glb.qiniucdn.com/ic_shop_d.jpg";//水果店店铺封面
-    public final static String JION_US = "http://www.lexiangyungou.cn/LXYG/join_us/join_us.html";
 }

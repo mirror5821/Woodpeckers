@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.mirror.woodpecker.app.R;
+import com.mirror.woodpecker.app.app.AppContext;
 
 import java.util.List;
 
@@ -77,8 +78,8 @@ public abstract class BaseRecyclerViewFragment<T extends Parcelable> extends Bas
     }
     private void newAdapter(){
         if(mAdapter == null) {
-            mAdapter = new MyAdapter(getActivity(),mList,setItemLayoutId());
-            LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+            mAdapter = new MyAdapter(AppContext.getInstance(),mList,setItemLayoutId());
+            LinearLayoutManager layoutManager = new LinearLayoutManager(AppContext.getInstance());
             layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
             mRecyclerView.setLayoutManager(layoutManager);
 

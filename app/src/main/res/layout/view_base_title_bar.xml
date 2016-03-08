@@ -19,7 +19,7 @@
         android:layout_centerInParent="true"
         android:text="@string/loading_data"
         android:textSize="18sp"
-        android:textColor="@color/white"/>
+        android:textColor="@color/tv_title"/>
 
     <ImageView
         android:id="@+id/right_icon"
@@ -35,7 +35,7 @@
         android:layout_height="match_parent"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
-        android:textColor="@color/white"
+        android:textColor="@color/tv_title"
         android:background="@drawable/bg_normal_press"
         android:gravity="center_vertical"
         android:paddingRight="8dp"

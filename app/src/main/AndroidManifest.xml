@@ -25,6 +25,11 @@
             </intent-filter>
         </activity>
 
+
+
+        <activity android:name=".activity.OrderDetailsActivity"/>
+        <activity android:name=".activity.RegistersActivity"/>
+        <activity android:name=".activity.LoginActivity"/>
         <activity android:name=".activity.MainTabActivity"/>
         <activity android:name=".activity.TestCameraActivity"/>
         <activity android:name=".activity.TestRecyclerViewActivity"/>

@@ -6,6 +6,10 @@
     <dimen name="d12">12dp</dimen>
     <dimen name="d16">16dp</dimen>
     <dimen name="d20">20dp</dimen>
+    <dimen name="d32">32dp</dimen>
+    <dimen name="d40">40dp</dimen>
+    <dimen name="d48">48dp</dimen>
+    <dimen name="d60">60dp</dimen>
     
     <dimen name="tab_padding">@dimen/d4</dimen>
     <dimen name="tab_text">12sp</dimen>

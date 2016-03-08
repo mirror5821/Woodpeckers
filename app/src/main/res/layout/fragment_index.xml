@@ -40,21 +40,25 @@
         android:layout_marginTop="@dimen/d16">
 
         <Button
+            android:id="@+id/btn1"
             style="@style/BtnIndex"
             android:drawableTop="@mipmap/ic_index_btn1"
             android:text="@string/index_btn1"/>
 
         <Button
+            android:id="@+id/btn2"
             style="@style/BtnIndex"
             android:drawableTop="@mipmap/ic_index_btn2"
             android:text="@string/index_btn2"/>
 
         <Button
+            android:id="@+id/btn3"
             style="@style/BtnIndex"
             android:drawableTop="@mipmap/ic_index_btn3"
             android:text="@string/index_btn3"/>
 
         <Button
+            android:id="@+id/btn4"
             style="@style/BtnIndex"
             android:drawableTop="@mipmap/ic_index_btn4"
             android:text="@string/index_btn4"/>

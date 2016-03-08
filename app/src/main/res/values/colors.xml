@@ -5,7 +5,7 @@
     <color name="colorAccent">#FF4081</color>
 
 
-    <color name="normal_press">#1967e3</color>
+    <color name="normal_press">#a4b4bf</color>
     <color name="main_blue">#4ca8f1</color>
     <color name="main_bg">#eeeeee</color>
 
@@ -33,11 +33,20 @@
 
     <color name="driver">#dadada</color>
 
+    <color name="tv_light">#d2d2d2</color>
+    <color name="tv_title">#232323</color>
+    <color name="tv_hint">#a4a4a4</color>
+    <color name="tv_dark">#232323</color>
+    <color name="tv_yellow">#f9bd27</color>
+
+    <color name="details_title">#4ca8f1</color>
+
     <drawable name="rb_s">@color/rb_select</drawable>
     <drawable name="rb_n">@color/rb_normal</drawable>
 
     <drawable name="tab_normal">@color/white</drawable>
     <drawable name="tab_select">@color/tab_s</drawable>
+    <drawable name="white_d">@color/white</drawable>
 
 
 </resources>

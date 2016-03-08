@@ -47,7 +47,7 @@ public class AppAjaxCallback<T> implements Callback.CommonCallback<String> {
     private String mListNoData = "未查询到数据";
 
 
-    private String listNoData = "未查询到任何数据\n下拉刷新数据";
+    private String listNoData = "未查询到任何数据";
     private String mErrorMsg = "网络错误,请检查您的网络!";
     @Override
     public void onSuccess(String result) {
@@ -100,9 +100,9 @@ public class AppAjaxCallback<T> implements Callback.CommonCallback<String> {
 //					mListener.onError(e.getMessage());
 //				}
                 if(mRecevierDataListener!=null){
-                    mRecevierDataListener.onReceiverError(mErrorMsg);
+                    mRecevierDataListener.onReceiverError(e.getLocalizedMessage());
                 }else{
-                    mListener.onError(mErrorMsg);
+                    mListener.onError(e.getLocalizedMessage());
                 }
             }
         }else{
@@ -117,7 +117,7 @@ public class AppAjaxCallback<T> implements Callback.CommonCallback<String> {
     @Override
     public void onError(Throwable ex, boolean isOnCallback) {
         if(mRecevierDataListener!=null){
-            mRecevierDataListener.onReceiverError(mErrorMsg);
+            mRecevierDataListener.onReceiverError(ex.getMessage());
         }else{
             mListener.onError(ex.getMessage());
         }
