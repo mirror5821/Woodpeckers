@@ -12,6 +12,7 @@ import com.mirror.woodpecker.app.R;
 import com.mirror.woodpecker.app.activity.LoginActivity;
 import com.mirror.woodpecker.app.activity.OrderDetailsActivity;
 import com.mirror.woodpecker.app.activity.RegistersActivity;
+import com.mirror.woodpecker.app.activity.RepairAddActivity;
 import com.mirror.woodpecker.app.app.AppContext;
 
 import dev.mirror.library.android.view.autoscrollviewpager.AutoScrollViewPager;
@@ -157,6 +158,7 @@ public class IndexFragment extends BaseFragment {
 
                 break;
             case R.id.btn4:
+                startActivity(new Intent(getActivity(), RepairAddActivity.class));
                 break;
         }
     }

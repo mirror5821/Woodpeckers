@@ -27,9 +27,11 @@
             android:drawableLeft="@mipmap/ic_login_password"
             android:hint="@string/login_notifi_pass"
             android:drawablePadding="@dimen/d8"
-            android:layout_marginTop="@dimen/d4"/>
+            android:layout_marginTop="@dimen/d4"
+            android:password="true"/>
 
         <Button
+            android:id="@+id/btn_login"
             style="@style/BtnBlue"
             android:layout_marginTop="@dimen/d32"
             android:text="@string/login"/>
@@ -72,6 +74,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/btn"
         style="@style/BtnYellow"
         android:text="@string/q_register"
         android:layout_margin="@dimen/d32"/>

@@ -73,7 +73,7 @@ public interface Constants {
     public final static String LOGIN_TEST = "login";
     public final static String REGISTERS = "register";
     public final static String REPAIR_COM = "select_company";
-    public final static String TEST = "json";
+    public final static String REPAIR = "repair";
 
 
 

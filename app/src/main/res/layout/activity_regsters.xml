@@ -38,7 +38,8 @@
                     android:drawableLeft="@mipmap/ic_login_password"
                     android:hint="@string/login_notifi_pass"
                     android:drawablePadding="@dimen/d8"
-                    android:layout_marginTop="@dimen/d4"/>
+                    android:layout_marginTop="@dimen/d4"
+                    android:password="true"/>
 
 
                 <EditText
@@ -47,7 +48,8 @@
                     android:drawableLeft="@mipmap/ic_login_password"
                     android:hint="@string/login_notifi_pass2"
                     android:drawablePadding="@dimen/d8"
-                    android:layout_marginTop="@dimen/d4"/>
+                    android:layout_marginTop="@dimen/d4"
+                    android:password="true"/>
 
                 <EditText
                     android:id="@+id/phone"
@@ -55,7 +57,8 @@
                     android:drawableLeft="@mipmap/ic_r_phone"
                     android:hint="@string/input_phone"
                     android:drawablePadding="@dimen/d8"
-                    android:layout_marginTop="@dimen/d4"/>
+                    android:layout_marginTop="@dimen/d4"
+                    android:inputType="phone"/>
 
                 <EditText
                     android:id="@+id/mail"
@@ -123,9 +126,11 @@
                     android:drawableLeft="@mipmap/ic_r_code"
                     android:hint="@string/login_notifi_pass"
                     android:drawablePadding="@dimen/d8"
-                    android:layout_marginTop="@dimen/d4"/>
+                    android:layout_marginTop="@dimen/d4"
+                    android:visibility="gone"/>
 
                 <Button
+                    android:id="@+id/btn"
                     style="@style/BtnBlue"
                     android:layout_marginTop="@dimen/d32"
                     android:text="@string/register"/>
@@ -168,6 +173,7 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/btn_login"
                 style="@style/BtnYellow"
                 android:text="@string/q_login"
                 android:layout_margin="@dimen/d32"/>

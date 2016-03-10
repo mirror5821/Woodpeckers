@@ -35,5 +35,10 @@
     <string name="select_sign_unit">请选择签约单位</string>
     <string name="input_notify_word">请输入提示语</string>
     <string name="ok">确定</string>
+    <string name="input_contact">请输入联系方式</string>
+    <string name="input_loc">请选择故障位置</string>
+    <string name="input_dec">请输入故障描述</string>
+    <string name="submit">提交</string>
+    <string name="search_area">输入您所在的地区</string>
 
 </resources>

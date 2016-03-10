@@ -50,6 +50,7 @@
         <item name="android:layout_height">@dimen/d48</item>
         <item name="android:background">@drawable/bg_et_line</item>
         <item name="android:textColorHint">@color/tv_hint</item>
+        <item name="android:singleLine">true</item>
     </style>
 
     <style name="SP">
