@@ -27,6 +27,7 @@
 
 
 
+        <activity android:name=".activity.MapSelectActivity"/>
         <activity android:name=".activity.RepairAddActivity"/>
         <activity android:name=".activity.OrderDetailsActivity"/>
         <activity android:name=".activity.RegistersActivity"/>

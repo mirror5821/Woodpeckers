@@ -1,5 +1,7 @@
 package com.mirror.woodpecker.app.activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -35,6 +37,7 @@ public class RepairAddActivity extends BaseActivity{
         mBtn = (Button)findViewById(R.id.btn);
 
         mBtn.setOnClickListener(this);
+        mTvLoc.setOnClickListener(this);
     }
 
     @Override
@@ -44,9 +47,31 @@ public class RepairAddActivity extends BaseActivity{
             case R.id.btn:
                 sub();
                 break;
+            case R.id.loc:
+                startActivityForResult(new Intent(RepairAddActivity.this,MapSelectActivity.class), MAP_REQUESTCODE);
+                break;
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == Activity.RESULT_OK){
+            switch (requestCode) {
+                case MAP_REQUESTCODE:
+                    Bundle mBundle = data.getExtras();
+                    String provinceName = mBundle.getString(PROVINCE);
+                    String cityName = mBundle.getString(CITY);
+                    String areaName = mBundle.getString(DISTRICT);
+                    String street = mBundle.getString(ADDRESS);
+                    double lat = mBundle.getDouble(LAT);
+                    double lng = mBundle.getDouble(LNG);
+
+                    mTvLoc.setText(provinceName+cityName+areaName+street);
+                    break;
+            }
+        }
+    }
     public void sub(){
         final String phone = mEtPhone.getText().toString().trim();
         final String loc = mTvLoc.getText().toString().trim();

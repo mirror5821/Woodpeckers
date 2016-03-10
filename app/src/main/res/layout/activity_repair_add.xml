@@ -29,8 +29,7 @@
             android:hint="@string/input_loc"
             android:drawablePadding="@dimen/d8"
             android:layout_marginTop="@dimen/d4"
-            android:textSize="18sp"
-            android:password="true"/>
+            android:textSize="18sp"/>
 
         <EditText
             android:id="@+id/dec"
