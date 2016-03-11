@@ -13,6 +13,8 @@ import java.util.List;
 
 import dev.mirror.library.android.Holder.DevRecyclerViewHolder;
 import dev.mirror.library.android.adapter.DevRecycerViewAdapter;
+import dev.mirror.library.android.util.DpUtil;
+import dev.mirror.library.android.util.VerticalSpaceItemDecoration;
 import dev.mirror.library.android.xrecyclerview.ProgressStyle;
 import dev.mirror.library.android.xrecyclerview.XRecyclerView;
 
@@ -45,6 +47,7 @@ public abstract class BaseRecyclerViewFragment<T extends Parcelable> extends Bas
         mViewEmpty = view.findViewById(R.id.empty);
 
         mRecyclerView = (XRecyclerView)view.findViewById(R.id.recyclerview);
+
         if(mList == null|| mList.isEmpty()){
             pageNo = mDefaultPage;
             loadData();
@@ -83,9 +86,12 @@ public abstract class BaseRecyclerViewFragment<T extends Parcelable> extends Bas
             layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
             mRecyclerView.setLayoutManager(layoutManager);
 
+            //设置刷新加载样式
             mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
             mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
             mRecyclerView.setArrowImageView(R.mipmap.ic_downgrey);
+
+            mRecyclerView.addItemDecoration(new VerticalSpaceItemDecoration(DpUtil.dip2px(getActivity(),12)));
 
             //加入头部试图  可重新此方法
             addHeaderView();
@@ -100,7 +106,7 @@ public abstract class BaseRecyclerViewFragment<T extends Parcelable> extends Bas
 
                 @Override
                 public void onLoadMore() {
-                    pageNo+=1;
+                    pageNo += 1;
                     loadData();
                 }
             });
@@ -147,5 +153,4 @@ public abstract class BaseRecyclerViewFragment<T extends Parcelable> extends Bas
     public abstract void loadData();
     public abstract int setItemLayoutId();
     public abstract void setItemView(DevRecyclerViewHolder holder, Object item);
-
 }

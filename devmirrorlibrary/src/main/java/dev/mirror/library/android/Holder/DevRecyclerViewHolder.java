@@ -31,7 +31,7 @@ public class DevRecyclerViewHolder extends RecyclerView.ViewHolder {
         itemView.setLayoutParams(lp);
         this.mViews = new SparseArray<>();
         this.mConvertView = itemView;
-        this.mAdapter = mAdapter;
+        this.mAdapter = adapter;
     }
 
     public View getConvertView() {
@@ -81,6 +81,4 @@ public class DevRecyclerViewHolder extends RecyclerView.ViewHolder {
         tv.setText(text);
         return this;
     }
-
-
 }

@@ -9,9 +9,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.mirror.woodpecker.app.R;
+import com.mirror.woodpecker.app.activity.AbutUsActivity;
 import com.mirror.woodpecker.app.activity.LoginActivity;
 import com.mirror.woodpecker.app.activity.OrderDetailsActivity;
-import com.mirror.woodpecker.app.activity.RegistersActivity;
 import com.mirror.woodpecker.app.activity.RepairAddActivity;
 import com.mirror.woodpecker.app.app.AppContext;
 
@@ -148,7 +148,8 @@ public class IndexFragment extends BaseFragment {
         super.onClick(v);
         switch (v.getId()){
             case R.id.btn1:
-                startActivity(new Intent(getActivity(), RegistersActivity.class));
+                startActivity(new Intent(getActivity(), RepairAddActivity.class));
+//                startActivity(new Intent(getActivity(), RegistersActivity.class));
                 break;
             case R.id.btn2:
                 startActivity(new Intent(getActivity(), LoginActivity.class));
@@ -158,7 +159,7 @@ public class IndexFragment extends BaseFragment {
 
                 break;
             case R.id.btn4:
-                startActivity(new Intent(getActivity(), RepairAddActivity.class));
+                startActivity(new Intent(getActivity(), AbutUsActivity.class));
                 break;
         }
     }

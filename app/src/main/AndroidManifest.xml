@@ -27,6 +27,10 @@
 
 
 
+
+        <activity android:name=".activity.AbutUsActivity"/>
+        <activity android:name=".activity.UserRepairDetailsActivity"/>
+        <activity android:name=".activity.UserRepairListActivity"/>
         <activity android:name=".activity.MapSelectActivity"/>
         <activity android:name=".activity.RepairAddActivity"/>
         <activity android:name=".activity.OrderDetailsActivity"/>

@@ -1,5 +1,6 @@
 package com.mirror.woodpecker.app.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -7,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.mirror.woodpecker.app.R;
+import com.mirror.woodpecker.app.app.AppContext;
+import com.mirror.woodpecker.app.model.User;
 import com.mirror.woodpecker.app.util.AppAjaxCallback;
 import com.mirror.woodpecker.app.util.AppHttpClient;
 import com.mirror.woodpecker.app.util.SharePreferencesUtil;
@@ -31,6 +34,8 @@ public class LoginActivity extends BaseActivity {
 
         mEtName = (EditText)findViewById(R.id.name);
         mEtPass = (EditText)findViewById(R.id.pass);
+        mEtName.setText("18837145615");
+        mEtPass.setText("111111");
 
         mBtnLogin = (Button)findViewById(R.id.btn_login);
         mBtnRegister = (Button)findViewById(R.id.btn);
@@ -75,13 +80,20 @@ public class LoginActivity extends BaseActivity {
 
         }
 
+        System.out.println("----------"+jb.toString());
         ap.postData1(LOGIN_TEST, jb.toString(), new AppAjaxCallback.onResultListener() {
             @Override
             public void onResult(String data, String msg) {
-                SharePreferencesUtil.saveLoginInfo(getApplicationContext(),name,pass);
-                SharePreferencesUtil.saveUserInfo(getApplicationContext(),data);
-
+                SharePreferencesUtil.saveLoginInfo(getApplicationContext(), name, pass);
+                SharePreferencesUtil.saveUserInfo(getApplicationContext(), data);
+                User user= SharePreferencesUtil.getUserInfo(getApplicationContext());
+                AppContext.USER_ROLE_ID = user.getRole_id();
+                AppContext.USER_ID = user.getId();
+//                AppContext.USER_ROLE_ID = 0;
                 showToast(msg);
+
+                startActivity(new Intent(LoginActivity.this, UserRepairListActivity.class));
+                finish();
             }
 
             @Override

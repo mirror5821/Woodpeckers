@@ -36,7 +36,6 @@
             style="@style/EtLogin"
             android:drawableLeft="@mipmap/ic_repair_note_"
             android:hint="@string/input_dec"
-            android:inputType="phone"
             android:drawablePadding="@dimen/d8"
             android:singleLine="false"/>
 

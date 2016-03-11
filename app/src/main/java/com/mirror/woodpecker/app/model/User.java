@@ -16,7 +16,16 @@ public class User {
     private int companyid;//private String 3private String ,
     private int projectid;//private String 0private String ,
     private int systemid;//private String 0private String
+    private int role_id;
 
+
+    public int getRole_id() {
+        return role_id;
+    }
+
+    public void setRole_id(int role_id) {
+        this.role_id = role_id;
+    }
 
     public int getId() {
         return id;

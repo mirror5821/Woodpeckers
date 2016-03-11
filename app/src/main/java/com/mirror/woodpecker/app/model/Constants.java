@@ -74,7 +74,11 @@ public interface Constants {
     public final static String REGISTERS = "register";
     public final static String REPAIR_COM = "select_company";
     public final static String REPAIR = "repair";
-
+    public final static String ORDER_LIST_MY = "myorderlist";//我的维修单（myorderlist）参数：用户ID 【 uid】
+    public final static String ORDER_LIST_DEPART = "departorderlist";//部门维修单（departorderlist）参数：用户ID 【 uid】
+    public final static String ORDER_LIST_COM = "companyorderlist";//单位维修单（companyorderlist）参数：用户ID 【 uid】
+    public final static String ORDER_DETAILS = "uorderinfo";//维修单详情
+    public final static String KNOW_ZMN = "understand";//了解啄木鸟
 
 
     public final static int ORDER_STATUS_ALL = 1;//订单列表状态

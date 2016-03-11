@@ -15,6 +15,8 @@ public class AppContext extends BaseAppContext {
     public static String LOC_CITY = "郑州市";
     public static String LOC_AREA = "金水区";
 
+    public static int USER_ROLE_ID = 0;
+    public static int USER_ID;
 
     private static AppContext instance;
 
