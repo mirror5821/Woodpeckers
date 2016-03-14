@@ -1,5 +1,6 @@
 package com.mirror.woodpecker.app.fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
@@ -9,10 +10,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.mirror.woodpecker.app.R;
-import com.mirror.woodpecker.app.activity.AbutUsActivity;
+import com.mirror.woodpecker.app.activity.AboutUsActivity;
 import com.mirror.woodpecker.app.activity.LoginActivity;
 import com.mirror.woodpecker.app.activity.OrderDetailsActivity;
 import com.mirror.woodpecker.app.activity.RepairAddActivity;
+import com.mirror.woodpecker.app.activity.UserRepairListActivity;
 import com.mirror.woodpecker.app.app.AppContext;
 
 import dev.mirror.library.android.view.autoscrollviewpager.AutoScrollViewPager;
@@ -105,62 +107,61 @@ public class IndexFragment extends BaseFragment {
             });
 
         }
-//        pager.setAdapter(new PagerAdapter() {
-//            @Override
-//            public int getCount() {
-//                return imgs.length;
-//            }
-//
-//            @Override
-//            public boolean isViewFromObject(View view, Object o) {
-//                return view == o;
-//            }
-//
-//            @Override
-//            public Object instantiateItem(ViewGroup container, int position) {
-//                ImageView view = new ImageView(container.getContext());
-//                view.setScaleType(ImageView.ScaleType.CENTER_CROP);
-//                AppContext.displayImage(view, imgs[position]);
-//                container.addView(view);
-//                return view;
-//            }
-//
-//            @Override
-//            public void destroyItem(ViewGroup container, int position, Object object) {
-//                container.removeView((View) object);
-//            }
-//        });
 
-        //test
-//        pager.setScrollFactgor(5);
-//        pager.setOffscreenPageLimit(3);
-//        pager.startAutoScroll(2000);
-//        pager.setOnPageClickListener(new AutoScrollViewPager.OnPageClickListener() {
-//            @Override
-//            public void onPageClick(AutoScrollViewPager autoScrollPager, int position) {
-//                showToast("You clicked page: " + (position + 1));
-//            }
-//        });
     }
-
     @Override
     public void onClick(View v) {
         super.onClick(v);
+        /**
+         * 返回的数据中role_id为角色ID，数据1代表单位主管，
+         * 2代表部门主管，3代表客服，4代表维修人员，0为普通用户
+         * 根据这个进行登录判定
+         */
         switch (v.getId()){
             case R.id.btn1:
-                startActivity(new Intent(getActivity(), RepairAddActivity.class));
-//                startActivity(new Intent(getActivity(), RegistersActivity.class));
+                if(AppContext.USER_ROLE_ID == 1||AppContext.USER_ROLE_ID == 2||AppContext.USER_ROLE_ID == 0){
+                    startActivity(new Intent(getActivity(), RepairAddActivity.class));
+                }else{
+                    startActivityForResult(new Intent(getActivity(), LoginActivity.class), LOGIN_CODE1);
+                }
+
                 break;
             case R.id.btn2:
-                startActivity(new Intent(getActivity(), LoginActivity.class));
+                if(AppContext.USER_ROLE_ID == 1||AppContext.USER_ROLE_ID == 2||AppContext.USER_ROLE_ID == 0){
+                    startActivity(new Intent(getActivity(), UserRepairListActivity.class));
+                }else{
+                    startActivityForResult(new Intent(getActivity(), LoginActivity.class), LOGIN_CODE2);
+                }
+
                 break;
             case R.id.btn3:
                 startActivity(new Intent(getActivity(), OrderDetailsActivity.class));
 
                 break;
             case R.id.btn4:
-                startActivity(new Intent(getActivity(), AbutUsActivity.class));
+                startActivity(new Intent(getActivity(), AboutUsActivity.class));
                 break;
         }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == Activity.RESULT_OK){
+            switch (requestCode) {
+                case LOGIN_CODE1:
+                    if(AppContext.USER_ROLE_ID == 1||AppContext.USER_ROLE_ID == 2||AppContext.USER_ROLE_ID == 0){
+                        startActivity(new Intent(getActivity(), RepairAddActivity.class));
+                    }
+                    break;
+                case LOGIN_CODE2:
+                    if(AppContext.USER_ROLE_ID == 1||AppContext.USER_ROLE_ID == 2||AppContext.USER_ROLE_ID == 0){
+                        startActivity(new Intent(getActivity(), UserRepairListActivity.class));
+                    }
+                    break;
+
+            }
+        }
+
     }
 }

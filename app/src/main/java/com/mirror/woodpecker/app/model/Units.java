@@ -2,6 +2,8 @@ package com.mirror.woodpecker.app.model;
 
 /**
  * Created by 王沛栋 on 2016/3/8.
+ *
+ * 项目单位的实体类
  */
 public class Units implements AddrBase{
     private int id;//":"2",

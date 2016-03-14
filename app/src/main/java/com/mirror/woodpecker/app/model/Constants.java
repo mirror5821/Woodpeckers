@@ -14,6 +14,7 @@ public interface Constants {
     public final static int ADDRESS_UPDATE = 1104;
 
     public final static int LOGIN_CODE1 = 2101;
+    public final static int LOGIN_CODE2 = 2102;
     public final static int FORUM_ADD_CODE = 5001;
 
     public final static int PRODUCT_TYPE1 = 1;//正常商品
@@ -79,6 +80,8 @@ public interface Constants {
     public final static String ORDER_LIST_COM = "companyorderlist";//单位维修单（companyorderlist）参数：用户ID 【 uid】
     public final static String ORDER_DETAILS = "uorderinfo";//维修单详情
     public final static String KNOW_ZMN = "understand";//了解啄木鸟
+
+    public final static String ORDER_LIST_SERVICE = "orderlist";//客服看到的维修单
 
 
     public final static int ORDER_STATUS_ALL = 1;//订单列表状态

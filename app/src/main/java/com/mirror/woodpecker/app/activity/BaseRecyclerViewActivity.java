@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import java.util.List;
@@ -79,11 +80,16 @@ public abstract class BaseRecyclerViewActivity<T extends Parcelable> extends Bas
     public void initOtherView(){
 
     }
+
+//    RecyclerView.LayoutManager lm = new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL);
+
+    public RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
     private void newAdapter(){
         if(mAdapter == null) {
             mAdapter = new MyAdapter(this,mList,setItemLayoutId());
-            LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
+//            LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+//            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
             mRecyclerView.setLayoutManager(layoutManager);
 
             mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);

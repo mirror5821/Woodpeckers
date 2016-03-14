@@ -6,12 +6,9 @@
 
     <include layout="@layout/view_base_title_bar"/>
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:src="@mipmap/bg_about"
-        android:scaleType="centerCrop"/>
-
-    <include layout="@layout/base_listview"/>
+    <WebView
+        android:id="@+id/webview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
 
 </LinearLayout>

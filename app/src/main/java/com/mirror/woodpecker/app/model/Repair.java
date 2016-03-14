@@ -2,6 +2,8 @@ package com.mirror.woodpecker.app.model;
 
 /**
  * Created by 王沛栋 on 2016/3/11.
+ *
+ *
  */
 public class Repair {
     private int order_id;//private String 120private String ,

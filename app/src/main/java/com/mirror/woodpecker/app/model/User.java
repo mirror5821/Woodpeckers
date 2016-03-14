@@ -2,6 +2,7 @@ package com.mirror.woodpecker.app.model;
 
 /**
  * Created by 王沛栋 on 2016/3/10.
+ * 用户的实体类
  */
 public class User {
     public User(){

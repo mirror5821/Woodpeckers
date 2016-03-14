@@ -15,7 +15,7 @@ import com.mirror.woodpecker.app.R;
  * Created by 王沛栋 on 2016/3/7.
  */
 public abstract class BaseTabActivity extends BaseActivity {
-    protected FragmentTabHost mFragmentTabHost;
+    public FragmentTabHost mFragmentTabHost;
     private String [] mTabTitles;
     private Class<? extends Fragment>[] mFragments;
     private int [] mTabIcons;

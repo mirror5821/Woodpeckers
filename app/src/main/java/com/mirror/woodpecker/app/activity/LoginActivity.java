@@ -1,6 +1,7 @@
 package com.mirror.woodpecker.app.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -34,8 +35,8 @@ public class LoginActivity extends BaseActivity {
 
         mEtName = (EditText)findViewById(R.id.name);
         mEtPass = (EditText)findViewById(R.id.pass);
-        mEtName.setText("18837145615");
-        mEtPass.setText("111111");
+        mEtName.setText("kefu");
+        mEtPass.setText("asd123456");
 
         mBtnLogin = (Button)findViewById(R.id.btn_login);
         mBtnRegister = (Button)findViewById(R.id.btn);
@@ -84,16 +85,23 @@ public class LoginActivity extends BaseActivity {
         ap.postData1(LOGIN_TEST, jb.toString(), new AppAjaxCallback.onResultListener() {
             @Override
             public void onResult(String data, String msg) {
+
+                /**
+                 * 返回的数据中role_id为角色ID，数据1代表单位主管，
+                 * 2代表部门主管，3代表客服，4代表维修人员，0为普通用户
+                 */
                 SharePreferencesUtil.saveLoginInfo(getApplicationContext(), name, pass);
                 SharePreferencesUtil.saveUserInfo(getApplicationContext(), data);
                 User user= SharePreferencesUtil.getUserInfo(getApplicationContext());
                 AppContext.USER_ROLE_ID = user.getRole_id();
                 AppContext.USER_ID = user.getId();
-//                AppContext.USER_ROLE_ID = 0;
-                showToast(msg);
 
-                startActivity(new Intent(LoginActivity.this, UserRepairListActivity.class));
+                Uri datas = Uri.parse(data);
+                Intent intent = new Intent(null,datas);
+                setResult(RESULT_OK, intent);
                 finish();
+//                startActivity(new Intent(LoginActivity.this, UserRepairListActivity.class));
+//                finish();
             }
 
             @Override

@@ -5,13 +5,13 @@ import android.support.v4.app.Fragment;
 import android.widget.RadioGroup;
 
 import com.mirror.woodpecker.app.app.AppContext;
-import com.mirror.woodpecker.app.fragment.UserRepairRecyclerViewFragment;
+import com.mirror.woodpecker.app.fragment.ServiceRepairRecyclerViewFragment;
 
 /**
  * Created by 王沛栋 on 2016/3/1.
  * 用户维修单
  */
-public class UserRepairListActivity extends BaseViewPagerActivity {
+public class ServiceRepairListActivity extends BaseViewPagerActivity {
     private String [] mTypes;
 
     @Override
@@ -51,7 +51,7 @@ public class UserRepairListActivity extends BaseViewPagerActivity {
     @Override
     public Fragment setViewPagerFragment(int position) {
 
-        UserRepairRecyclerViewFragment commentFragment = new UserRepairRecyclerViewFragment();
+        ServiceRepairRecyclerViewFragment commentFragment = new ServiceRepairRecyclerViewFragment();
         Bundle b = new Bundle();
         b.putInt(INTENT_ID,position);
 

@@ -27,8 +27,11 @@
 
 
 
-
-        <activity android:name=".activity.AbutUsActivity"/>
+        <activity android:name=".activity.AboutUsListViewActivity"/>
+        <activity android:name=".activity.NormalWebViewActivity"/>
+        <activity android:name=".activity.AboutUsGridViewActivity"/>
+        <activity android:name=".activity.AboutUsDetailsActivity"/>
+        <activity android:name=".activity.AboutUsActivity"/>
         <activity android:name=".activity.UserRepairDetailsActivity"/>
         <activity android:name=".activity.UserRepairListActivity"/>
         <activity android:name=".activity.MapSelectActivity"/>
