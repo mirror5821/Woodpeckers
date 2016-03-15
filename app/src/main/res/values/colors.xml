@@ -41,6 +41,10 @@
     <color name="tv_light2">#7c7c7c</color>
 
     <color name="details_title">#4ca8f1</color>
+    <color name="btn_red">#d12147</color>
+    <color name="btn_red_p">#fa0831</color>
+
+
 
     <drawable name="rb_s">@color/rb_select</drawable>
     <drawable name="rb_n">@color/rb_normal</drawable>

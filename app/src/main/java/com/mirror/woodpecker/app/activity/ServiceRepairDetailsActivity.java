@@ -1,5 +1,6 @@
 package com.mirror.woodpecker.app.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -22,7 +23,7 @@ import dev.mirror.library.android.util.JsonUtils;
 /**
  * Created by 王沛栋 on 2016/3/11.
  */
-public class UserRepairDetailsActivity extends BaseActivity {
+public class ServiceRepairDetailsActivity extends BaseActivity {
     private TextView mTvPhone;
     private TextView mTvLoc;
     private TextView mTvDes;
@@ -34,15 +35,19 @@ public class UserRepairDetailsActivity extends BaseActivity {
     private TextView mTvOrderStatus;
     private EditText mEt;
     private Button mBtn;
+    private Button mBtnClose;
+    private Button mBtnPai;
     private LinearLayout mViewRepairMan;
+    private LinearLayout mViewLook;
 
 
     private int mOrderId;
     private Repair mRepair;
+    private int mOrderFlowStatus;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_repair_details);
+        setContentView(R.layout.activity_repair_service_details);
         mOrderId = getIntent().getIntExtra(INTENT_ID,0);
         setTitleText("维修单详情");
         setBack();
@@ -63,8 +68,11 @@ public class UserRepairDetailsActivity extends BaseActivity {
 
         mEt = (EditText)findViewById(R.id.et);
         mBtn = (Button)findViewById(R.id.btn);
+        mBtnClose = (Button)findViewById(R.id.btn_close);
+        mBtnPai = (Button)findViewById(R.id.btn_pai);
 
         mViewRepairMan = (LinearLayout)findViewById(R.id.view_repair_man);
+        mViewLook = (LinearLayout)findViewById(R.id.view_look);
 
         mTvPhone.setText(TextUtils.isEmpty(mRepair.getPhone())?"暂无联系方式":mRepair.getPhone());
         mTvLoc.setText(TextUtils.isEmpty(mRepair.getGz_postion())?"暂无保修位置":mRepair.getGz_postion());
@@ -98,16 +106,32 @@ public class UserRepairDetailsActivity extends BaseActivity {
          * 0未处理  1客服关闭 2已查看 3等待接单 4已接单 5解决中 6等待调货状态 7确定调货，货已到 8已解决 9最终关闭
          */
 
-        String [] orderStatus = {"未处理","客服关闭", "已查看", "等待接单", "已接单", "解决中", "等待调货状态", "确定调货，货已到", "已解决", "最终关闭"};
+        String [] orderStatus = {"未处理","客服关闭", "已查看", "等待接单", "已接单", "解决中", "等待调货状态",
+                "确定调货，货已到", "已解决", "最终关闭"};
+
         switch (mRepair.getOrder_status()){
             case 0:
+                mOrderFlowStatus = 2;
                 mTvRepairMan.setVisibility(View.GONE);
-                mEt.setVisibility(View.GONE);
-                mBtn.setVisibility(View.GONE);
+
+                mTvOrderStatus.setText(orderStatus[mRepair.getOrder_status()]);
+                mEt.setVisibility(View.VISIBLE);
+                mBtn.setVisibility(View.VISIBLE);
+
                 break;
             case 1:
                 break;
             case 2:
+                mTvOrderStatus.setText(orderStatus[mRepair.getOrder_status()]);
+                mEt.setVisibility(View.VISIBLE);
+                mBtn.setVisibility(View.GONE);
+                mTvRepairMan.setVisibility(View.GONE);
+                mViewLook.setVisibility(View.VISIBLE);
+
+                mBtnClose.setOnClickListener(this);
+                mBtnPai.setOnClickListener(this);
+
+                mOrderFlowStatus = 1;
                 break;
             case 3:
                 break;
@@ -124,10 +148,93 @@ public class UserRepairDetailsActivity extends BaseActivity {
             case 9:
                 break;
         }
+        mBtn.setOnClickListener(this);
 
-        mTvOrderStatus.setText(orderStatus[mRepair.getOrder_status()]);
 
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        super.onClick(v);
+        switch (v.getId()){
+            case R.id.btn:
+                sub();
+                break;
+            case R.id.btn_close:
+                sub();
+                break;
+            case R.id.btn_pai:
+                startActivity(new Intent(ServiceRepairDetailsActivity.this,
+                        ServiceRepairActionActivity.class).putExtra(INTENT_ID,mRepair));
+                break;
+        }
+    }
+
+    private void sub(){
+        String tips = mEt.getText().toString();
+        if(TextUtils.isEmpty(tips)){
+            showToast("请输入提示语!");
+            return;
+        }
+        /**
+         订单id	order_id
+         登录用户ID	uid
+         要更改的订单状态	status
+         分步参数名	action	分步中要传递的参数说明
+                     查看	     look        2
+                     直接关闭	 firstclose  1
+                     输入维修价	 price
+                     指派维修人员	 appoint
+                     接单	     waiting
+                     维修人员反馈	 takepic
+                     需调货	     adjust_device
+                     确认调货	 confirm_adjust
+                     完成	     done
+                     最终关闭	 close
+         */
+        JSONObject jb = new JSONObject();
+        try{
+            switch (mOrderFlowStatus){
+                /**
+                 登录客服ID	uid
+                 进度提示语	tips
+                 要更改的状态	status	  2
+                 订单ID	order_id
+                 */
+                case 2:
+                    jb.put("order_id", mOrderId);
+                    jb.put("uid", AppContext.USER_ID);
+                    jb.put("status",2);
+                    jb.put("tips",tips);
+                    jb.put("action","look");
+
+                    break;
+                case 1:
+                    jb.put("order_id", mOrderId);
+                    jb.put("uid", AppContext.USER_ID);
+                    jb.put("status",1);
+                    jb.put("tips",tips);
+                    jb.put("action","firstclose");
+                    break;
+            }
+        }catch (JSONException e){
+
+        }
+
+        System.out.println("-------------"+jb.toString());
+        mHttpClient.postData1(ORDER_FLOW, jb.toString(), new AppAjaxCallback.onResultListener() {
+            @Override
+            public void onResult(String data, String msg) {
+                showToast(msg);
+            }
+
+            @Override
+            public void onError(String msg) {
+
+                showToast(msg);
+            }
+        });
     }
 
     private void loadData(){
@@ -147,7 +254,6 @@ public class UserRepairDetailsActivity extends BaseActivity {
 
             @Override
             public void onError(String msg) {
-
                 showToast( msg);
             }
         });

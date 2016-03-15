@@ -1,7 +1,6 @@
 package com.mirror.woodpecker.app.fragment;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
@@ -23,49 +22,30 @@ import dev.mirror.library.android.util.DateUtil;
 /**
  * Created by mirror on 16/1/3.
  */
-public class UserRepairRecyclerViewFragment extends BaseRecyclerViewFragment {
+public class RepairRepairRecyclerViewFragment extends BaseRecyclerViewFragment {
     @Override
     public int setLayoutById() {
         mList = new ArrayList();
-        return 0;
+        return R.layout.fragment_base_rview;
     }
 
-    private int mTypeId;
+
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        mTypeId = getArguments().getInt(INTENT_ID);
+    public void initOtherView() {
+        super.initOtherView();
+        setTitleText("维修单列表");
     }
 
-//    @Override
-//    public void addHeaderView() {
-//        super.addHeaderView();
-//        View view = LayoutInflater.from(getActivity()).inflate(R.layout.activity_camera,null);
-//        mRecyclerView.addHeaderView(view);
-//    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadData();
+    }
+
+
 
     @Override
     public void loadData() {
-
-        /**
-         6.我的维修单（myorderlist）参数：用户ID 【 uid】
-         7.部门维修单（departorderlist）参数：用户ID 【 uid】
-         8.单位维修单（companyorderlist）参数：用户ID 【 uid】
-         */
-        String fName  = ORDER_LIST_MY;
-        switch (mTypeId){
-            case 0:
-                fName  = ORDER_LIST_MY;
-                break;
-            case 1:
-                fName  = ORDER_LIST_DEPART;
-                break;
-            case 2:
-                fName  = ORDER_LIST_COM;
-                break;
-        }
-
 
         JSONObject jb = new JSONObject();
         try{
@@ -75,7 +55,7 @@ public class UserRepairRecyclerViewFragment extends BaseRecyclerViewFragment {
 
         }
 
-        mHttpClient.postData(fName, jb.toString(), new AppAjaxCallback.onRecevierDataListener<Repair>() {
+        mHttpClient.postData(ORDER_LIST_REPAIR, jb.toString(), new AppAjaxCallback.onRecevierDataListener<Repair>() {
             @Override
             public void onReceiverData(List<Repair> data, String msg) {
                 if(pageNo == mDefaultPage){
@@ -97,6 +77,8 @@ public class UserRepairRecyclerViewFragment extends BaseRecyclerViewFragment {
                 return Repair.class;
             }
         });
+
+
     }
 
 
@@ -121,8 +103,8 @@ public class UserRepairRecyclerViewFragment extends BaseRecyclerViewFragment {
         holder.getConvertView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(new Intent(getActivity(), UserRepairDetailsActivity.class)
-                        .putExtra(INTENT_ID,r.getOrder_id())));
+                startActivity(new Intent(new Intent(getActivity(), UserRepairDetailsActivity.class).putExtra(INTENT_ID,
+                        r.getOrder_id())));
             }
         });
     }

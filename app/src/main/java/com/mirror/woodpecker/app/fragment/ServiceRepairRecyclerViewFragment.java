@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.mirror.woodpecker.app.R;
-import com.mirror.woodpecker.app.activity.UserRepairDetailsActivity;
+import com.mirror.woodpecker.app.activity.ServiceRepairDetailsActivity;
 import com.mirror.woodpecker.app.app.AppContext;
 import com.mirror.woodpecker.app.model.Repair;
 import com.mirror.woodpecker.app.util.AppAjaxCallback;
@@ -26,30 +26,23 @@ public class ServiceRepairRecyclerViewFragment extends BaseRecyclerViewFragment 
     @Override
     public int setLayoutById() {
         mList = new ArrayList();
-        return 0;
+        return R.layout.fragment_base_rview;
     }
 
-    /*private int mTypeId;
+
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        mTypeId = getArguments().getInt(INTENT_ID);
-    }*/
-
-//    @Override
-//    public void addHeaderView() {
-//        super.addHeaderView();
-//        View view = LayoutInflater.from(getActivity()).inflate(R.layout.activity_camera,null);
-//        mRecyclerView.addHeaderView(view);
-//    }
-
+    public void initOtherView() {
+        super.initOtherView();
+        setTitleText("维修单列表");
+    }
 
     @Override
     public void onResume() {
         super.onResume();
         loadData();
     }
+
+
 
     @Override
     public void loadData() {
@@ -111,7 +104,7 @@ public class ServiceRepairRecyclerViewFragment extends BaseRecyclerViewFragment 
         holder.getConvertView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(new Intent(getActivity(), UserRepairDetailsActivity.class).putExtra(INTENT_ID,
+                startActivity(new Intent(new Intent(getActivity(), ServiceRepairDetailsActivity.class).putExtra(INTENT_ID,
                         r.getOrder_id())));
             }
         });

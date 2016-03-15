@@ -1,11 +1,14 @@
 package com.mirror.woodpecker.app.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by 王沛栋 on 2016/3/11.
  *
  *
  */
-public class Repair {
+public class Repair implements Parcelable{
     private int order_id;//private String 120private String ,
     private String phone;//private String 18837145615private String ,
     private String gz_postion;//private String \u5317\u4eac\u5e02\u5317\u4eac\u5e02\u4e1c\u57ce\u533a\u5317\u4eac\u5e02\u4e1c\u57ce\u533a\u897f\u957f\u5b89\u8857private String ,
@@ -31,6 +34,56 @@ public class Repair {
     private String type_name;
     private String catname;
     private String comment;
+    private int sign;
+
+    protected Repair(Parcel in) {
+        order_id = in.readInt();
+        phone = in.readString();
+        gz_postion = in.readString();
+        gz_desc = in.readString();
+        uid = in.readInt();
+        order_type_id = in.readInt();
+        project_id = in.readInt();
+        order_status = in.readInt();
+        order_cat = in.readInt();
+        prev_img = in.readString();
+        last_img = in.readString();
+        device_name = in.readString();
+        addtime = in.readString();
+        endtime = in.readString();
+        repair_id = in.readInt();
+        kefu_id = in.readString();
+        detail_desc = in.readString();
+        solution_method = in.readString();
+        device_id = in.readString();
+        repair_price = in.readString();
+        ext_info = in.readString();
+        project_name = in.readString();
+        type_name = in.readString();
+        catname = in.readString();
+        comment = in.readString();
+        sign = in.readInt();
+    }
+
+    public static final Creator<Repair> CREATOR = new Creator<Repair>() {
+        @Override
+        public Repair createFromParcel(Parcel in) {
+            return new Repair(in);
+        }
+
+        @Override
+        public Repair[] newArray(int size) {
+            return new Repair[size];
+        }
+    };
+
+    public int getSign() {
+        return sign;
+    }
+
+    public void setSign(int sign) {
+        this.sign = sign;
+    }
 
     public String getProject_name() {
         return project_name;
@@ -230,5 +283,40 @@ public class Repair {
 
     public void setExt_info(String ext_info) {
         this.ext_info = ext_info;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(order_id);
+        dest.writeString(phone);
+        dest.writeString(gz_postion);
+        dest.writeString(gz_desc);
+        dest.writeInt(uid);
+        dest.writeInt(order_type_id);
+        dest.writeInt(project_id);
+        dest.writeInt(order_status);
+        dest.writeInt(order_cat);
+        dest.writeString(prev_img);
+        dest.writeString(last_img);
+        dest.writeString(device_name);
+        dest.writeString(addtime);
+        dest.writeString(endtime);
+        dest.writeInt(repair_id);
+        dest.writeString(kefu_id);
+        dest.writeString(detail_desc);
+        dest.writeString(solution_method);
+        dest.writeString(device_id);
+        dest.writeString(repair_price);
+        dest.writeString(ext_info);
+        dest.writeString(project_name);
+        dest.writeString(type_name);
+        dest.writeString(catname);
+        dest.writeString(comment);
+        dest.writeInt(sign);
     }
 }

@@ -43,12 +43,17 @@ public  class AddrAdapter<T extends AddrBase> extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if(convertView == null) {
-            if (mType == 2) {
-                convertView = LayoutInflater.from(mContext).inflate(R.layout.item_spinner_d, null);
-            }else{
-                convertView = LayoutInflater.from(mContext).inflate(R.layout.item_spinner_l, null);
+            switch (mType){
+                case 1:
+                    convertView = LayoutInflater.from(mContext).inflate(R.layout.item_about, null);
+                    break;
+                case 2:
+                    convertView = LayoutInflater.from(mContext).inflate(R.layout.item_spinner_d, null);
+                    break;
+                default:
+                    convertView = LayoutInflater.from(mContext).inflate(R.layout.item_spinner_l, null);
+                    break;
             }
-
         }
 
         TextView tv = (TextView)convertView.findViewById(android.R.id.text1);

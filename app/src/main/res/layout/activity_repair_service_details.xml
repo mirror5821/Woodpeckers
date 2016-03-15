@@ -174,7 +174,33 @@
                 android:layout_margin="@dimen/d8"
                 android:visibility="gone"/>
 
+            <LinearLayout
+                android:id="@+id/view_look"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/d8"
+                android:paddingRight="@dimen/d8"
+                android:layout_marginTop="@dimen/d16"
+                android:paddingBottom="@dimen/d16"
+                android:visibility="gone">
 
+                <Button
+                    android:id="@+id/btn_close"
+                    style="@style/BtnRed"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/close_order"/>
+
+                <Button
+                    android:id="@+id/btn_pai"
+                    style="@style/BtnBlue"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/d8"
+                    android:text="@string/pai_order"/>
+
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

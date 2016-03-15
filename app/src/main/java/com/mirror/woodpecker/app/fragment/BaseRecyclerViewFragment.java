@@ -47,7 +47,7 @@ public abstract class BaseRecyclerViewFragment<T extends Parcelable> extends Bas
         mViewEmpty = view.findViewById(R.id.empty);
 
         mRecyclerView = (XRecyclerView)view.findViewById(R.id.recyclerview);
-
+        initOtherView();
         if(mList == null|| mList.isEmpty()){
             pageNo = mDefaultPage;
             loadData();
@@ -55,6 +55,10 @@ public abstract class BaseRecyclerViewFragment<T extends Parcelable> extends Bas
             setAdapter();
         }
 
+
+    }
+
+    public void initOtherView(){
 
     }
 
@@ -91,7 +95,7 @@ public abstract class BaseRecyclerViewFragment<T extends Parcelable> extends Bas
             mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
             mRecyclerView.setArrowImageView(R.mipmap.ic_downgrey);
 
-            mRecyclerView.addItemDecoration(new VerticalSpaceItemDecoration(DpUtil.dip2px(getActivity(),12)));
+            mRecyclerView.addItemDecoration(new VerticalSpaceItemDecoration(DpUtil.dip2px(getActivity(),8)));
 
             //加入头部试图  可重新此方法
             addHeaderView();

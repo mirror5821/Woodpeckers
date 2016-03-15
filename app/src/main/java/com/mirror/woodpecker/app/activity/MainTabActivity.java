@@ -10,8 +10,8 @@ import com.mirror.woodpecker.app.R;
 import com.mirror.woodpecker.app.app.AppContext;
 import com.mirror.woodpecker.app.fragment.AutoScrollPagerFragment;
 import com.mirror.woodpecker.app.fragment.IndexFragment;
+import com.mirror.woodpecker.app.fragment.RepairRepairRecyclerViewFragment;
 import com.mirror.woodpecker.app.fragment.ServiceRepairRecyclerViewFragment;
-import com.mirror.woodpecker.app.fragment.TestRecyclerViewFragment;
 import com.mirror.woodpecker.app.iface.OnTabSelect;
 
 /**
@@ -42,34 +42,21 @@ public class MainTabActivity extends BaseTabActivity implements OnTabSelect{
         });
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode ==Activity.RESULT_OK){
 
-
-        if(resultCode == Activity.RESULT_OK){
-            showToast(AppContext.USER_ROLE_ID + "----"+resultCode);
-            switch (requestCode) {
-                case LOGIN_CODE1:
-                    showToast(AppContext.USER_ROLE_ID+"");
-                    if(AppContext.USER_ROLE_ID == 3){
-                        onSelect(1);
-                    }else{
-                        onSelect(0);
-                    }
-                    break;
-                case LOGIN_CODE2:
-                    if(AppContext.USER_ROLE_ID == 4){
-                        onSelect(2);
-                    }else{
-                        onSelect(0);
-                    }
-                    break;
-
+            if(AppContext.USER_ROLE_ID == 3){
+                onSelect(1);
+            }else if(AppContext.USER_ROLE_ID == 4){
+                onSelect(2);
+            }else{
+                onSelect(0);
             }
         }
     }
+
 
 
     private String [] mTabs = {"首页","客服调度","维修维保","个人中心"};
@@ -86,7 +73,7 @@ public class MainTabActivity extends BaseTabActivity implements OnTabSelect{
     @Override
     public <T extends Fragment> Class<T>[] setFragment() {
         return new Class[]{IndexFragment.class,ServiceRepairRecyclerViewFragment.class,
-                TestRecyclerViewFragment.class,AutoScrollPagerFragment.class};
+                RepairRepairRecyclerViewFragment.class,AutoScrollPagerFragment.class};
     }
 
 

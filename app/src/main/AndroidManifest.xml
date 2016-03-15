@@ -27,6 +27,8 @@
 
 
 
+        <activity android:name=".activity.ServiceRepairActionActivity"/>
+        <activity android:name=".activity.ServiceRepairDetailsActivity"/>
         <activity android:name=".activity.AboutUsListViewActivity"/>
         <activity android:name=".activity.NormalWebViewActivity"/>
         <activity android:name=".activity.AboutUsGridViewActivity"/>

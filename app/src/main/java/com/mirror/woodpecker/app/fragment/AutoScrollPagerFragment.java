@@ -1,7 +1,6 @@
 package com.mirror.woodpecker.app.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,7 @@ import com.mirror.woodpecker.app.app.AppContext;
 import dev.mirror.library.android.view.autoscrollviewpager.AutoScrollViewPager;
 
 
-public class AutoScrollPagerFragment extends Fragment {
+public class AutoScrollPagerFragment extends BaseFragment {
 
     private String[] imgs = {"http://h.hiphotos.baidu.com/image/w%3D1920%3Bcrop%3D0%2C0%2C1920%2C1080/sign=fed1392e952bd40742c7d7f449b9a532/e4dde71190ef76c6501a5c2d9f16fdfaae5167e8.jpg",
             "http://a.hiphotos.baidu.com/image/w%3D1920%3Bcrop%3D0%2C0%2C1920%2C1080/sign=25d477ebe51190ef01fb96d6fc2ba675/503d269759ee3d6df51a20cd41166d224e4adedc.jpg",

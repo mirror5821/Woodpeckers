@@ -82,6 +82,12 @@ public interface Constants {
     public final static String KNOW_ZMN = "understand";//了解啄木鸟
 
     public final static String ORDER_LIST_SERVICE = "orderlist";//客服看到的维修单
+    public final static String ORDER_LIST_REPAIR = "repairorderlist";//维修人员维修单列表
+
+    public final static String ORDER_FLOW = "orderhandel";//客服订单流程
+    public final static String REPAIR_LIST = "repairlist";//维修人员列表
+    public final static String UP_REPARI_PRICE = "price";//提交维修价格
+    public final static String SEND_REPARI_MAN = "appoint";//指派维修人员
 
 
     public final static int ORDER_STATUS_ALL = 1;//订单列表状态
