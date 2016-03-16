@@ -58,5 +58,6 @@
     <string name="repair_price">维修价格</string>
     <string name="input_repair_price">请输入维修价格</string>
     <string name="select_repater">请选择维修人员</string>
+    <string name="input_notiy_word">请输入提示语</string>
 
 </resources>

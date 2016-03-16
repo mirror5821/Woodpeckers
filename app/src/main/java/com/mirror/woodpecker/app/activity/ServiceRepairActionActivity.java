@@ -140,12 +140,19 @@ public class ServiceRepairActionActivity extends BaseActivity {
             jb.put("tips",tips);
             jb.put("action","appoint");
             jb.put("repair_id",mRId);
+
+           /* jb.put("order_id", mRepair.getOrder_id());
+            jb.put("uid", AppContext.USER_ID);
+            jb.put("status",3);
+//            jb.put("tips",);
+            jb.put("action","appoint");
+//            jb.put("repair_id",mRId);*/
         }catch (JSONException e){
 
         }
 
         System.out.println("-------------"+jb.toString());
-        mHttpClient.postData1(SEND_REPARI_MAN, jb.toString(), new AppAjaxCallback.onResultListener() {
+        mHttpClient.postData1(ORDER_FLOW, jb.toString(), new AppAjaxCallback.onResultListener() {
             @Override
             public void onResult(String data, String msg) {
                 showToast(msg);
@@ -153,7 +160,7 @@ public class ServiceRepairActionActivity extends BaseActivity {
 
             @Override
             public void onError(String msg) {
-
+                System.out.println("--------------"+msg);
                 showToast(msg);
             }
         });

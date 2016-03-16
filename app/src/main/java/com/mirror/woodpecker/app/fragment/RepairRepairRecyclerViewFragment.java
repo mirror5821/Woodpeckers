@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.mirror.woodpecker.app.R;
-import com.mirror.woodpecker.app.activity.UserRepairDetailsActivity;
+import com.mirror.woodpecker.app.activity.RepairDetailsActivity;
 import com.mirror.woodpecker.app.app.AppContext;
 import com.mirror.woodpecker.app.model.Repair;
 import com.mirror.woodpecker.app.util.AppAjaxCallback;
@@ -103,7 +103,7 @@ public class RepairRepairRecyclerViewFragment extends BaseRecyclerViewFragment {
         holder.getConvertView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(new Intent(getActivity(), UserRepairDetailsActivity.class).putExtra(INTENT_ID,
+                startActivity(new Intent(new Intent(getActivity(), RepairDetailsActivity.class).putExtra(INTENT_ID,
                         r.getOrder_id())));
             }
         });
