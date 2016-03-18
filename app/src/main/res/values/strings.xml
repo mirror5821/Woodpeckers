@@ -59,5 +59,12 @@
     <string name="input_repair_price">请输入维修价格</string>
     <string name="select_repater">请选择维修人员</string>
     <string name="input_notiy_word">请输入提示语</string>
+    <string name="repaing">解决中</string>
+    <string name="need_change">需更换</string>
+    <string name="project_name">设备名称</string>
+    <string name="input_project_name">请输入设备名称</string>
+    <string name="input_jiejue">请输入解决方案</string>
+    <string name="input_project_type">请输入设备型号</string>
+    <string name="input_price">请输入维修价格</string>
 
 </resources>

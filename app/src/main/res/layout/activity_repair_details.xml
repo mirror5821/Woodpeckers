@@ -176,6 +176,34 @@
 
 
 
+            <LinearLayout
+                android:id="@+id/view_o"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/d8"
+                android:paddingRight="@dimen/d8"
+                android:layout_marginTop="@dimen/d16"
+                android:paddingBottom="@dimen/d16"
+                android:visibility="gone">
+
+                <Button
+                    android:id="@+id/btn_repaing"
+                    style="@style/BtnRed"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/repaing"/>
+
+                <Button
+                    android:id="@+id/btn_change"
+                    style="@style/BtnBlue"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/d8"
+                    android:text="@string/need_change"/>
+
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 

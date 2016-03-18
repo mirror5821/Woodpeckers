@@ -25,11 +25,14 @@ import dev.mirror.library.android.util.ImageTools;
 import dev.mirror.library.android.view.NoScrollGridView;
 
 /**
- * Created by 王沛栋 on 2016/3/16.
+ * Created by 王沛栋 on 2016/3/18.
  */
-public class RepairFeedBackActivity extends BaseActivity implements AdapterView.OnItemClickListener{
+public class RepairFinishActivity extends BaseActivity implements AdapterView.OnItemClickListener{
     private NoScrollGridView mGridView;
     private EditText mEt;
+    private EditText mEtName;
+    private EditText mEtDes;
+    private EditText mEtJiejue;
     private Button mBtn;
 
     private ImageAddsAdapter mAdapter;
@@ -42,10 +45,10 @@ public class RepairFeedBackActivity extends BaseActivity implements AdapterView.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_repair_feedback);
+        setContentView(R.layout.activity_repair_feedback2);
 
         setBack();
-        setTitleText("维修反馈");
+        setTitleText("维修-解决中");
 
         mRepair = getIntent().getParcelableExtra(INTENT_ID);
         mList = new ArrayList<>();
@@ -54,6 +57,10 @@ public class RepairFeedBackActivity extends BaseActivity implements AdapterView.
         mImageTools = new ImageTools(this);
 
         mEt = (EditText)findViewById(R.id.et);
+        mEtName = (EditText)findViewById(R.id.name);
+        mEtDes = (EditText)findViewById(R.id.dec);
+        mEtJiejue = (EditText)findViewById(R.id.jiejue);
+
         mBtn = (Button)findViewById(R.id.btn);
         mGridView = (NoScrollGridView)findViewById(R.id.gridview);
         mAdapter = new ImageAddsAdapter(getApplicationContext(),mList);
@@ -75,10 +82,29 @@ public class RepairFeedBackActivity extends BaseActivity implements AdapterView.
 
     private void sub(){
         String tips = mEt.getText().toString();
+        String name = mEtName.getText().toString();
+        String des = mEtDes.getText().toString();
+        String jiejue = mEtJiejue.getText().toString();
         if(TextUtils.isEmpty(tips)){
             showToast("请输入提示语");
             return;
         }
+
+        if(TextUtils.isEmpty(name)){
+            showToast("请输入设备名称");
+            return;
+        }
+
+        if(TextUtils.isEmpty(des)){
+            showToast("请输入故障描述");
+            return;
+        }
+
+        if(TextUtils.isEmpty(jiejue)){
+            showToast("请输入解决方案");
+            return;
+        }
+
         if(mList.size()<=1){
             showToast("请拍摄维修前照片");
             return;
@@ -87,17 +113,24 @@ public class RepairFeedBackActivity extends BaseActivity implements AdapterView.
         JSONObject jb = new JSONObject();
         try{
             /**
-             * 维修反馈（takepic）
-             登录维修人员ID	uid
-             要更改的状态	status  5
-             订单ID	order_id
-             维修前照片id	repairimg
+             *
+             订单id	order_id
+             登录id	uid
+             要更改的状态	status               8
              进度提示语	tips
+             设备名称	device_name
+             具体故障描述	detail_desc
+             解决方案	solution_method
+             维修后照片	repairimg
              */
             jb.put("order_id", mRepair.getOrder_id());
             jb.put("uid", AppContext.USER_ID);
-            jb.put("status",5);
-            jb.put("action","takepic");
+            jb.put("status",8);
+            jb.put("device_name",name);
+            jb.put("detail_desc",des);
+            jb.put("solution_method",jiejue);
+            jb.put("action","done");
+
             jb.put("repairimg",mImageTools.filePathToString(mList.get(0)));
             jb.put("tips",tips);
 
@@ -142,7 +175,7 @@ public class RepairFeedBackActivity extends BaseActivity implements AdapterView.
 
 
         int maxNum = 1;
-        Intent intent = new Intent(RepairFeedBackActivity.this, MultiImageSelectorActivity.class);
+        Intent intent = new Intent(RepairFinishActivity.this, MultiImageSelectorActivity.class);
         // 是否显示拍摄图片
         intent.putExtra(MultiImageSelectorActivity.EXTRA_SHOW_CAMERA, true);
         // 最大可选择图片数量

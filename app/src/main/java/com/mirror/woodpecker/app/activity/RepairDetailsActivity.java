@@ -36,7 +36,11 @@ public class RepairDetailsActivity extends BaseActivity {
     private TextView mTvOrderStatus;
     private EditText mEt;
     private Button mBtn;
+    private Button mBtnRepaing;
+    private Button mBtnNeedChange;
+
     private LinearLayout mViewRepairMan;
+    private LinearLayout mViewOpration;
 
 
     private int mOrderId;
@@ -88,8 +92,11 @@ public class RepairDetailsActivity extends BaseActivity {
 
         mEt = (EditText)findViewById(R.id.et);
         mBtn = (Button)findViewById(R.id.btn);
+        mBtnRepaing = (Button)findViewById(R.id.btn_repaing);
+        mBtnNeedChange = (Button)findViewById(R.id.btn_change);
 
         mViewRepairMan = (LinearLayout)findViewById(R.id.view_repair_man);
+        mViewOpration = (LinearLayout)findViewById(R.id.view_o);
 
         mTvPhone.setText(TextUtils.isEmpty(mRepair.getPhone())?"暂无联系方式":mRepair.getPhone());
         mTvLoc.setText(TextUtils.isEmpty(mRepair.getGz_postion())?"暂无保修位置":mRepair.getGz_postion());
@@ -151,6 +158,9 @@ public class RepairDetailsActivity extends BaseActivity {
                 mBtn.setOnClickListener(this);
                 break;
             case 5:
+                mViewOpration.setVisibility(View.VISIBLE);
+                mBtnNeedChange.setOnClickListener(this);
+                mBtnRepaing.setOnClickListener(this);
                 break;
             case 6:
                 break;
@@ -172,6 +182,12 @@ public class RepairDetailsActivity extends BaseActivity {
         switch (v.getId()){
             case R.id.btn:
                 sub();
+                break;
+            case R.id.btn_repaing:
+                startActivity(new Intent(RepairDetailsActivity.this,RepairFinishActivity.class).putExtra(INTENT_ID,mRepair));
+                break;
+            case R.id.btn_change:
+                startActivity(new Intent(RepairDetailsActivity.this,RepairChangeActivity.class).putExtra(INTENT_ID,mRepair));
                 break;
         }
     }

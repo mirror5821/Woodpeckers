@@ -25,6 +25,9 @@
             </intent-filter>
         </activity>
 
+
+        <activity android:name=".activity.RepairChangeActivity"/>
+        <activity android:name=".activity.RepairFinishActivity"/>
         <activity android:name=".activity.RepairFeedBackActivity"/>
         <activity android:name=".activity.RepairDetailsActivity"/>
         <activity android:name=".activity.ServiceRepairActionActivity"/>
