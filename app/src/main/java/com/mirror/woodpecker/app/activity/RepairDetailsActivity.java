@@ -165,6 +165,10 @@ public class RepairDetailsActivity extends BaseActivity {
             case 6:
                 break;
             case 7:
+                mBtn.setText("货到解决");
+                mBtn.setVisibility(View.VISIBLE);
+
+                mBtn.setOnClickListener(this);
                 break;
             case 8:
                 break;
@@ -227,6 +231,9 @@ public class RepairDetailsActivity extends BaseActivity {
                 case 4:
                     startActivity(new Intent(RepairDetailsActivity.this,
                             RepairFeedBackActivity.class).putExtra(INTENT_ID,mRepair));
+                    return;
+                case 7:
+                    startActivity(new Intent(RepairDetailsActivity.this,RepairFinishActivity.class).putExtra(INTENT_ID,mRepair));
                     return;
 
             }

@@ -114,7 +114,7 @@ public class ServiceRepairDetailsActivity extends BaseActivity {
                 mOrderFlowStatus = 2;
                 mTvRepairMan.setVisibility(View.GONE);
 
-                mTvOrderStatus.setText(orderStatus[mRepair.getOrder_status()]);
+
                 mEt.setVisibility(View.VISIBLE);
                 mBtn.setVisibility(View.VISIBLE);
 
@@ -122,7 +122,6 @@ public class ServiceRepairDetailsActivity extends BaseActivity {
             case 1:
                 break;
             case 2:
-                mTvOrderStatus.setText(orderStatus[mRepair.getOrder_status()]);
                 mEt.setVisibility(View.VISIBLE);
                 mBtn.setVisibility(View.GONE);
                 mTvRepairMan.setVisibility(View.GONE);
@@ -140,14 +139,24 @@ public class ServiceRepairDetailsActivity extends BaseActivity {
             case 5:
                 break;
             case 6:
+                mOrderFlowStatus = 6;
+//                mTvRepairMan.setText(mRepair.get);
+                mEt.setVisibility(View.VISIBLE);
+                mBtn.setVisibility(View.VISIBLE);
+                mBtn.setText("确定调货");
                 break;
             case 7:
                 break;
             case 8:
+                mOrderFlowStatus = 8;
+                mEt.setVisibility(View.VISIBLE);
+                mBtn.setVisibility(View.VISIBLE);
+                mBtn.setText("关闭订单");
                 break;
             case 9:
                 break;
         }
+        mTvOrderStatus.setText(orderStatus[mRepair.getOrder_status()]);
         mBtn.setOnClickListener(this);
 
 
@@ -197,6 +206,7 @@ public class ServiceRepairDetailsActivity extends BaseActivity {
         try{
             switch (mOrderFlowStatus){
                 /**
+                 * 查看
                  登录客服ID	uid
                  进度提示语	tips
                  要更改的状态	status	  2
@@ -210,12 +220,38 @@ public class ServiceRepairDetailsActivity extends BaseActivity {
                     jb.put("action","look");
 
                     break;
-                case 1:
+                case 1://第一次关闭
                     jb.put("order_id", mOrderId);
                     jb.put("uid", AppContext.USER_ID);
                     jb.put("status",1);
                     jb.put("tips",tips);
                     jb.put("action","firstclose");
+                    break;
+                case 6:
+                    /**
+                     * 确认调货(confirm_adjust)
+                     订单id	order_id
+                     进度提示语	tips
+                     登录id	uid
+                     要更改的状态	status               7
+                     */
+                    jb.put("order_id", mOrderId);
+                    jb.put("uid", AppContext.USER_ID);
+                    jb.put("status",7);
+                    jb.put("tips",tips);
+                    jb.put("action","confirm_adjust");
+                    break;
+                case 8:
+                    /**
+                     * 登录id	uid
+                     订单id	order_id
+                     进度提示语	tips
+                     */
+                    jb.put("order_id", mOrderId);
+                    jb.put("uid", AppContext.USER_ID);
+                    jb.put("status",9);
+                    jb.put("tips",tips);
+                    jb.put("action","close");
                     break;
             }
         }catch (JSONException e){
