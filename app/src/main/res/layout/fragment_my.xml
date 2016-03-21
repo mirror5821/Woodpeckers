@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@mipmap/bg_my"
+                android:gravity="center_vertical">
+
+                <dev.mirror.library.android.view.CircleImageView
+                    android:layout_width="68dp"
+                    android:layout_height="68dp"
+                    android:src="@mipmap/ic_default_header"
+                    android:layout_marginLeft="@dimen/d8"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <Button
+                        style="@style/BtnMy"
+                        android:text="@string/q_login"/>
+
+                    <Button
+                        style="@style/BtnMy"
+                        android:layout_marginLeft="@dimen/d16"
+                        android:text="@string/q_register"/>
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    style="@style/BtnMyR"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:drawableLeft="@mipmap/ic_repair_my"
+                    android:paddingLeft="@dimen/d16"
+                    android:text="@string/my_repair_list"/>
+                />
+
+                <Button
+                    style="@style/BtnMyR"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:drawableLeft="@mipmap/ic_repair_my"
+                    android:paddingLeft="@dimen/d16"
+                    android:text="@string/my_repair_list"
+                    android:layout_marginLeft="1dp"/>
+            </LinearLayout>
+
+
+            <TextView
+                style="@style/TvAbout"
+                android:drawableLeft="@mipmap/ic_my_1"
+                android:text="@string/user_info"/>
+
+            <TextView
+                style="@style/TvAbout"
+                android:drawableLeft="@mipmap/ic_my_1"
+                android:text="@string/update_pass"/>
+
+            <TextView
+                style="@style/TvAbout"
+                android:drawableLeft="@mipmap/ic_my_1"
+                android:text="@string/fukuan"/>
+
+            <TextView
+                style="@style/TvAbout"
+                android:drawableLeft="@mipmap/ic_my_1"
+                android:text="@string/about_us"/>
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

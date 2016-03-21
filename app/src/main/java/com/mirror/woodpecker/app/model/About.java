@@ -9,6 +9,9 @@ import java.util.List;
  * Created by 王沛栋 on 2016/3/14.
  */
 public class About implements AddrBase ,Parcelable{
+    public About(){
+
+    }
     private int id;//private String 39private String ,
     private String name;//private String gywmprivate String ,
     private String title;//private String \u5544\u6728\u9e1f\u5e73\u53f0\u4ecb\u7ecdprivate String ,

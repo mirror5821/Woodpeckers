@@ -66,6 +66,7 @@ public class BaseActivity extends DevBaseActivity implements Constants{
     public void setRightTitle(String str){
         mTvTitleRight = (TextView)findViewById(R.id.right_text);
         mTvTitleRight.setText(str);
+        mTvTitleRight.setOnClickListener(this);
     }
 
 

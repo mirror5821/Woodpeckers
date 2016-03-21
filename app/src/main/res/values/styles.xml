@@ -18,6 +18,17 @@
     </style>
 
 
+    <style name="BtnMy" parent="BtnCommon">
+        <item name="android:background">@drawable/bg_btn_my</item>
+        <item name="android:layout_width">120dp</item>
+    </style>
+
+    <style name="BtnMyR" parent="BtnCommon">
+        <item name="android:background">@drawable/bg_btn_my_r</item>
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:drawablePadding">@dimen/d8</item>
+    </style>
+
     <style name="BtnRed" parent="BtnCommon">
         <item name="android:background">@drawable/bg_btn_red</item>
     </style>
@@ -159,6 +170,19 @@
     <style name="TvListLight2" parent="TvDetailsCommen">
         <item name="android:textColor">@color/tv_light</item>
         <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="TvAbout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:drawableRight">@mipmap/ic_next</item>
+        <item name="android:padding">@dimen/d12</item>
+        <item name="android:text">@string/loading_data</item>
+        <item name="android:textColor">@color/tv_dark</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:drawablePadding">@dimen/d8</item>
+        <item name="android:background">@drawable/bg_about</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
 </resources>

@@ -26,6 +26,10 @@
         </activity>
 
 
+        <activity android:name=".activity.ForgetPassActivity"/>
+        <activity android:name=".activity.ComplainReplayListActivity"/>
+        <activity android:name=".activity.ComplainListActivity"/>
+        <activity android:name=".activity.ComplainActivity"/>
         <activity android:name=".activity.RepairChangeActivity"/>
         <activity android:name=".activity.RepairFinishActivity"/>
         <activity android:name=".activity.RepairFeedBackActivity"/>

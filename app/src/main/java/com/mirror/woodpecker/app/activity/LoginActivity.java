@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.mirror.woodpecker.app.R;
 import com.mirror.woodpecker.app.app.AppContext;
@@ -24,6 +25,7 @@ import org.json.JSONObject;
 public class LoginActivity extends BaseActivity {
     private EditText mEtName,mEtPass;
     private Button mBtnRegister,mBtnLogin;
+    private TextView mTvForget;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +42,11 @@ public class LoginActivity extends BaseActivity {
 
         mBtnLogin = (Button)findViewById(R.id.btn_login);
         mBtnRegister = (Button)findViewById(R.id.btn);
+        mTvForget = (TextView)findViewById(R.id.tv_forget);
 
         mBtnLogin.setOnClickListener(this);
         mBtnRegister.setOnClickListener(this);
+        mTvForget.setOnClickListener(this);
     }
 
     @Override
@@ -51,6 +55,12 @@ public class LoginActivity extends BaseActivity {
         switch (v.getId()){
             case R.id.btn_login:
                 login();
+                break;
+            case R.id.tv_forget:
+                startActivity(new Intent(LoginActivity.this,ForgetPassActivity.class));
+                break;
+            case R.id.btn:
+                startActivity(new Intent(LoginActivity.this,RegistersActivity.class));
                 break;
         }
     }

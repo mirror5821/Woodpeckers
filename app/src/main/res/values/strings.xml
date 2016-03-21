@@ -66,5 +66,13 @@
     <string name="input_jiejue">请输入解决方案</string>
     <string name="input_project_type">请输入设备型号</string>
     <string name="input_price">请输入维修价格</string>
+    <string name="input_complain">请输入您宝贵的建议</string>
+    <string name="input_replay_content">请输入回复内容</string>
+
+    <string name="my_repair_list">我的维修单</string>
+    <string name="user_info">用户信息</string>
+    <string name="update_pass">修改密码</string>
+    <string name="fukuan">付款凭证</string>
+    <string name="about_us">关于我们</string>
 
 </resources>

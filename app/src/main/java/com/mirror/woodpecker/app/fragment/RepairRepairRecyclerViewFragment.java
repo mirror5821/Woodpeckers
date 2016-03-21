@@ -95,7 +95,7 @@ public class RepairRepairRecyclerViewFragment extends BaseRecyclerViewFragment {
         TextView phone = holder.getView(R.id.phone);
         TextView dec = holder.getView(R.id.dec);
 
-        time.setText(DateUtil.TimeStamp2Date(r.getAddtime(), "yyyy-MM-dd HH:mm"));
+        time.setText(DateUtil.TimeStamp2Date("yyyy-MM-dd HH:mm",r.getAddtime()));
         no.setText(r.getOrder_id()+"");
         phone.setText(r.getPhone());
         dec.setText(r.getGz_desc());

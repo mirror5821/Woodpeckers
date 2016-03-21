@@ -7,4 +7,5 @@
     android:padding="@dimen/d12"
     android:text="@string/loading_data"
     android:textColor="@color/tv_dark"
-    android:gravity="center_vertical"/>
+    android:gravity="center_vertical"
+    android:background="@drawable/bg_normal_press_w"/>

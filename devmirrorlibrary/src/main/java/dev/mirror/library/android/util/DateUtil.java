@@ -30,16 +30,32 @@ public class DateUtil {
 	 * @param timestampString
 	 * @param formats
 	 * @return
-	 * "1437717600", "yyyy-MM-dd HH:mm:ss"
+	 * "yyyy-MM-dd HH:mm:ss","1437717600"
 	 * 
 	 */
 	public static String TimeStamp2Date(String timestampString, String formats){
-		Long timestamp = Long.parseLong(timestampString);
-//		Long timestamp = Long.parseLong(timestampString)*1000;
-		String date = new SimpleDateFormat(formats).format(new Date(timestamp));
-		return date;
+		long timeStamp = Long.parseLong(formats);
+		if (timeStamp == 0) {
+			return "";
+		}
+		timeStamp = timeStamp * 1000;
+		String result = "";
+		SimpleDateFormat format = new SimpleDateFormat(timestampString);
+		result = format.format(new Date(timeStamp));
+		return result;
 	}
 
+//	public static String formatData(String dataFormat, String t) {
+//		long timeStamp = Long.parseLong(t);
+//		if (timeStamp == 0) {
+//			return "";
+//		}
+//		timeStamp = timeStamp * 1000;
+//		String result = "";
+//		SimpleDateFormat format = new SimpleDateFormat(dataFormat);
+//		result = format.format(new Date(timeStamp));
+//		return result;
+//	}
 
 
 	/**

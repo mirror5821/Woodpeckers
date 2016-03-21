@@ -7,10 +7,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.mirror.woodpecker.app.app.AppContext;
+
 import java.util.List;
 
 import dev.mirror.library.android.Holder.DevRecyclerViewHolder;
 import dev.mirror.library.android.adapter.DevRecycerViewAdapter;
+import dev.mirror.library.android.util.DpUtil;
+import dev.mirror.library.android.util.VerticalSpaceItemDecoration;
 import dev.mirror.library.android.xrecyclerview.ProgressStyle;
 import dev.mirror.library.android.xrecyclerview.XRecyclerView;
 
@@ -95,6 +99,7 @@ public abstract class BaseRecyclerViewActivity<T extends Parcelable> extends Bas
             mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
             mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
             mRecyclerView.setArrowImageView(dev.mirror.library.android.R.mipmap.ic_downgrey);
+            mRecyclerView.addItemDecoration(new VerticalSpaceItemDecoration(DpUtil.dip2px(AppContext.getInstance(),1)));
 
             //加入头部试图  可重新此方法
             addHeaderView();

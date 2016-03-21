@@ -39,7 +39,8 @@
         android:background="@drawable/bg_normal_press"
         android:gravity="center_vertical"
         android:paddingRight="8dp"
-        android:paddingLeft="8dp"/>
+        android:paddingLeft="8dp"
+        android:paddingTop="@dimen/d4"/>
 
 
     <!--<View style="@style/Line1"-->

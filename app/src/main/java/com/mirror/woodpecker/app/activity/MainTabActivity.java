@@ -10,6 +10,7 @@ import com.mirror.woodpecker.app.R;
 import com.mirror.woodpecker.app.app.AppContext;
 import com.mirror.woodpecker.app.fragment.AutoScrollPagerFragment;
 import com.mirror.woodpecker.app.fragment.IndexFragment;
+import com.mirror.woodpecker.app.fragment.MyFragment;
 import com.mirror.woodpecker.app.fragment.RepairRepairRecyclerViewFragment;
 import com.mirror.woodpecker.app.fragment.ServiceRepairRecyclerViewFragment;
 import com.mirror.woodpecker.app.iface.OnTabSelect;
@@ -73,7 +74,7 @@ public class MainTabActivity extends BaseTabActivity implements OnTabSelect{
     @Override
     public <T extends Fragment> Class<T>[] setFragment() {
         return new Class[]{IndexFragment.class,ServiceRepairRecyclerViewFragment.class,
-                RepairRepairRecyclerViewFragment.class,AutoScrollPagerFragment.class};
+                RepairRepairRecyclerViewFragment.class,MyFragment.class};
     }
 
 

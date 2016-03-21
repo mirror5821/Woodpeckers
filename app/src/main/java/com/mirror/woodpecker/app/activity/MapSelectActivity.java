@@ -143,6 +143,11 @@ public class MapSelectActivity extends BaseActivity {
                 AppContext.Latitude = location.getLatitude();
                 AppContext.Longitude = location.getLongitude();
 
+                mLat = location.getLatitude();
+                mLng = location.getLongitude();
+
+
+
                 AppContext.Address = location.getAddrStr();
                 LatLng ll = new LatLng(location.getLatitude(),
                         location.getLongitude());
@@ -150,6 +155,10 @@ public class MapSelectActivity extends BaseActivity {
                 mBaiduMap.animateMapStatus(u);
 
                 mLocClient.stop();
+
+                getAddstrs(ll);
+
+
             }
 
         }

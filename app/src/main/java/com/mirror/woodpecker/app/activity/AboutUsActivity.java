@@ -9,11 +9,14 @@ import android.widget.ListView;
 
 import com.mirror.woodpecker.app.R;
 import com.mirror.woodpecker.app.adapter.NormalAdapter;
+import com.mirror.woodpecker.app.app.AppContext;
 import com.mirror.woodpecker.app.model.About;
 import com.mirror.woodpecker.app.util.AppAjaxCallback;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import dev.mirror.library.android.activity.MultiImageSelectorActivity;
 
 /**
  * Created by 王沛栋 on 2016/3/11.
@@ -43,6 +46,13 @@ public class AboutUsActivity extends BaseActivity{
                     mList = new ArrayList<>();
                     mList.addAll(data);
                 }
+
+                //添加投诉建议
+                About about = new About();
+                about.setTitle("投诉建议");
+                about.setIcon(4);
+
+                mList.add(about);
 
                 initView();
             }
@@ -84,9 +94,28 @@ public class AboutUsActivity extends BaseActivity{
                                 .putParcelableArrayListExtra(INTENT_ID, (ArrayList<? extends Parcelable>) list)
                                 .putExtra("TITLE", about.getTitle()));
                         break;
+                    case 4:
+                        if(AppContext.USER_ROLE_ID == -1){
+                            startActivityForResult(new Intent(AboutUsActivity.this,LoginActivity.class),LOGIN_CODE1);
+                        }else{
+                            startActivity(new Intent(AboutUsActivity.this,ComplainActivity.class));
+                        }
+
+                        break;
                 }
 
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case LOGIN_CODE1:
+                startActivity(new Intent(AboutUsActivity.this,ComplainActivity.class));
+                break;
+        }
+
     }
 }

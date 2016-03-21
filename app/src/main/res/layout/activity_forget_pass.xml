@@ -30,23 +30,31 @@
             android:layout_marginTop="@dimen/d4"
             android:inputType="textPassword"/>
 
+        <EditText
+            android:id="@+id/pass2"
+            style="@style/EtLogin"
+            android:drawableLeft="@mipmap/ic_login_password"
+            android:hint="@string/login_notifi_pass2"
+            android:drawablePadding="@dimen/d8"
+            android:layout_marginTop="@dimen/d4"
+            android:inputType="textPassword"/>
+
         <Button
             android:id="@+id/btn_login"
             style="@style/BtnBlue"
             android:layout_marginTop="@dimen/d32"
             android:text="@string/login"/>
 
-        <TextView
-            android:id="@+id/tv_forget"
+        <!--<TextView
             style="@style/TvLight"
             android:text="@string/forget_pass"
             android:textSize="18sp"
             android:layout_marginTop="@dimen/d8"
-            android:layout_gravity="right"/>
+            android:layout_gravity="right"/>-->
 
     </LinearLayout>
 
-    <LinearLayout
+    <!--<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/normal_height"
         android:orientation="horizontal"
@@ -78,6 +86,6 @@
         android:id="@+id/btn"
         style="@style/BtnYellow"
         android:text="@string/q_register"
-        android:layout_margin="@dimen/d32"/>
+        android:layout_margin="@dimen/d32"/>-->
 
 </LinearLayout>
