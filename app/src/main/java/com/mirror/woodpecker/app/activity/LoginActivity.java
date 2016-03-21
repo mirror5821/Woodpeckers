@@ -33,6 +33,7 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
         setBack();
         setTitleText("登录");
+//        hehe
 
 
         mEtName = (EditText)findViewById(R.id.name);
