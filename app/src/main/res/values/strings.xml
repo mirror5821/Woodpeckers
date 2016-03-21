@@ -27,6 +27,7 @@
     <string name="login_notifi">请输入手机号码/邮箱</string>
     <string name="login_notifi_pass">请输入密码</string>
     <string name="login_notifi_pass2">请确认密码</string>
+    <string name="input_old_pass">请输入原始密码</string>
     <string name="input_phone">请输入手机号码</string>
     <string name="input_mail">请输入电子邮箱</string>
     <string name="sign_type">签约类型</string>

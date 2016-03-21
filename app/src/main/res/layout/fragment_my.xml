@@ -79,6 +79,7 @@
                 android:text="@string/user_info"/>
 
             <TextView
+                android:id="@+id/tv_update"
                 style="@style/TvAbout"
                 android:drawableLeft="@mipmap/ic_my_1"
                 android:text="@string/update_pass"/>

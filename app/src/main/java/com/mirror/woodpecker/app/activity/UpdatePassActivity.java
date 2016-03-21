@@ -7,13 +7,13 @@ import com.mirror.woodpecker.app.R;
 /**
  * Created by 王沛栋 on 2016/3/21.
  */
-public class ForgetPassActivity extends BaseActivity {
+public class UpdatePassActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forget_pass);
+        setContentView(R.layout.activity_update_pass);
         setBack();
-        setTitleText("忘记密码");
+        setTitleText("修改密码");
 
     }
 }
