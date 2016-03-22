@@ -26,6 +26,10 @@
         </activity>
 
 
+
+        <activity android:name=".activity.ContactUsActivity"/>
+        <activity android:name=".activity.UserInfoActivity"/>
+        <activity android:name=".activity.UpdatePassActivity"/>
         <activity android:name=".activity.ForgetPassActivity"/>
         <activity android:name=".activity.ComplainReplayListActivity"/>
         <activity android:name=".activity.ComplainListActivity"/>

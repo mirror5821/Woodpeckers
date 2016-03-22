@@ -44,6 +44,8 @@
     <color name="btn_red">#d12147</color>
     <color name="btn_red_p">#fa0831</color>
 
+    <color name="tv_notify">#706f6f</color>
+
 
 
     <drawable name="rb_s">@color/rb_select</drawable>

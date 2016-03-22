@@ -19,7 +19,8 @@
             style="@style/EtLogin"
             android:drawableLeft="@mipmap/ic_login_accout"
             android:hint="@string/login_notifi"
-            android:drawablePadding="@dimen/d8"/>
+            android:drawablePadding="@dimen/d8"
+            android:visibility="gone"/>
 
         <EditText
             android:id="@+id/pass_old"
@@ -34,7 +35,7 @@
             android:id="@+id/pass"
             style="@style/EtLogin"
             android:drawableLeft="@mipmap/ic_login_password"
-            android:hint="@string/login_notifi_pass"
+            android:hint="@string/input_new_pass"
             android:drawablePadding="@dimen/d8"
             android:layout_marginTop="@dimen/d4"
             android:inputType="textPassword"/>
@@ -49,10 +50,10 @@
             android:inputType="textPassword"/>
 
         <Button
-            android:id="@+id/btn_login"
+            android:id="@+id/btn"
             style="@style/BtnBlue"
             android:layout_marginTop="@dimen/d32"
-            android:text="@string/login"/>
+            android:text="@string/submit"/>
 
         <!--<TextView
             style="@style/TvLight"

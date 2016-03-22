@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg">
+
+    <include layout="@layout/view_base_title_bar"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                style="@style/LayoutDetailsH">
+
+                <TextView
+                    style="@style/TvDetailsNotif"
+                    android:text="@string/username"/>
+
+                <TextView
+                    android:id="@+id/name"
+                    style="@style/TvDetailsValue" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/LayoutDetailsH"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_detail"
+                android:layout_marginTop="@dimen/d8">
+
+                <TextView
+                    android:text="@string/email"
+                    style="@style/TvDetailsNotif"
+                    android:layout_height="@dimen/d48"/>
+
+                <TextView
+                    android:id="@+id/email"
+                    style="@style/TvDetailsValue"
+                    android:singleLine="false"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/d20" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/LayoutDetailsH"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="@string/phone"
+                    style="@style/TvDetailsNotif"
+                    android:layout_height="@dimen/d48"/>
+
+                <TextView
+                    android:id="@+id/phone"
+                    style="@style/TvDetailsValue"
+                    android:singleLine="false"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/d20"/>
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/LayoutDetailsH"
+                android:background="@drawable/bg_detail"
+                android:layout_marginTop="1dp">
+
+                <TextView
+                    android:text="@string/register_time"
+                    style="@style/TvDetailsNotif" />
+
+                <TextView
+                    android:id="@+id/r_time"
+                    style="@style/TvDetailsValue" />
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                style="@style/LayoutDetailsH"
+                android:background="@drawable/bg_detail"
+                android:layout_marginTop="@dimen/d8">
+
+                <TextView
+                    android:text="@string/com_name"
+                    style="@style/TvDetailsNotif" />
+
+                <TextView
+                    android:id="@+id/com_name"
+                    style="@style/TvDetailsValue" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                style="@style/LayoutDetailsH">
+
+                <TextView
+                    android:text="@string/p_name"
+                    style="@style/TvDetailsNotif" />
+
+                <TextView
+                    android:id="@+id/p_name"
+                    style="@style/TvDetailsValue" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/view_repair_man"
+                style="@style/LayoutDetailsH"
+                android:background="@drawable/bg_detail"
+                android:layout_marginTop="1dp">
+
+                <TextView
+                    android:text="@string/job_type"
+                    style="@style/TvDetailsNotif" />
+
+                <TextView
+                    android:id="@+id/job_type"
+                    style="@style/TvDetailsValue" />
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                style="@style/LayoutDetailsH"
+                android:background="@drawable/bg_detail"
+                android:layout_marginTop="@dimen/d8">
+
+                <TextView
+                    style="@style/TvDetailsNotif"
+                    android:text="@string/sub_count"/>
+
+                <TextView
+                    android:id="@+id/sub_count"
+                    style="@style/TvDetailsValue" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/LayoutDetailsH"
+                android:background="@drawable/bg_detail">
+
+                <TextView
+                    android:text="@string/sub_finish"
+                    style="@style/TvDetailsNotif" />
+
+                <TextView
+                    android:id="@+id/sub_finish"
+                    style="@style/TvDetailsValueYellow" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/LayoutDetailsH"
+                android:background="@drawable/bg_detail"
+                android:layout_marginTop="1dp">
+
+                <TextView
+                    android:text="@string/sub_ing"
+                    style="@style/TvDetailsNotif" />
+
+                <TextView
+                    android:id="@+id/sub_ing"
+                    style="@style/TvDetailsValueYellow" />
+            </LinearLayout>
+
+
+
+
+            <EditText
+                android:id="@+id/et"
+                style="@style/EtNotify"
+                android:layout_marginTop="@dimen/d8"
+                android:visibility="gone"/>
+
+            <Button
+                android:id="@+id/btn"
+                style="@style/BtnBlue"
+                android:text="@string/ok"
+                android:layout_margin="@dimen/d8"
+                android:visibility="gone"/>
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</LinearLayout>

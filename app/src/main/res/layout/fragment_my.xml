@@ -27,6 +27,7 @@
                     android:layout_marginLeft="@dimen/d8"/>
 
                 <LinearLayout
+                    android:id="@+id/view_login"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
@@ -34,10 +35,12 @@
                     android:gravity="center">
 
                     <Button
+                        android:id="@+id/btn_login"
                         style="@style/BtnMy"
                         android:text="@string/q_login"/>
 
                     <Button
+                        android:id="@+id/btn_register"
                         style="@style/BtnMy"
                         android:layout_marginLeft="@dimen/d16"
                         android:text="@string/q_register"/>
@@ -45,10 +48,22 @@
                 </LinearLayout>
 
 
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/loading_data"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:visibility="gone"/>
+
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/view_repair"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -66,14 +81,15 @@
                     style="@style/BtnMyR"
                     android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:drawableLeft="@mipmap/ic_repair_my"
+                    android:drawableLeft="@mipmap/ic_repair_sub"
                     android:paddingLeft="@dimen/d16"
-                    android:text="@string/my_repair_list"
+                    android:text="@string/submit_repair"
                     android:layout_marginLeft="1dp"/>
             </LinearLayout>
 
 
             <TextView
+                android:id="@+id/tv_info"
                 style="@style/TvAbout"
                 android:drawableLeft="@mipmap/ic_my_1"
                 android:text="@string/user_info"/>
@@ -81,17 +97,18 @@
             <TextView
                 android:id="@+id/tv_update"
                 style="@style/TvAbout"
-                android:drawableLeft="@mipmap/ic_my_1"
+                android:drawableLeft="@mipmap/ic_my_2"
                 android:text="@string/update_pass"/>
 
             <TextView
                 style="@style/TvAbout"
-                android:drawableLeft="@mipmap/ic_my_1"
+                android:drawableLeft="@mipmap/ic_my_4"
                 android:text="@string/fukuan"/>
 
             <TextView
+                android:id="@+id/tv_about"
                 style="@style/TvAbout"
-                android:drawableLeft="@mipmap/ic_my_1"
+                android:drawableLeft="@mipmap/ic_my_5"
                 android:text="@string/about_us"/>
         </LinearLayout>
     </ScrollView>

@@ -26,6 +26,7 @@
     <string name="register">注册</string>
     <string name="login_notifi">请输入手机号码/邮箱</string>
     <string name="login_notifi_pass">请输入密码</string>
+    <string name="input_new_pass">请输入新的密码</string>
     <string name="login_notifi_pass2">请确认密码</string>
     <string name="input_old_pass">请输入原始密码</string>
     <string name="input_phone">请输入手机号码</string>
@@ -71,9 +72,24 @@
     <string name="input_replay_content">请输入回复内容</string>
 
     <string name="my_repair_list">我的维修单</string>
+    <string name="submit_repair">提交维修单</string>
     <string name="user_info">用户信息</string>
     <string name="update_pass">修改密码</string>
     <string name="fukuan">付款凭证</string>
     <string name="about_us">关于我们</string>
 
+    <string name="username">用户名称</string>
+    <string name="email">邮箱</string>
+    <string name="phone">联系电话</string>
+    <string name="register_time">注册时间</string>
+    <string name="com_name">单位名称</string>
+    <string name="p_name">项目名称</string>
+    <string name="job_type">岗位等级</string>
+    <string name="sub_count">提交维修单总数</string>
+    <string name="sub_finish">完成维修单数量</string>
+    <string name="sub_ing">正在处理维修单数量</string>
+
+    <string name="welcome_us">欢迎关注啄木鸟运维</string>
+    <string name="com_phone">400-138-0089</string>
+    <string name="com_address">郑东新区CBD商务外环与商务东一街格拉姆大厦A座27楼</string>
 </resources>

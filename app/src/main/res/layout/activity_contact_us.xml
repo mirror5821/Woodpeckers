@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:background="@color/main_bg">
+
+    <include layout="@layout/view_base_title_bar"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_ewm"
+        android:layout_marginTop="@dimen/d16"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:text="@string/welcome_us"
+        android:textColor="@color/main_blue"
+        android:layout_marginTop="4dp"/>
+
+    <TextView
+        android:id="@+id/phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/com_phone"
+        android:drawableLeft="@mipmap/ic_phone_call"
+        android:gravity="center_vertical"
+        android:drawablePadding="@dimen/d16"
+        android:layout_marginTop="@dimen/d20"
+        android:textSize="18sp"
+        android:background="@drawable/bg_normal_press"
+        android:textColor="#414141"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/com_address"
+        android:drawableLeft="@mipmap/ic_com_address"
+        android:layout_margin="@dimen/d16"
+        android:drawablePadding="@dimen/d16"
+        android:textSize="18sp"
+        android:textColor="#414141"/>
+
+</LinearLayout>

@@ -15,6 +15,7 @@ public interface Constants {
 
     public final static int LOGIN_CODE1 = 2101;
     public final static int LOGIN_CODE2 = 2102;
+    public final static int LOGIN_CODE3 = 2103;
     public final static int FORUM_ADD_CODE = 5001;
 
     public final static int PRODUCT_TYPE1 = 1;//正常商品
@@ -73,6 +74,7 @@ public interface Constants {
 
     public final static String LOGIN_TEST = "login";
     public final static String REGISTERS = "register";
+    public final static String UPDATE_PASS = "password";
     public final static String REPAIR_COM = "select_company";
     public final static String REPAIR = "repair";
     public final static String ORDER_LIST_MY = "myorderlist";//我的维修单（myorderlist）参数：用户ID 【 uid】
@@ -92,6 +94,7 @@ public interface Constants {
     public final static String COMPLAIN_REPLAY_LIST = "replaylist";//投诉回复建议列表
     public final static String COMPLAIN_REPLAY = "complainreplay";//投诉建议回复
     public final static String CONSTANS = "contactus";//联系我们
+    public final static String USER_INFOMATION = "uinfo";//用户个人信息
 
 
     public final static int ORDER_STATUS_ALL = 1;//订单列表状态

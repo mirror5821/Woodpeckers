@@ -101,7 +101,7 @@
 
 
     <style name="TvDetailsNotif" parent="TvDetailsCommen">
-        <item name="android:textColor">@color/tv_hint</item>
+        <item name="android:textColor">@color/tv_notify</item>
         <item name="android:gravity">center_vertical</item>
     </style>
 
