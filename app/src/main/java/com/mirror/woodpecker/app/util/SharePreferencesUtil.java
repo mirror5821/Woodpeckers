@@ -48,6 +48,20 @@ public class SharePreferencesUtil implements Constants {
         mSPreferences.edit().putString(USER_INFO_PASS, password).commit();
     }
 
+    public static User getLoginInfo(Context context){
+        mSPreferences = getInstance(context);
+        //如果是空 怎表示从未设置过推送开关  默认是开着的
+        if(TextUtils.isEmpty(mSPreferences.getString("USER_INFO_PHONE",""))){
+            return null;
+        }else{
+            User user = new User();
+            user.setUsername(mSPreferences.getString("USER_INFO_PHONE",""));
+            user.setEmail(mSPreferences.getString("USER_INFO_PASS",""));
+            return user;
+        }
+
+    }
+
     /**
      * 保存推送状态
      * @param context

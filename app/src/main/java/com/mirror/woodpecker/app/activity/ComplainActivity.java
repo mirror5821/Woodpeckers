@@ -57,7 +57,7 @@ public class ComplainActivity extends BaseActivity {
         try{
 
             jb.put("uid", AppContext.USER_ID);
-            jb.put("content",5);
+            jb.put("content",tips);
         }catch (JSONException e){
 
         }

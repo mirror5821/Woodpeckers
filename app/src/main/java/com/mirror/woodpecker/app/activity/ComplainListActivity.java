@@ -76,7 +76,7 @@ public class ComplainListActivity extends BaseRecyclerViewActivity {
 
         name.setText(Html.fromHtml(html));
         content.setText(c.getContent());
-        time.setText(DateUtil.TimeStamp2Date("yyyy-MM-dd MM:ss", c.getAddtime()));
+        time.setText(DateUtil.TimeStamp2Date("yyyy-MM-dd HH:mm", c.getAddtime()));
 
         holder.getConvertView().setOnClickListener(new View.OnClickListener() {
             @Override

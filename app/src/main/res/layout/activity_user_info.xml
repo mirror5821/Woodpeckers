@@ -177,10 +177,9 @@
 
             <Button
                 android:id="@+id/btn"
-                style="@style/BtnBlue"
-                android:text="@string/ok"
-                android:layout_margin="@dimen/d8"
-                android:visibility="gone"/>
+                style="@style/BtnRed"
+                android:text="@string/logout"
+                android:layout_margin="@dimen/d8"/>
 
 
 

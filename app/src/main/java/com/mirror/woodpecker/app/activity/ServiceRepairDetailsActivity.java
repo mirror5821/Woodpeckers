@@ -100,7 +100,7 @@ public class ServiceRepairDetailsActivity extends BaseActivity {
             mViewRepairMan.setVisibility(View.GONE);
         }
         mTvTime.setText(DateUtil.TimeStamp2Date("yyyy-MM-dd HH:mm",mRepair.getAddtime()));
-
+        mTvRepairMan.setText(mRepair.getRepairname());
         /**
          * 订单状态
          * 0未处理  1客服关闭 2已查看 3等待接单 4已接单 5解决中 6等待调货状态 7确定调货，货已到 8已解决 9最终关闭
@@ -140,7 +140,7 @@ public class ServiceRepairDetailsActivity extends BaseActivity {
                 break;
             case 6:
                 mOrderFlowStatus = 6;
-//                mTvRepairMan.setText(mRepair.get);
+                mTvRepairMan.setText(mRepair.getRepairname());
                 mEt.setVisibility(View.VISIBLE);
                 mBtn.setVisibility(View.VISIBLE);
                 mBtn.setText("确定调货");
@@ -152,6 +152,7 @@ public class ServiceRepairDetailsActivity extends BaseActivity {
                 mEt.setVisibility(View.VISIBLE);
                 mBtn.setVisibility(View.VISIBLE);
                 mBtn.setText("关闭订单");
+
                 break;
             case 9:
                 break;
@@ -258,11 +259,11 @@ public class ServiceRepairDetailsActivity extends BaseActivity {
 
         }
 
-        System.out.println("-------------"+jb.toString());
         mHttpClient.postData1(ORDER_FLOW, jb.toString(), new AppAjaxCallback.onResultListener() {
             @Override
             public void onResult(String data, String msg) {
                 showToast(msg);
+                finish();
             }
 
             @Override

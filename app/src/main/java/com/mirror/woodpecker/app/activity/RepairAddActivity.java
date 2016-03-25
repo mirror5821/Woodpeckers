@@ -21,7 +21,7 @@ import org.json.JSONObject;
  */
 public class RepairAddActivity extends BaseActivity{
     private EditText mEtPhone,mEtDes;
-    private TextView mTvLoc;
+    private EditText mTvLoc;
     private Button mBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +33,11 @@ public class RepairAddActivity extends BaseActivity{
         mEtPhone = (EditText)findViewById(R.id.phone);
         mEtDes = (EditText)findViewById(R.id.dec);
 
-        mTvLoc = (TextView)findViewById(R.id.loc);
+        mTvLoc = (EditText) findViewById(R.id.loc);
         mBtn = (Button)findViewById(R.id.btn);
 
         mBtn.setOnClickListener(this);
-        mTvLoc.setOnClickListener(this);
+//        mTvLoc.setOnClickListener(this);
     }
 
     @Override
@@ -47,9 +47,9 @@ public class RepairAddActivity extends BaseActivity{
             case R.id.btn:
                 sub();
                 break;
-            case R.id.loc:
-                startActivityForResult(new Intent(RepairAddActivity.this,MapSelectActivity.class), MAP_REQUESTCODE);
-                break;
+//            case R.id.loc:
+//                startActivityForResult(new Intent(RepairAddActivity.this,MapSelectActivity.class), MAP_REQUESTCODE);
+//                break;
         }
     }
 
@@ -83,7 +83,7 @@ public class RepairAddActivity extends BaseActivity{
         }
 
         if(TextUtils.isEmpty(loc)){
-            showToast("请选择故障位置");
+            showToast("请输入故障位置");
             return;
         }
 

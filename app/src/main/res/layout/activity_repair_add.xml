@@ -22,7 +22,7 @@
             android:inputType="phone"
             android:drawablePadding="@dimen/d8"/>
 
-        <TextView
+        <EditText
             android:id="@+id/loc"
             style="@style/EtLogin"
             android:drawableLeft="@mipmap/ic_repair_loc"

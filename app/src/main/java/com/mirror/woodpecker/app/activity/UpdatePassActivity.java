@@ -53,7 +53,6 @@ public class UpdatePassActivity extends BaseActivity {
 
     private void sub(){
 
-        final String name = mEtName.getText().toString().trim();
         final String pass = mEtPass.getText().toString().trim();
         final String pass2 = mEtPass2.getText().toString().trim();
         final String passOld = mEtPassOld.getText().toString().trim();
@@ -106,10 +105,10 @@ public class UpdatePassActivity extends BaseActivity {
                  * 返回的数据中role_id为角色ID，数据1代表单位主管，
                  * 2代表部门主管，3代表客服，4代表维修人员，0为普通用户
                  */
-                User user= SharePreferencesUtil.getUserInfo(getApplicationContext());
+                User user= SharePreferencesUtil.getLoginInfo(getApplicationContext());
                 System.out.println("---------------------------u+"+user.getUsername());
                 SharePreferencesUtil.saveLoginInfo(getApplicationContext(), user.getUsername(), pass);
-                SharePreferencesUtil.saveUserInfo(getApplicationContext(), data);
+//                SharePreferencesUtil.saveUserInfo(getApplicationContext(), data);
                 showToast(msg);
 
                 finish();
@@ -117,7 +116,7 @@ public class UpdatePassActivity extends BaseActivity {
 
             @Override
             public void onError(String msg) {
-                showToast(msg);
+                showToast("操作失败");
             }
         });
     }

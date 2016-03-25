@@ -35,6 +35,7 @@ public class Repair implements Parcelable{
     private String catname;
     private String comment;
     private int sign;
+    private String repairname;
 
     protected Repair(Parcel in) {
         order_id = in.readInt();
@@ -63,6 +64,7 @@ public class Repair implements Parcelable{
         catname = in.readString();
         comment = in.readString();
         sign = in.readInt();
+        repairname = in.readString();
     }
 
     public static final Creator<Repair> CREATOR = new Creator<Repair>() {
@@ -285,6 +287,14 @@ public class Repair implements Parcelable{
         this.ext_info = ext_info;
     }
 
+    public String getRepairname() {
+        return repairname;
+    }
+
+    public void setRepairname(String repairname) {
+        this.repairname = repairname;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -318,5 +328,6 @@ public class Repair implements Parcelable{
         dest.writeString(catname);
         dest.writeString(comment);
         dest.writeInt(sign);
+        dest.writeString(repairname);
     }
 }

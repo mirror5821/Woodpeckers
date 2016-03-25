@@ -56,13 +56,17 @@ public class MyFragment extends BaseFragment {
         mBtnLogin = (Button)view.findViewById(R.id.btn_login);
         mBtnRegister = (Button)view.findViewById(R.id.btn_register);
 
+        mViewLogin.setOnClickListener(this);
+        mBtnLogin.setOnClickListener(this);
+        mBtnRegister.setOnClickListener(this);
+
+    }
+
+    private void initView(){
         if(AppContext.USER_ROLE_ID !=-1){
             mTvName.setText(SharePreferencesUtil.getUserInfo(getActivity()).getUsername());
             mTvName.setVisibility(View.VISIBLE);
             mViewLogin.setVisibility(View.GONE);
-
-            mBtnLogin.setOnClickListener(this);
-            mBtnRegister.setOnClickListener(this);
 
             if(AppContext.USER_ROLE_ID !=3 || AppContext.USER_ROLE_ID !=4){
                 mViewRepair.setVisibility(View.GONE);
@@ -71,10 +75,12 @@ public class MyFragment extends BaseFragment {
             mTvName.setVisibility(View.GONE);
             mViewLogin.setVisibility(View.VISIBLE);
         }
+    }
 
-        mViewLogin.setOnClickListener(this);
-
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        initView();
     }
 
     @Override

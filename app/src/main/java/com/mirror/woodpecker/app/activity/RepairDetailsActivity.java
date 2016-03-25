@@ -122,7 +122,10 @@ public class RepairDetailsActivity extends BaseActivity {
 
         if(mRepair.getRepair_id() == 0){
             mViewRepairMan.setVisibility(View.GONE);
+        }else{
+            mTvRepairMan.setText(mRepair.getRepairname());
         }
+
         mTvTime.setText(DateUtil.TimeStamp2Date("yyyy-MM-dd HH:mm",mRepair.getAddtime()));
 
         mTvRepairMan.setText(SharePreferencesUtil.getUserInfo(
@@ -131,6 +134,7 @@ public class RepairDetailsActivity extends BaseActivity {
         /**
          * 订单状态
          * 0未处理  1客服关闭 2已查看 3等待接单 4已接单 5解决中 6等待调货状态 7确定调货，货已到 8已解决 9最终关闭
+         * 如果是分类查询列表  关闭和最终关闭都是1
          */
 
         String [] orderStatus = {"未处理","客服关闭", "已查看", "等待接单", "已接单", "解决中", "等待调货状态",
@@ -148,26 +152,27 @@ public class RepairDetailsActivity extends BaseActivity {
             case 3://接单
                 mBtn.setText("接单");
                 mBtn.setVisibility(View.VISIBLE);
-
+                mTvRepairMan.setText(mRepair.getRepairname());
                 mBtn.setOnClickListener(this);
                 break;
             case 4:
                 mBtn.setVisibility(View.VISIBLE);
                 mBtn.setText("维修反馈");
-
+                mTvRepairMan.setText(mRepair.getRepairname());
                 mBtn.setOnClickListener(this);
                 break;
             case 5:
                 mViewOpration.setVisibility(View.VISIBLE);
                 mBtnNeedChange.setOnClickListener(this);
                 mBtnRepaing.setOnClickListener(this);
+                mTvRepairMan.setText(mRepair.getRepairname());
                 break;
             case 6:
                 break;
             case 7:
                 mBtn.setText("货到解决");
                 mBtn.setVisibility(View.VISIBLE);
-
+                mTvRepairMan.setText(mRepair.getRepairname());
                 mBtn.setOnClickListener(this);
                 break;
             case 8:
@@ -253,6 +258,7 @@ public class RepairDetailsActivity extends BaseActivity {
             public void onError(String msg) {
 
                 showToast(msg);
+                finish();
             }
         });
     }

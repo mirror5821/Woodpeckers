@@ -33,13 +33,15 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
         setBack();
         setTitleText("登录");
-//        hehe
-
 
         mEtName = (EditText)findViewById(R.id.name);
         mEtPass = (EditText)findViewById(R.id.pass);
-        mEtName.setText("kefu");
-        mEtPass.setText("asd123456");
+
+        if(SharePreferencesUtil.getLoginInfo(getApplicationContext())!=null){
+            login();
+        }
+//        mEtName.setText("kefu");
+//        mEtPass.setText("asd123456");
 
         mBtnLogin = (Button)findViewById(R.id.btn_login);
         mBtnRegister = (Button)findViewById(R.id.btn);
@@ -67,8 +69,16 @@ public class LoginActivity extends BaseActivity {
     }
 
     public void login(){
-        final String name = mEtName.getText().toString().trim();
-        final String pass = mEtPass.getText().toString().trim();
+        final String name;
+        final String pass;
+        if(SharePreferencesUtil.getLoginInfo(getApplicationContext())!=null){
+            name = SharePreferencesUtil.getLoginInfo(getApplicationContext()).getUsername();
+            pass = SharePreferencesUtil.getLoginInfo(getApplicationContext()).getEmail();
+        }else{
+            name = mEtName.getText().toString().trim();
+            pass = mEtPass.getText().toString().trim();
+        }
+
 
         if(TextUtils.isEmpty(name)){
             showToast("请输入注册邮箱或手机号码");

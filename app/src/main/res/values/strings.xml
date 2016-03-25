@@ -37,6 +37,7 @@
     <string name="select_sign_unit">请选择签约单位</string>
     <string name="input_notify_word">请输入提示语</string>
     <string name="ok">确定</string>
+    <string name="logout">退出登录</string>
     <string name="input_contact">请输入联系方式</string>
     <string name="input_loc">请选择故障位置</string>
     <string name="input_dec">请输入故障描述</string>
@@ -49,7 +50,7 @@
     <string name="customer_contact_no">客户联系方式</string>
     <string name="repair_loc2">故障位置</string>
     <string name="repair_des">故障描述</string>
-    <string name="order_type">订单类型</string>
+    <string name="order_type">订单类别</string>
     <string name="belong_object">所属项目</string>
     <string name="order_type_system">订单类型(系统类型)</string>
     <string name="repair_man">维修人员</string>

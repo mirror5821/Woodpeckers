@@ -90,6 +90,8 @@ public class UserRepairDetailsActivity extends BaseActivity {
 
         if(mRepair.getRepair_id() == 0){
             mViewRepairMan.setVisibility(View.GONE);
+        }else{
+            mTvRepairMan.setText(mRepair.getRepairname());
         }
         mTvTime.setText(DateUtil.TimeStamp2Date("yyyy-MM-dd HH:mm",mRepair.getAddtime()));
 

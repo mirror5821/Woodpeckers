@@ -30,12 +30,12 @@ public class MainTabActivity extends BaseTabActivity implements OnTabSelect{
             public void onTabChanged(String tabId) {
                 if (tabId.equals(mTabs[1])) {
                     if (AppContext.USER_ROLE_ID != 3) {
-                        startActivityForResult(new Intent(MainTabActivity.this, LoginActivity.class), LOGIN_CODE1);
+                        startActivityForResult(new Intent(MainTabActivity.this, LoginActivity.class), 7801);
                         onSelect(0);
                     }
                 } else if (tabId.equals(mTabs[2])) {
                     if (AppContext.USER_ROLE_ID != 4) {
-                        startActivityForResult(new Intent(MainTabActivity.this, LoginActivity.class), LOGIN_CODE2);
+                        startActivityForResult(new Intent(MainTabActivity.this, LoginActivity.class), 7802);
                         onSelect(0);
                     }
                 }
@@ -48,13 +48,13 @@ public class MainTabActivity extends BaseTabActivity implements OnTabSelect{
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode ==Activity.RESULT_OK){
 
-            if(AppContext.USER_ROLE_ID == 3){
+            /*if(AppContext.USER_ROLE_ID == 3){
                 onSelect(1);
             }else if(AppContext.USER_ROLE_ID == 4){
                 onSelect(2);
             }else{
                 onSelect(0);
-            }
+            }*/
         }
     }
 

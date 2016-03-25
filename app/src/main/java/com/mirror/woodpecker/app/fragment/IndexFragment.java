@@ -150,9 +150,10 @@ public class IndexFragment extends BaseFragment {
         if(resultCode == Activity.RESULT_OK){
             switch (requestCode) {
                 case LOGIN_CODE1:
-                    if(AppContext.USER_ROLE_ID == 1||AppContext.USER_ROLE_ID == 2||AppContext.USER_ROLE_ID == 0){
+                    startActivity(new Intent(getActivity(), RepairAddActivity.class));
+                    /*if(AppContext.USER_ROLE_ID == 1||AppContext.USER_ROLE_ID == 2||AppContext.USER_ROLE_ID == 0){
                         startActivity(new Intent(getActivity(), RepairAddActivity.class));
-                    }
+                    }*/
                     break;
                 case LOGIN_CODE2:
                     if(AppContext.USER_ROLE_ID == 1||AppContext.USER_ROLE_ID == 2||AppContext.USER_ROLE_ID == 0){

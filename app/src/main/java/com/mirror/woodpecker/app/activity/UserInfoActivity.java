@@ -2,6 +2,8 @@ package com.mirror.woodpecker.app.activity;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -10,6 +12,7 @@ import com.mirror.woodpecker.app.app.AppContext;
 import com.mirror.woodpecker.app.model.Constants;
 import com.mirror.woodpecker.app.model.User;
 import com.mirror.woodpecker.app.util.AppAjaxCallback;
+import com.mirror.woodpecker.app.util.SharePreferencesUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,13 +26,19 @@ import dev.mirror.library.android.util.JsonUtils;
 public class UserInfoActivity extends BaseActivity {
     private int mUserId;
     private User mUser;
+
+    private Button mBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
-
+        setBack();
+        setTitleText("用户信息");
         mUserId = AppContext.USER_ID;
         loadData();
+
+        mBtn = (Button)findViewById(R.id.btn);
+        mBtn.setOnClickListener(this);
     }
     private void loadData(){
         JSONObject jb = new JSONObject();
@@ -87,5 +96,18 @@ public class UserInfoActivity extends BaseActivity {
         mTvSubingCount.setText(mUser.getOncount()+"单");
 
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        super.onClick(v);
+        switch (v.getId()){
+            case R.id.btn:
+                AppContext.USER_ROLE_ID = -1;
+                AppContext.USER_ID = -1;
+                SharePreferencesUtil.deleteInfo(getApplicationContext());
+                finish();
+                break;
+        }
     }
 }
