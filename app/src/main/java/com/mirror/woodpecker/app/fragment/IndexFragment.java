@@ -15,6 +15,7 @@ import com.mirror.woodpecker.app.activity.LoginActivity;
 import com.mirror.woodpecker.app.activity.OrderDetailsActivity;
 import com.mirror.woodpecker.app.activity.RepairAddActivity;
 import com.mirror.woodpecker.app.activity.UserRepairListActivity;
+import com.mirror.woodpecker.app.activity.ZiXunDetailsActivity;
 import com.mirror.woodpecker.app.app.AppContext;
 
 import dev.mirror.library.android.view.autoscrollviewpager.AutoScrollViewPager;
@@ -135,7 +136,7 @@ public class IndexFragment extends BaseFragment {
 
                 break;
             case R.id.btn3:
-                startActivity(new Intent(getActivity(), OrderDetailsActivity.class));
+                startActivity(new Intent(getActivity(), ZiXunDetailsActivity.class));
 
                 break;
             case R.id.btn4:
@@ -156,9 +157,10 @@ public class IndexFragment extends BaseFragment {
                     }*/
                     break;
                 case LOGIN_CODE2:
-                    if(AppContext.USER_ROLE_ID == 1||AppContext.USER_ROLE_ID == 2||AppContext.USER_ROLE_ID == 0){
-                        startActivity(new Intent(getActivity(), UserRepairListActivity.class));
-                    }
+                    startActivity(new Intent(getActivity(), UserRepairListActivity.class));
+//                    if(AppContext.USER_ROLE_ID == 1||AppContext.USER_ROLE_ID == 2||AppContext.USER_ROLE_ID == 0){
+//                        startActivity(new Intent(getActivity(), UserRepairListActivity.class));
+//                    }
                     break;
 
             }

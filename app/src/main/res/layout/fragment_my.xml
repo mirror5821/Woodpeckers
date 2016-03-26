@@ -69,6 +69,7 @@
                 android:orientation="horizontal">
 
                 <Button
+                    android:id="@+id/btn_my_repair"
                     style="@style/BtnMyR"
                     android:layout_weight="1"
                     android:layout_width="0dp"
@@ -78,6 +79,7 @@
                 />
 
                 <Button
+                    android:id="@+id/btn_repair_sub"
                     style="@style/BtnMyR"
                     android:layout_weight="1"
                     android:layout_width="0dp"

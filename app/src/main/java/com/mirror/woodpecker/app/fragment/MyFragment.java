@@ -33,6 +33,7 @@ public class MyFragment extends BaseFragment {
     private TextView mTvAbout;
 
     private Button mBtnLogin,mBtnRegister;
+    private Button mBtnMyRepair,mBtnRepairSub;
     @Override
     public int setLayoutId() {
         return R.layout.fragment_my;
@@ -56,9 +57,15 @@ public class MyFragment extends BaseFragment {
         mBtnLogin = (Button)view.findViewById(R.id.btn_login);
         mBtnRegister = (Button)view.findViewById(R.id.btn_register);
 
+        mBtnMyRepair = (Button)view.findViewById(R.id.btn_my_repair);
+        mBtnRepairSub = (Button)view.findViewById(R.id.btn_repair_sub);
+
         mViewLogin.setOnClickListener(this);
         mBtnLogin.setOnClickListener(this);
         mBtnRegister.setOnClickListener(this);
+
+        mBtnMyRepair.setOnClickListener(this);
+        mBtnRepairSub.setOnClickListener(this);
 
     }
 
@@ -68,9 +75,9 @@ public class MyFragment extends BaseFragment {
             mTvName.setVisibility(View.VISIBLE);
             mViewLogin.setVisibility(View.GONE);
 
-            if(AppContext.USER_ROLE_ID !=3 || AppContext.USER_ROLE_ID !=4){
+            /*if(AppContext.USER_ROLE_ID !=3 || AppContext.USER_ROLE_ID !=4){
                 mViewRepair.setVisibility(View.GONE);
-            }
+            }*/
         }else{
             mTvName.setVisibility(View.GONE);
             mViewLogin.setVisibility(View.VISIBLE);
@@ -110,6 +117,23 @@ public class MyFragment extends BaseFragment {
             case R.id.tv_about:
                 startActivity(new Intent(getActivity(), ContactUsActivity.class));
                 break;
+
+            case R.id.btn_my_repair:
+                if(AppContext.USER_ROLE_ID==-1){
+                    startActivityForResult(new Intent(getActivity(), LoginActivity.class),LOGIN_CODE4);
+                }else{
+                    startActivity(new Intent(getActivity(), UserRepairListActivity.class));
+                }
+                break;
+
+            case R.id.btn_repair_sub:
+                if(AppContext.USER_ROLE_ID==-1){
+                    startActivityForResult(new Intent(getActivity(), LoginActivity.class),LOGIN_CODE5);
+                }else{
+                    startActivity(new Intent(getActivity(), RepairAddActivity.class));
+                }
+                break;
+
         }
     }
 
@@ -126,7 +150,12 @@ public class MyFragment extends BaseFragment {
                 case LOGIN_CODE3:
                     startActivity(new Intent(getActivity(), UserInfoActivity.class));
                     break;
-
+                case LOGIN_CODE4:
+                    startActivity(new Intent(getActivity(), UserRepairListActivity.class));
+                    break;
+                case LOGIN_CODE5:
+                    startActivity(new Intent(getActivity(), RepairAddActivity.class));
+                    break;
             }
         }
     }

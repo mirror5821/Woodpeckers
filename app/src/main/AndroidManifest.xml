@@ -27,6 +27,7 @@
 
 
 
+        <activity android:name=".activity.ZiXunDetailsActivity"/>
         <activity android:name=".activity.ContactUsActivity"/>
         <activity android:name=".activity.UserInfoActivity"/>
         <activity android:name=".activity.UpdatePassActivity"/>

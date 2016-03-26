@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 /**
  * Created by 王沛栋 on 2016/3/11.
- *
+ * ext_info 对应的就是提示语数组
  *
  */
 public class Repair implements Parcelable{
@@ -29,7 +29,7 @@ public class Repair implements Parcelable{
     private String solution_method;//private String private String ,
     private String device_id;//private String 0private String ,
     private String repair_price;//private String 0.00private String ,
-    private String ext_info;//private String private String
+//    private String ext_info;//private String private String
     private String project_name;
     private String type_name;
     private String catname;
@@ -58,7 +58,7 @@ public class Repair implements Parcelable{
         solution_method = in.readString();
         device_id = in.readString();
         repair_price = in.readString();
-        ext_info = in.readString();
+//        ext_info = in.readString();
         project_name = in.readString();
         type_name = in.readString();
         catname = in.readString();
@@ -279,13 +279,13 @@ public class Repair implements Parcelable{
         this.repair_price = repair_price;
     }
 
-    public String getExt_info() {
-        return ext_info;
-    }
-
-    public void setExt_info(String ext_info) {
-        this.ext_info = ext_info;
-    }
+//    public String getExt_info() {
+//        return ext_info;
+//    }
+//
+//    public void setExt_info(String ext_info) {
+//        this.ext_info = ext_info;
+//    }
 
     public String getRepairname() {
         return repairname;
@@ -322,7 +322,7 @@ public class Repair implements Parcelable{
         dest.writeString(solution_method);
         dest.writeString(device_id);
         dest.writeString(repair_price);
-        dest.writeString(ext_info);
+//        dest.writeString(ext_info);
         dest.writeString(project_name);
         dest.writeString(type_name);
         dest.writeString(catname);

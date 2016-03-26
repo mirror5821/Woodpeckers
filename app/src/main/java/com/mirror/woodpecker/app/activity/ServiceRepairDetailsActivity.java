@@ -39,11 +39,14 @@ public class ServiceRepairDetailsActivity extends BaseActivity {
     private Button mBtnPai;
     private LinearLayout mViewRepairMan;
     private LinearLayout mViewLook;
+    private LinearLayout mViewJindu;
 
 
     private int mOrderId;
     private Repair mRepair;
     private int mOrderFlowStatus;
+
+    private View mJinduView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +55,7 @@ public class ServiceRepairDetailsActivity extends BaseActivity {
         setTitleText("维修单详情");
         setBack();
 
+        mJinduView = getLayoutInflater().inflate(R.layout.item_jindu,null);
         loadData();
     }
 
@@ -73,6 +77,8 @@ public class ServiceRepairDetailsActivity extends BaseActivity {
 
         mViewRepairMan = (LinearLayout)findViewById(R.id.view_repair_man);
         mViewLook = (LinearLayout)findViewById(R.id.view_look);
+
+        mViewJindu = (LinearLayout)findViewById(R.id.view_jindu);
 
         mTvPhone.setText(TextUtils.isEmpty(mRepair.getPhone())?"暂无联系方式":mRepair.getPhone());
         mTvLoc.setText(TextUtils.isEmpty(mRepair.getGz_postion())?"暂无保修位置":mRepair.getGz_postion());
@@ -108,6 +114,13 @@ public class ServiceRepairDetailsActivity extends BaseActivity {
 
         String [] orderStatus = {"未处理","客服关闭", "已查看", "等待接单", "已接单", "解决中", "等待调货状态",
                 "确定调货，货已到", "已解决", "最终关闭"};
+
+        mViewJindu.addView(mJinduView);
+        mViewJindu.addView(mJinduView);
+        mViewJindu.addView(mJinduView);
+        mViewJindu.addView(mJinduView);
+        mViewJindu.addView(mJinduView);
+        mViewJindu.addView(mJinduView);
 
         switch (mRepair.getOrder_status()){
             case 0:
