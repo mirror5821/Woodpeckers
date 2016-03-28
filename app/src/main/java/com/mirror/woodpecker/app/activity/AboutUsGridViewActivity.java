@@ -62,7 +62,7 @@ public class AboutUsGridViewActivity extends BaseRecyclerViewActivity{
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(AboutUsGridViewActivity.this, NormalWebViewActivity.class).
-                        putExtra(INTENT_ID, data.getLink()).putExtra("TITLE", data.getTitle()));
+                        putExtra(INTENT_ID, data.getAurl()).putExtra("TITLE", data.getTitle()));
 //                startActivity(new Intent(AboutUsGridViewActivity.this, AboutUsDetailsActivity.class).
 //                        putExtra(INTENT_ID, data.getInfo().getContent()).putExtra("TITLE", "成功案例"));
             }

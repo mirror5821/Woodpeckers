@@ -14,6 +14,7 @@ public class AppContext extends BaseAppContext {
     public static String Address;
     public static String LOC_CITY = "郑州市";
     public static String LOC_AREA = "金水区";
+    public static boolean IS_LOGIN = false;
 
     /**
      * 返回的数据中role_id为角色ID，数据1代表单位主管，

@@ -29,7 +29,8 @@ public class NormalWebViewActivity extends  BaseActivity{
         mTitle = getIntent().getStringExtra("TITLE");
         setTitleText(mTitle);
 
-        url ="http://zmnyw.cn"+ mIntent;
+//        http://zmnyw.cn/index.php?s=/Home/Api/article/id/17.html
+        url ="http://zmnyw.cn/index.php?s=/Home/"+ mIntent;
 
         //绑定控件
         webview = (ProgressWebView) findViewById(R.id.webview);

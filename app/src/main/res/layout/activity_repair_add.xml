@@ -20,6 +20,7 @@
             android:drawableLeft="@mipmap/ic_repair_phone"
             android:hint="@string/input_contact"
             android:inputType="phone"
+            android:maxLength="11"
             android:drawablePadding="@dimen/d8"/>
 
         <EditText

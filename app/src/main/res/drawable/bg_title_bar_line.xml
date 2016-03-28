@@ -10,10 +10,10 @@
         <shape>
             <solid android:color="@color/white" />
 
-            <padding android:bottom="10dp"
-                android:left="10dp"
-                android:right="10dp"
-                android:top="10dp" />
+            <padding android:bottom="0dp"
+                android:left="8dp"
+                android:right="8dp"
+                android:top="0dp" />
         </shape>
     </item>
 </layer-list> 

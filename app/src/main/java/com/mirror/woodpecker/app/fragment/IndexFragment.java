@@ -2,8 +2,10 @@ package com.mirror.woodpecker.app.fragment;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -12,11 +14,19 @@ import android.widget.ImageView;
 import com.mirror.woodpecker.app.R;
 import com.mirror.woodpecker.app.activity.AboutUsActivity;
 import com.mirror.woodpecker.app.activity.LoginActivity;
+import com.mirror.woodpecker.app.activity.NormalWebViewActivity;
 import com.mirror.woodpecker.app.activity.OrderDetailsActivity;
 import com.mirror.woodpecker.app.activity.RepairAddActivity;
 import com.mirror.woodpecker.app.activity.UserRepairListActivity;
 import com.mirror.woodpecker.app.activity.ZiXunDetailsActivity;
 import com.mirror.woodpecker.app.app.AppContext;
+import com.mirror.woodpecker.app.model.User;
+import com.mirror.woodpecker.app.util.AppAjaxCallback;
+import com.mirror.woodpecker.app.util.AppHttpClient;
+import com.mirror.woodpecker.app.util.SharePreferencesUtil;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import dev.mirror.library.android.view.autoscrollviewpager.AutoScrollViewPager;
 
@@ -57,7 +67,9 @@ public class IndexFragment extends BaseFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
+        if(!AppContext.IS_LOGIN){
+            login();
+        }
 
         if(mAdapter == null){
             pager = (AutoScrollViewPager) view.findViewById(R.id.scroll_pager);
@@ -120,24 +132,37 @@ public class IndexFragment extends BaseFragment {
          */
         switch (v.getId()){
             case R.id.btn1:
-                if(AppContext.USER_ROLE_ID == 1||AppContext.USER_ROLE_ID == 2||AppContext.USER_ROLE_ID == 0){
+                if(AppContext.IS_LOGIN){
                     startActivity(new Intent(getActivity(), RepairAddActivity.class));
                 }else{
                     startActivityForResult(new Intent(getActivity(), LoginActivity.class), LOGIN_CODE1);
                 }
+               /* if(AppContext.USER_ROLE_ID == 1||AppContext.USER_ROLE_ID == 2||AppContext.USER_ROLE_ID == 0){
+                    startActivity(new Intent(getActivity(), RepairAddActivity.class));
+                }else{
+                    startActivityForResult(new Intent(getActivity(), LoginActivity.class), LOGIN_CODE1);
+                }*/
 
                 break;
             case R.id.btn2:
-                if(AppContext.USER_ROLE_ID == 1||AppContext.USER_ROLE_ID == 2||AppContext.USER_ROLE_ID == 0){
+                if(AppContext.IS_LOGIN){
+                    startActivity(new Intent(getActivity(), UserRepairListActivity.class));
+                }else{
+                    startActivityForResult(new Intent(getActivity(), LoginActivity.class), LOGIN_CODE1);
+                }
+
+                /*if(AppContext.USER_ROLE_ID == 1||AppContext.USER_ROLE_ID == 2||AppContext.USER_ROLE_ID == 0){
                     startActivity(new Intent(getActivity(), UserRepairListActivity.class));
                 }else{
                     startActivityForResult(new Intent(getActivity(), LoginActivity.class), LOGIN_CODE2);
-                }
+                }*/
 
                 break;
             case R.id.btn3:
-                startActivity(new Intent(getActivity(), ZiXunDetailsActivity.class));
-
+//                startActivity(new Intent(getActivity(), ZiXunDetailsActivity.class));
+                startActivity(new Intent(getActivity(), NormalWebViewActivity.class).
+                        putExtra(INTENT_ID,"Api/consult").putExtra("TITLE", "业务咨询"));
+                http://zmnyw.cn/index.php?s=/Home/Api/consult
                 break;
             case R.id.btn4:
                 startActivity(new Intent(getActivity(), AboutUsActivity.class));
@@ -166,5 +191,49 @@ public class IndexFragment extends BaseFragment {
             }
         }
 
+    }
+
+    public void login(){
+        final String name;
+        final String pass;
+        if(SharePreferencesUtil.getLoginInfo(getActivity())!=null){
+            name = SharePreferencesUtil.getLoginInfo(getActivity()).getUsername();
+            pass = SharePreferencesUtil.getLoginInfo(getActivity()).getEmail();
+        }else{
+            return;
+        }
+
+
+        JSONObject jb = new JSONObject();
+        try{
+            jb.put("username", name);
+            jb.put("password", pass);
+
+
+        }catch (JSONException e){
+
+        }
+
+        mHttpClient.postData1(LOGIN_TEST, jb.toString(), new AppAjaxCallback.onResultListener() {
+            @Override
+            public void onResult(String data, String msg) {
+                /**
+                 * 返回的数据中role_id为角色ID，数据1代表单位主管，
+                 * 2代表部门主管，3代表客服，4代表维修人员，0为普通用户
+                 */
+                SharePreferencesUtil.saveLoginInfo(getActivity(), name, pass);
+                SharePreferencesUtil.saveUserInfo(getActivity(), data);
+                User user= SharePreferencesUtil.getUserInfo(getActivity());
+                AppContext.USER_ROLE_ID = user.getRole_id();
+                AppContext.USER_ID = user.getId();
+                AppContext.IS_LOGIN = true;
+
+            }
+
+            @Override
+            public void onError(String msg) {
+                showToast(msg);
+            }
+        });
     }
 }

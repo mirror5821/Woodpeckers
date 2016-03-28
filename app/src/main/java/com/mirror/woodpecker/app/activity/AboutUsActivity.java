@@ -81,8 +81,11 @@ public class AboutUsActivity extends BaseActivity{
 
                 switch (about.getIcon()){
                     case 1:
-                        startActivity(new Intent(AboutUsActivity.this, AboutUsDetailsActivity.class).
-                                putExtra(INTENT_ID, about.getInfo().getContent()).putExtra("TITLE", about.getTitle()));
+//                        startActivity(new Intent(AboutUsActivity.this, AboutUsDetailsActivity.class).
+//                                putExtra(INTENT_ID, about.getInfo().getContent()).putExtra("TITLE", about.getTitle()));
+
+                        startActivity(new Intent(AboutUsActivity.this, NormalWebViewActivity.class).
+                                putExtra(INTENT_ID, about.getAurl()).putExtra("TITLE", about.getTitle()));
                         break;
                     case 2:
                         startActivity(new Intent(AboutUsActivity.this, AboutUsGridViewActivity.class)

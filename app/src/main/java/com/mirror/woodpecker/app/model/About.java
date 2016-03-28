@@ -30,6 +30,8 @@ public class About implements AddrBase ,Parcelable{
     private int icon;//1,
     private Info info;
     private List<Other> list;
+    private String aurl;
+
 
     protected About(Parcel in) {
         id = in.readInt();
@@ -48,6 +50,7 @@ public class About implements AddrBase ,Parcelable{
         update_time = in.readString();
         status = in.readString();
         icon = in.readInt();
+        aurl = in.readString();
     }
 
     public static final Creator<About> CREATOR = new Creator<About>() {
@@ -85,6 +88,7 @@ public class About implements AddrBase ,Parcelable{
         dest.writeString(update_time);
         dest.writeString(status);
         dest.writeInt(icon);
+        dest.writeString(aurl);
     }
 
     public static class Info implements Parcelable{
@@ -93,6 +97,7 @@ public class About implements AddrBase ,Parcelable{
         private String content;//":"
         private String template;//":"",
         private String bookmark;//":"0"
+        private String aurl;
 
         protected Info(Parcel in) {
             id = in.readInt();
@@ -100,6 +105,7 @@ public class About implements AddrBase ,Parcelable{
             content = in.readString();
             template = in.readString();
             bookmark = in.readString();
+            aurl = in.readString();
         }
 
         public static final Creator<Info> CREATOR = new Creator<Info>() {
@@ -159,6 +165,14 @@ public class About implements AddrBase ,Parcelable{
             return 0;
         }
 
+        public String getAurl() {
+            return aurl;
+        }
+
+        public void setAurl(String aurl) {
+            this.aurl = aurl;
+        }
+
         @Override
         public void writeToParcel(Parcel dest, int flags) {
             dest.writeInt(id);
@@ -166,6 +180,7 @@ public class About implements AddrBase ,Parcelable{
             dest.writeString(content);
             dest.writeString(template);
             dest.writeString(bookmark);
+            dest.writeString(aurl);
         }
     }
 
@@ -177,6 +192,7 @@ public class About implements AddrBase ,Parcelable{
         private String title;//":"2016\u4e2d\u56fd\u56fd\u9645\u667a\u80fd\u5efa\u7b51\u5c55\u89c8\u4f1a"
 
         private Info info;
+        private String aurl;
 
 
         protected Other(Parcel in) {
@@ -185,6 +201,7 @@ public class About implements AddrBase ,Parcelable{
             link = in.readString();
             title = in.readString();
             info = in.readParcelable(Info.class.getClassLoader());
+            aurl = in.readString();
         }
 
         public static final Creator<Other> CREATOR = new Creator<Other>() {
@@ -246,6 +263,14 @@ public class About implements AddrBase ,Parcelable{
             return 0;
         }
 
+        public String getAurl() {
+            return aurl;
+        }
+
+        public void setAurl(String aurl) {
+            this.aurl = aurl;
+        }
+
         @Override
         public void writeToParcel(Parcel dest, int flags) {
             dest.writeInt(id);
@@ -253,6 +278,7 @@ public class About implements AddrBase ,Parcelable{
             dest.writeString(link);
             dest.writeString(title);
             dest.writeParcelable(info, flags);
+            dest.writeString(aurl);
         }
     }
 
@@ -398,6 +424,14 @@ public class About implements AddrBase ,Parcelable{
 
     public void setList(List<Other> list) {
         this.list = list;
+    }
+
+    public String getAurl() {
+        return aurl;
+    }
+
+    public void setAurl(String aurl) {
+        this.aurl = aurl;
     }
 
     @Override

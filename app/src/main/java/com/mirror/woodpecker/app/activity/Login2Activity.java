@@ -22,7 +22,7 @@ import org.json.JSONObject;
 /**
  * Created by 王沛栋 on 2016/3/3.
  */
-public class LoginActivity extends BaseActivity {
+public class Login2Activity extends BaseActivity {
     private EditText mEtName,mEtPass;
     private Button mBtnRegister,mBtnLogin;
     private TextView mTvForget;
@@ -60,10 +60,10 @@ public class LoginActivity extends BaseActivity {
                 login();
                 break;
             case R.id.tv_forget:
-                startActivity(new Intent(LoginActivity.this,ForgetPassActivity.class));
+                startActivity(new Intent(Login2Activity.this,ForgetPassActivity.class));
                 break;
             case R.id.btn:
-                startActivity(new Intent(LoginActivity.this,RegistersActivity.class));
+                startActivity(new Intent(Login2Activity.this,RegistersActivity.class));
                 break;
         }
     }
@@ -106,6 +106,7 @@ public class LoginActivity extends BaseActivity {
         ap.postData1(LOGIN_TEST, jb.toString(), new AppAjaxCallback.onResultListener() {
             @Override
             public void onResult(String data, String msg) {
+
                 /**
                  * 返回的数据中role_id为角色ID，数据1代表单位主管，
                  * 2代表部门主管，3代表客服，4代表维修人员，0为普通用户
@@ -116,6 +117,7 @@ public class LoginActivity extends BaseActivity {
                 AppContext.USER_ROLE_ID = user.getRole_id();
                 AppContext.USER_ID = user.getId();
                 AppContext.IS_LOGIN = true;
+
                 Uri datas = Uri.parse(data);
                 Intent intent = new Intent(null,datas);
                 setResult(RESULT_OK, intent);

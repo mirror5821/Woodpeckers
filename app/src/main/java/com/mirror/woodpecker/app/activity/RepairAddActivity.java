@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.mirror.woodpecker.app.R;
+import com.mirror.woodpecker.app.app.AppContext;
 import com.mirror.woodpecker.app.util.AppAjaxCallback;
 import com.mirror.woodpecker.app.util.AppHttpClient;
 
@@ -105,7 +106,7 @@ public class RepairAddActivity extends BaseActivity{
             jb.put("phone", phone);
             jb.put("gz_desc", des);
             jb.put("gz_postion",loc);
-            jb.put("uid", 25);
+            jb.put("uid", AppContext.USER_ID);
 
         }catch (JSONException e){
 

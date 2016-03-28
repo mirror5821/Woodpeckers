@@ -19,6 +19,7 @@ import com.mirror.woodpecker.app.iface.OnTabSelect;
  * Created by dongqian on 16/1/3.
  */
 public class MainTabActivity extends BaseTabActivity implements OnTabSelect{
+    private int mCode;//请求参数
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,13 +30,17 @@ public class MainTabActivity extends BaseTabActivity implements OnTabSelect{
             @Override
             public void onTabChanged(String tabId) {
                 if (tabId.equals(mTabs[1])) {
+                    mCode = 1;
                     if (AppContext.USER_ROLE_ID != 3) {
-                        startActivityForResult(new Intent(MainTabActivity.this, LoginActivity.class), 7801);
+                        showToast("您无权限查看此处内容");
+//                        startActivityForResult(new Intent(MainTabActivity.this, Login2Activity.class), 7801);
                         onSelect(0);
                     }
                 } else if (tabId.equals(mTabs[2])) {
+                    mCode = 2;
                     if (AppContext.USER_ROLE_ID != 4) {
-                        startActivityForResult(new Intent(MainTabActivity.this, LoginActivity.class), 7802);
+                        showToast("您无权限查看此处内容");
+//                        startActivityForResult(new Intent(MainTabActivity.this, Login2Activity.class), 7802);
                         onSelect(0);
                     }
                 }
@@ -47,7 +52,16 @@ public class MainTabActivity extends BaseTabActivity implements OnTabSelect{
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode ==Activity.RESULT_OK){
-
+            if(mCode == 1){
+                if(AppContext.USER_ROLE_ID != 3){
+                   showToast("您无权限查看此处内容");
+                }
+            }
+            if(mCode == 2){
+                if(AppContext.USER_ROLE_ID != 4){
+                    showToast("您无权限查看此处内容");
+                }
+            }
             /*if(AppContext.USER_ROLE_ID == 3){
                 onSelect(1);
             }else if(AppContext.USER_ROLE_ID == 4){

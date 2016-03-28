@@ -28,6 +28,7 @@ public class AboutUsListViewActivity extends BaseRecyclerViewActivity{
     public void loadData() {
         mList.addAll(mDatas);
 
+
         setAdapter();
         mRecyclerView.refreshComplete();
         //不允许加载更多
@@ -57,8 +58,8 @@ public class AboutUsListViewActivity extends BaseRecyclerViewActivity{
         holder.getConvertView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AboutUsListViewActivity.this, AboutUsDetailsActivity.class).
-                        putExtra(INTENT_ID, data.getInfo().getContent()).putExtra("TITLE", data.getTitle()));
+                startActivity(new Intent(AboutUsListViewActivity.this, NormalWebViewActivity.class).
+                        putExtra(INTENT_ID, data.getAurl()).putExtra("TITLE", data.getTitle()));
             }
         });
     }
