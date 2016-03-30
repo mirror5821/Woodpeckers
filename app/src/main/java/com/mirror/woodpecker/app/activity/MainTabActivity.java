@@ -19,7 +19,7 @@ import com.mirror.woodpecker.app.iface.OnTabSelect;
  * Created by dongqian on 16/1/3.
  */
 public class MainTabActivity extends BaseTabActivity implements OnTabSelect{
-    private int mCode;//请求参数
+    private int mCode;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,19 +30,28 @@ public class MainTabActivity extends BaseTabActivity implements OnTabSelect{
             @Override
             public void onTabChanged(String tabId) {
                 if (tabId.equals(mTabs[1])) {
-                    mCode = 1;
-                    if (AppContext.USER_ROLE_ID != 3) {
-                        showToast("您无权限查看此处内容");
-//                        startActivityForResult(new Intent(MainTabActivity.this, Login2Activity.class), 7801);
-                        onSelect(0);
+                    if(!AppContext.IS_LOGIN){
+                        mCode = 1;
+                        startActivityForResult(new Intent(MainTabActivity.this, Login2Activity.class), 7801);
+                    }else{
+                        if (AppContext.USER_ROLE_ID != 3) {
+                            showToast("您无权限查看此处内容");
+
+                            onSelect(0);
+                        }
                     }
+
                 } else if (tabId.equals(mTabs[2])) {
-                    mCode = 2;
-                    if (AppContext.USER_ROLE_ID != 4) {
-                        showToast("您无权限查看此处内容");
-//                        startActivityForResult(new Intent(MainTabActivity.this, Login2Activity.class), 7802);
-                        onSelect(0);
+                    if(!AppContext.IS_LOGIN){
+                        mCode = 2;
+                        startActivityForResult(new Intent(MainTabActivity.this, Login2Activity.class), 7802);
+                    }else {
+                        if (AppContext.USER_ROLE_ID != 4) {
+                            showToast("您无权限查看此处内容");
+                            onSelect(0);
+                        }
                     }
+
                 }
             }
         });
@@ -100,5 +109,28 @@ public class MainTabActivity extends BaseTabActivity implements OnTabSelect{
     @Override
     public void onSelect(int index) {
         mFragmentTabHost.setCurrentTab(index);
+    }
+
+    private long last = 0;
+    @Override
+    public void onBackPressed() {
+        if (mFragmentTabHost.getCurrentTab() != 0) {
+            mFragmentTabHost.setCurrentTab(0);
+        } else {
+            if (System.currentTimeMillis() - last > 2000) {
+                showToast( "再按一次返回键退出");
+                last = System.currentTimeMillis();
+            } else {
+                super.onBackPressed();
+            }
+        }
+
+//		if (System.currentTimeMillis() - last > 2000) {
+//			showToast( "再按一次返回键退出");
+//			last = System.currentTimeMillis();
+//		} else {
+//			super.onBackPressed();
+//		}
+
     }
 }

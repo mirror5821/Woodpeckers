@@ -93,4 +93,6 @@
     <string name="welcome_us">欢迎关注啄木鸟运维</string>
     <string name="com_phone">400-138-0089</string>
     <string name="com_address">郑东新区CBD商务外环与商务东一街格拉姆大厦A座27楼</string>
+
+    <string name="repair_jindu">维修单进度</string>
 </resources>

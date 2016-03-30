@@ -40,22 +40,39 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="28dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:text="@string/contact_no"
+                style="@style/TvListDark"
+                android:layout_width="78dp"/>
+
+            <TextView
+                android:id="@+id/phone"
+                style="@style/TvListLight"
+                android:layout_marginLeft="@dimen/d8"/>
+
+        </LinearLayout>
+
+
 
         <TextView
-            android:text="@string/contact_no"
-            style="@style/TvListDark"
-            android:layout_width="78dp"/>
-
-        <TextView
-            android:id="@+id/phone"
-            style="@style/TvListLight"
-            android:layout_marginLeft="@dimen/d8"/>
-
+            android:id="@+id/status"
+            android:gravity="right"
+            style="@style/TvListLight2"
+            android:layout_height="wrap_content"
+            android:textColor="#caab44"/>
 
     </LinearLayout>
+
+
 
     <LinearLayout
         android:layout_width="wrap_content"

@@ -1,5 +1,7 @@
 package com.mirror.woodpecker.app.util;
 
+import android.text.TextUtils;
+
 import com.mirror.woodpecker.app.model.Constants;
 
 import org.xutils.x;
@@ -18,6 +20,9 @@ public class AppHttpClient{
         sb.append(SERVIER_HEADER);
         sb.append(fName);
 
+        if(!TextUtils.isEmpty(p)){
+            System.out.println("-------------------"+p);
+        }
         AppAjaxParam param = new AppAjaxParam(fName,sb.toString());
         param.addParameter(Constants.JSONG_KEY, p);
         x.http().post(param,new AppAjaxCallback<>(listener));
@@ -30,6 +35,9 @@ public class AppHttpClient{
         sb.append(SERVIER_HEADER);
         sb.append(fName);
 
+        if(!TextUtils.isEmpty(p)){
+            System.out.println("-------------------"+p);
+        }
         AppAjaxParam param = new AppAjaxParam(fName,sb.toString());
         param.addParameter(Constants.JSONG_KEY, p);
         x.http().post(param, new AppAjaxCallback<>(listener));

@@ -204,10 +204,23 @@
 
             </LinearLayout>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/normal_height"
+                android:background="@color/jindu"
+                android:text="@string/repair_jindu"
+                android:textColor="@color/main_blue"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/d8"
+                android:textSize="16sp"/>
+
             <LinearLayout
+                android:id="@+id/view_jindu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"/>
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:paddingBottom="@dimen/d16"/>
 
         </LinearLayout>
     </ScrollView>

@@ -2,6 +2,7 @@ package com.mirror.woodpecker.app.activity;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +16,10 @@ import com.mirror.woodpecker.app.util.AppAjaxCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import dev.mirror.library.android.util.DateUtil;
 import dev.mirror.library.android.util.JsonUtils;
@@ -35,10 +40,13 @@ public class UserRepairDetailsActivity extends BaseActivity {
     private EditText mEt;
     private Button mBtn;
     private LinearLayout mViewRepairMan;
+    private LinearLayout mViewJindu;
 
 
     private int mOrderId;
     private Repair mRepair;
+
+    private LayoutInflater mInflater;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,8 +55,11 @@ public class UserRepairDetailsActivity extends BaseActivity {
         setTitleText("维修单详情");
         setBack();
 
+        mInflater = getLayoutInflater();
         loadData();
     }
+
+    String [] orderStatus = {"未处理","客服关闭", "已查看", "等待接单", "已接单", "解决中", "等待调货状态", "确定调货，货已到", "已解决", "最终关闭"};
 
     private void initView(){
         mTvPhone = (TextView)findViewById(R.id.phone);
@@ -65,6 +76,7 @@ public class UserRepairDetailsActivity extends BaseActivity {
         mBtn = (Button)findViewById(R.id.btn);
 
         mViewRepairMan = (LinearLayout)findViewById(R.id.view_repair_man);
+        mViewJindu = (LinearLayout)findViewById(R.id.view_jindu);
 
         mTvPhone.setText(TextUtils.isEmpty(mRepair.getPhone())?"暂无联系方式":mRepair.getPhone());
         mTvLoc.setText(TextUtils.isEmpty(mRepair.getGz_postion())?"暂无保修位置":mRepair.getGz_postion());
@@ -100,7 +112,6 @@ public class UserRepairDetailsActivity extends BaseActivity {
          * 0未处理  1客服关闭 2已查看 3等待接单 4已接单 5解决中 6等待调货状态 7确定调货，货已到 8已解决 9最终关闭
          */
 
-        String [] orderStatus = {"未处理","客服关闭", "已查看", "等待接单", "已接单", "解决中", "等待调货状态", "确定调货，货已到", "已解决", "最终关闭"};
         switch (mRepair.getOrder_status()){
             case 0:
                 mTvRepairMan.setVisibility(View.GONE);
@@ -132,6 +143,7 @@ public class UserRepairDetailsActivity extends BaseActivity {
 
     }
 
+    private List<String> mListJindu;
     private void loadData(){
         JSONObject jb = new JSONObject();
         try{
@@ -145,6 +157,44 @@ public class UserRepairDetailsActivity extends BaseActivity {
             public void onResult(String data, String msg) {
                 mRepair = JsonUtils.parse(data,Repair.class);
                 initView();
+
+                try {
+                    JSONObject jb = new JSONObject(data);
+                    JSONObject jb2 = jb.getJSONObject("extinfo");
+
+
+
+                    mListJindu = new ArrayList<>();
+
+                    Iterator<?> iterator = jb2.keys();
+                    while (iterator.hasNext()){
+                        String key = (String) iterator.next();
+                        //切记用optJSONObject();用getJSONObject()在为null的时候会报错哦！！！
+
+                        String ob = jb2.getString(key);
+                        mListJindu.add(key);
+                        mListJindu.add(ob);
+
+                    }
+
+                    for(int i = 1;i<=mListJindu.size()/4;i++){
+                        View view = mInflater.inflate(R.layout.item_jindu,null);
+                        TextView status = (TextView)view.findViewById(R.id.status);
+                        TextView times = (TextView)view.findViewById(R.id.time);
+                        TextView contents = (TextView)view.findViewById(R.id.content);
+
+                        String s = mListJindu.get(i*4-4);
+                        int ss = Integer.valueOf(s.substring(s.indexOf("_")+1,s.length()));
+                        status.setText(orderStatus[ss]);
+                        times.setText(DateUtil.TimeStamp2Date("yyyy-MM-dd HH:mm", mListJindu.get(i*4-1)));
+                        contents.setText(mListJindu.get(i*4-3));
+                        mViewJindu.addView(view);
+                    }
+
+
+                }catch (JSONException e){
+
+                }
             }
 
             @Override

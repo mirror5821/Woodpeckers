@@ -168,7 +168,7 @@
     </style>
 
     <style name="TvListLight2" parent="TvDetailsCommen">
-        <item name="android:textColor">@color/tv_light</item>
+        <item name="android:textColor">@color/tv_hint</item>
         <item name="android:gravity">center_vertical</item>
     </style>
 

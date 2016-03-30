@@ -105,6 +105,7 @@ public class UserInfoActivity extends BaseActivity {
             case R.id.btn:
                 AppContext.USER_ROLE_ID = -1;
                 AppContext.USER_ID = -1;
+                AppContext.IS_LOGIN = false;
                 SharePreferencesUtil.deleteInfo(getApplicationContext());
                 finish();
                 break;

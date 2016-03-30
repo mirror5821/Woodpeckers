@@ -3,6 +3,7 @@ package com.mirror.woodpecker.app.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +18,10 @@ import com.mirror.woodpecker.app.util.SharePreferencesUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import dev.mirror.library.android.util.DateUtil;
 import dev.mirror.library.android.util.JsonUtils;
@@ -41,10 +46,13 @@ public class RepairDetailsActivity extends BaseActivity {
 
     private LinearLayout mViewRepairMan;
     private LinearLayout mViewOpration;
+    private LinearLayout mViewJindu;
 
 
     private int mOrderId;
     private Repair mRepair;
+
+    private LayoutInflater mInflater;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,9 +61,15 @@ public class RepairDetailsActivity extends BaseActivity {
         setTitleText("维修单详情");
         setBack();
 
+
+
+        mInflater = getLayoutInflater();
         loadData();
     }
 
+    String [] orderStatus = {"未处理","客服关闭", "已查看", "等待接单", "已接单", "解决中", "等待调货状态", "确定调货，货已到", "已解决", "最终关闭"};
+
+    private List<String> mListJindu;
     private void loadData(){
         JSONObject jb = new JSONObject();
         try{
@@ -69,6 +83,44 @@ public class RepairDetailsActivity extends BaseActivity {
             public void onResult(String data, String msg) {
                 mRepair = JsonUtils.parse(data, Repair.class);
                 initView();
+
+                try {
+                    JSONObject jb = new JSONObject(data);
+                    JSONObject jb2 = jb.getJSONObject("extinfo");
+
+
+
+                    mListJindu = new ArrayList<>();
+
+                    Iterator<?> iterator = jb2.keys();
+                    while (iterator.hasNext()){
+                        String key = (String) iterator.next();
+                        //切记用optJSONObject();用getJSONObject()在为null的时候会报错哦！！！
+
+                        String ob = jb2.getString(key);
+                        mListJindu.add(key);
+                        mListJindu.add(ob);
+
+                    }
+
+                    for(int i = 1;i<=mListJindu.size()/4;i++){
+                        View view = mInflater.inflate(R.layout.item_jindu,null);
+                        TextView status = (TextView)view.findViewById(R.id.status);
+                        TextView times = (TextView)view.findViewById(R.id.time);
+                        TextView contents = (TextView)view.findViewById(R.id.content);
+
+                        String s = mListJindu.get(i*4-4);
+                        int ss = Integer.valueOf(s.substring(s.indexOf("_")+1,s.length()));
+                        status.setText(orderStatus[ss]);
+                        times.setText(DateUtil.TimeStamp2Date("yyyy-MM-dd HH:mm", mListJindu.get(i*4-1)));
+                        contents.setText(mListJindu.get(i*4-3));
+                        mViewJindu.addView(view);
+                    }
+
+
+                }catch (JSONException e){
+
+                }
             }
 
             @Override
@@ -97,6 +149,8 @@ public class RepairDetailsActivity extends BaseActivity {
 
         mViewRepairMan = (LinearLayout)findViewById(R.id.view_repair_man);
         mViewOpration = (LinearLayout)findViewById(R.id.view_o);
+
+        mViewJindu = (LinearLayout)findViewById(R.id.view_jindu);
 
         mTvPhone.setText(TextUtils.isEmpty(mRepair.getPhone())?"暂无联系方式":mRepair.getPhone());
         mTvLoc.setText(TextUtils.isEmpty(mRepair.getGz_postion())?"暂无保修位置":mRepair.getGz_postion());
@@ -137,8 +191,6 @@ public class RepairDetailsActivity extends BaseActivity {
          * 如果是分类查询列表  关闭和最终关闭都是1
          */
 
-        String [] orderStatus = {"未处理","客服关闭", "已查看", "等待接单", "已接单", "解决中", "等待调货状态",
-                "确定调货，货已到", "已解决", "最终关闭"};
         switch (mRepair.getOrder_status()){
             case 0:
                 mTvRepairMan.setVisibility(View.GONE);
