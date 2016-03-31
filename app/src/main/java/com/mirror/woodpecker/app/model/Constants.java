@@ -98,6 +98,8 @@ public interface Constants {
     public final static String CONSTANS = "contactus";//联系我们
     public final static String USER_INFOMATION = "uinfo";//用户个人信息
     public final static String ZI_XUN = "consult";//业务咨询
+    public final static String ORDER_COMMENT = "uordercomment";//维修单评论
+    public final static String XUNJIAN_LIST = "xjremain";//巡检列表
 
 
     public final static int ORDER_STATUS_ALL = 1;//订单列表状态

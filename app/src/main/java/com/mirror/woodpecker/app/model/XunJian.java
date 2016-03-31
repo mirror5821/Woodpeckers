@@ -1,9 +1,12 @@
 package com.mirror.woodpecker.app.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by 王沛栋 on 2016/3/24.
  */
-public class XunJian {
+public class XunJian implements Parcelable{
     private int project_id;//private String 10private String ,
     private String project_name;//private String 安阳移动private String ,
     private String start_time;//private String 1457452800private String ,
@@ -11,6 +14,28 @@ public class XunJian {
     private String status;//private String 0private String ,
     private String duetime;//private String 1606406400private String ,
     private String guantmoney;//private String 8000private String
+
+    protected XunJian(Parcel in) {
+        project_id = in.readInt();
+        project_name = in.readString();
+        start_time = in.readString();
+        end_time = in.readString();
+        status = in.readString();
+        duetime = in.readString();
+        guantmoney = in.readString();
+    }
+
+    public static final Creator<XunJian> CREATOR = new Creator<XunJian>() {
+        @Override
+        public XunJian createFromParcel(Parcel in) {
+            return new XunJian(in);
+        }
+
+        @Override
+        public XunJian[] newArray(int size) {
+            return new XunJian[size];
+        }
+    };
 
     public int getProject_id() {
         return project_id;
@@ -66,5 +91,21 @@ public class XunJian {
 
     public void setGuantmoney(String guantmoney) {
         this.guantmoney = guantmoney;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(project_id);
+        dest.writeString(project_name);
+        dest.writeString(start_time);
+        dest.writeString(end_time);
+        dest.writeString(status);
+        dest.writeString(duetime);
+        dest.writeString(guantmoney);
     }
 }

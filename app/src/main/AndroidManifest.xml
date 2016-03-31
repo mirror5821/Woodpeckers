@@ -26,7 +26,15 @@
         </activity>
 
 
+        <receiver
+            android:name=".receiver.XunJianReceiver"
+            ></receiver>
 
+        <service android:name=".service.XunJianService"></service>
+        <activity android:name=".activity.XunJianAlertActivity"/>
+        <activity android:name=".activity.XunJianActivity"/>
+
+        <activity android:name=".activity.CommentActivity"/>
         <activity android:name=".activity.Login2Activity"/>
         <activity android:name=".activity.ZiXunDetailsActivity"/>
         <activity android:name=".activity.ContactUsActivity"/>
@@ -69,6 +77,8 @@
         <activity
             android:configChanges="orientation|screenSize"
             android:name="dev.mirror.library.android.activity.MultiImageSelectorActivity"/>
+
+        <service android:name=".service.XunJianService"/>
     </application>
 
 

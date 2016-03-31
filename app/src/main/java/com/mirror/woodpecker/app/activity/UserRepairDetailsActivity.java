@@ -1,5 +1,6 @@
 package com.mirror.woodpecker.app.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -119,6 +120,7 @@ public class UserRepairDetailsActivity extends BaseActivity {
                 mBtn.setVisibility(View.GONE);
                 break;
             case 1:
+                setRightTitle("评论");
                 break;
             case 2:
                 break;
@@ -135,12 +137,21 @@ public class UserRepairDetailsActivity extends BaseActivity {
             case 8:
                 break;
             case 9:
+                setRightTitle("评论");
                 break;
         }
 
         mTvOrderStatus.setText(orderStatus[mRepair.getOrder_status()]);
+    }
 
-
+    @Override
+    public void onClick(View v) {
+        super.onClick(v);
+        switch (v.getId()){
+            case R.id.right_text:
+                startActivity(new Intent(UserRepairDetailsActivity.this,CommentActivity.class).putExtra(INTENT_ID,mOrderId));
+                break;
+        }
     }
 
     private List<String> mListJindu;

@@ -17,6 +17,7 @@ import com.mirror.woodpecker.app.activity.RepairAddActivity;
 import com.mirror.woodpecker.app.activity.UpdatePassActivity;
 import com.mirror.woodpecker.app.activity.UserInfoActivity;
 import com.mirror.woodpecker.app.activity.UserRepairListActivity;
+import com.mirror.woodpecker.app.activity.XunJianActivity;
 import com.mirror.woodpecker.app.app.AppContext;
 import com.mirror.woodpecker.app.util.AppAjaxCallback;
 import com.mirror.woodpecker.app.util.SharePreferencesUtil;
@@ -31,6 +32,7 @@ public class MyFragment extends BaseFragment {
     private TextView mTvName;
     private TextView mTvInfo;
     private TextView mTvAbout;
+    private TextView mTvXunjian;
 
     private Button mBtnLogin,mBtnRegister;
     private Button mBtnMyRepair,mBtnRepairSub;
@@ -49,10 +51,12 @@ public class MyFragment extends BaseFragment {
         mTvAbout = (TextView)view.findViewById(R.id.tv_about);
         mViewLogin = (LinearLayout)view.findViewById(R.id.view_login);
         mViewRepair = (LinearLayout)view.findViewById(R.id.view_repair);
+        mTvXunjian = (TextView)view.findViewById(R.id.tv_xunjian);
 
         mTvUpdatePass.setOnClickListener(this);
         mTvInfo.setOnClickListener(this);
         mTvAbout.setOnClickListener(this);
+        mTvXunjian.setOnClickListener(this);
 
         mBtnLogin = (Button)view.findViewById(R.id.btn_login);
         mBtnRegister = (Button)view.findViewById(R.id.btn_register);
@@ -132,6 +136,9 @@ public class MyFragment extends BaseFragment {
                 }else{
                     startActivity(new Intent(getActivity(), RepairAddActivity.class));
                 }
+                break;
+            case R.id.tv_xunjian:
+                startActivity(new Intent(getActivity(), XunJianActivity.class));
                 break;
 
         }

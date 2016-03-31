@@ -44,6 +44,9 @@
     <string name="submit">提交</string>
     <string name="search_area">输入您所在的地区</string>
 
+    <string name="xunjian_time">起始时间:</string>
+    <string name="xunjian_status">巡检状态:</string>
+    <string name="prp_name">项目名称:</string>
     <string name="repair_no">维修单号:</string>
     <string name="contact_no">联系方式:</string>
     <string name="repair_loc">故障位置:</string>
@@ -71,6 +74,7 @@
     <string name="input_price">请输入维修价格</string>
     <string name="input_complain">请输入您宝贵的建议</string>
     <string name="input_replay_content">请输入回复内容</string>
+    <string name="input_comment">请输入评价内容</string>
 
     <string name="my_repair_list">我的维修单</string>
     <string name="submit_repair">提交维修单</string>
@@ -78,6 +82,7 @@
     <string name="update_pass">修改密码</string>
     <string name="fukuan">付款凭证</string>
     <string name="about_us">关于我们</string>
+    <string name="xunjian">巡检</string>
 
     <string name="username">用户名称</string>
     <string name="email">邮箱</string>
@@ -95,4 +100,16 @@
     <string name="com_address">郑东新区CBD商务外环与商务东一街格拉姆大厦A座27楼</string>
 
     <string name="repair_jindu">维修单进度</string>
+
+
+    <string name="str_button1">设置闹钟</string>
+    <string name="str_button2">删除闹钟</string>
+    <string name="str_title1">起床闹钟</string>
+    <string name="str_title2">非醒不可闹钟</string>
+    <string name="str_default">目前无设置</string>
+    <string name="str_text1">开始时间</string>
+    <string name="str_text2">响铃延迟</string>
+    <string name="str_text3">秒</string>
+    <string name="hello">当前没有设置闹钟!</string>
+
 </resources>
