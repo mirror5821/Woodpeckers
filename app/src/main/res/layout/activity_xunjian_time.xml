@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="#000000"
+    >
+
+    <AnalogClock
+        android:id="@+id/analogClock"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <DigitalClock
+        android:gravity="center"
+        android:id="@+id/dclock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_x="30px"
+        android:layout_y="32px"
+        android:textSize="55sp" />
+
+
+
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+
+
+        <TextView
+            android:id="@+id/textview2"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="起床闹钟设置为:" />
+
+
+
+
+
+
+        <TextView
+            android:id="@+id/textview1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="@string/hello" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:gravity="center"
+            android:layout_weight="1"
+            android:id="@+id/setclock"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text="设置闹钟"
+            android:textSize="18sp"
+
+            />
+
+        <Button
+            android:gravity="center"
+            android:layout_weight="1"
+            android:id="@+id/unsetclock"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text="取消闹钟"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+
+
+
+        <TextView
+            android:id="@+id/textview3"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="重复闹钟设置为:" />
+
+
+
+
+
+
+
+        <TextView
+            android:id="@+id/textview4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="@string/hello" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:gravity="center"
+            android:layout_weight="1"
+            android:id="@+id/setclocks"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text="设置闹钟"
+            android:textSize="18sp"
+
+            />
+
+        <Button
+            android:gravity="center"
+            android:layout_weight="1"
+            android:id="@+id/unsetclocks"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text="取消闹钟"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+
+</LinearLayout>
