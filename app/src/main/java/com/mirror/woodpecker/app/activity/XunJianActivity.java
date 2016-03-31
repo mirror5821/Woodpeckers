@@ -1,15 +1,14 @@
 package com.mirror.woodpecker.app.activity;
 
 
-import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.TextView;
 
 import com.mirror.woodpecker.app.R;
-import com.mirror.woodpecker.app.model.Repair;
 import com.mirror.woodpecker.app.model.XunJian;
 import com.mirror.woodpecker.app.util.AppAjaxCallback;
+import com.mirror.woodpecker.app.util.XunJianUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +20,9 @@ public class XunJianActivity extends BaseRecyclerViewActivity{
 
     @Override
     public int setLayoutById() {
+        if(mList == null){
+            mList = new ArrayList<XunJian>();
+        }
         return R.layout.activity_xunjian_list;
     }
 
@@ -31,17 +33,28 @@ public class XunJianActivity extends BaseRecyclerViewActivity{
         setTitleText("巡检列表");
     }
 
+    private boolean isXunjian = false;
     @Override
     public void loadData() {
         mHttpClient.postData(XUNJIAN_LIST, null, new AppAjaxCallback.onRecevierDataListener<XunJian>() {
             @Override
             public void onReceiverData(List<XunJian> data, String msg) {
-                if(mList == null){
-                    mList = new ArrayList<>();
-                    mList.addAll(data);
+                mList.addAll(data);
+
+                for(int i =0;i<mList.size();i++){
+                    XunJian xj = data.get(i);
+                    if(xj.getStatus().equals("0")){
+                        XunJianUtil.startXunjian(XunJianActivity.this);
+                        isXunjian = true;
+                    }
+                }
+                if(!isXunjian){
+                    XunJianUtil.stopXunjian(XunJianActivity.this);
                 }
                 setAdapter();
                 mRecyclerView.refreshComplete();
+                mRecyclerView.setLoadingMoreEnabled(false);
+                mRecyclerView.setPullRefreshEnabled(false);
 
             }
 
