@@ -74,11 +74,11 @@ public interface Constants {
 
     public final static String ALIPAY_NOTIFY_URL = BASE_URL+"app/pay/alipayNotify";
 
-    public final static String LOGIN_TEST = "login";
-    public final static String REGISTERS = "register";
-    public final static String UPDATE_PASS = "password";
-    public final static String REPAIR_COM = "select_company";
-    public final static String REPAIR = "repair";
+    public final static String LOGIN_TEST = "login";//登录
+    public final static String REGISTERS = "register";//注册
+    public final static String UPDATE_PASS = "password";//找回密码
+    public final static String REPAIR_COM = "select_company";//选择单位
+    public final static String REPAIR = "repair";//提交保修
     public final static String ORDER_LIST_MY = "myorderlist";//我的维修单（myorderlist）参数：用户ID 【 uid】
     public final static String ORDER_LIST_DEPART = "departorderlist";//部门维修单（departorderlist）参数：用户ID 【 uid】
     public final static String ORDER_LIST_COM = "companyorderlist";//单位维修单（companyorderlist）参数：用户ID 【 uid】
