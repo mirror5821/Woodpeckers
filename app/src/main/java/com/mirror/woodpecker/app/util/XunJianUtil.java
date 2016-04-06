@@ -22,7 +22,7 @@ public class XunJianUtil {
         //取得设定的时间
         c.setTimeInMillis(System.currentTimeMillis());
         c.set(Calendar.HOUR_OF_DAY,15);
-        c.set(Calendar.MINUTE,0);
+        c.set(Calendar.MINUTE,10);
         c.set(Calendar.SECOND, 0);
         c.set(Calendar.MILLISECOND, 0);
         //指定闹钟设定时间到了要执行callalarm

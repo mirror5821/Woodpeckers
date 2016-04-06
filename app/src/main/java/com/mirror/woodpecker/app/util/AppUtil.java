@@ -28,4 +28,19 @@ public class AppUtil {
         }
         return versionName;
     }
+
+
+    /**
+     * 返回当前程序版本名
+     */
+    public static int getAppVersionCode(Context context) {
+        int versionCode =1;
+        try {
+            PackageManager pm = context.getPackageManager();
+            PackageInfo pi = pm.getPackageInfo(context.getPackageName(), 0);
+            versionCode = pi.versionCode;
+        } catch (Exception e) {
+        }
+        return versionCode;
+    }
 }

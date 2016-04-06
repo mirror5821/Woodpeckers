@@ -88,10 +88,10 @@ public class RepairAddActivity extends BaseActivity{
             return;
         }
 
-        if(TextUtils.isEmpty(des)){
+        /*if(TextUtils.isEmpty(des)){
             showToast("请输入故障描述");
             return;
-        }
+        }*/
 
         /**
          电话	phone
@@ -116,6 +116,8 @@ public class RepairAddActivity extends BaseActivity{
             @Override
             public void onResult(String data, String msg) {
                 showToast(msg);
+                startActivity(new Intent(RepairAddActivity.this,RepairDetailsActivity.class).putExtra(INTENT_ID,Integer.valueOf(data)));
+                finish();
             }
 
             @Override

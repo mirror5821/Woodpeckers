@@ -116,7 +116,10 @@ public class AboutUsActivity extends BaseActivity{
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode){
             case LOGIN_CODE1:
-                startActivity(new Intent(AboutUsActivity.this,ComplainActivity.class));
+                if(AppContext.USER_ROLE_ID != -1)
+                    startActivity(new Intent(AboutUsActivity.this,ComplainActivity.class));
+                else
+                    showToast("请登录");
                 break;
         }
 

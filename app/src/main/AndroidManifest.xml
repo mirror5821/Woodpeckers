@@ -30,6 +30,11 @@
             android:name=".receiver.XunJianReceiver"
             ></receiver>
 
+
+
+
+        <activity android:name=".activity.OrderCountActivity"/>
+        <activity android:name=".activity.XunJianFeedBackActivity"/>
         <service android:name=".service.XunJianService"></service>
         <activity android:name=".activity.XunJianAlertActivity"/>
         <activity android:name=".activity.XunJianActivity"/>

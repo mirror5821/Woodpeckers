@@ -12,6 +12,7 @@ import com.mirror.woodpecker.app.R;
 import com.mirror.woodpecker.app.adapter.ImageAddsAdapter;
 import com.mirror.woodpecker.app.app.AppContext;
 import com.mirror.woodpecker.app.model.Repair;
+import com.mirror.woodpecker.app.model.XunJian;
 import com.mirror.woodpecker.app.util.AppAjaxCallback;
 
 import org.json.JSONException;
@@ -27,7 +28,7 @@ import dev.mirror.library.android.view.NoScrollGridView;
 /**
  * Created by 王沛栋 on 2016/3/16.
  */
-public class RepairFeedBackActivity extends BaseActivity implements AdapterView.OnItemClickListener{
+public class XunJianFeedBackActivity extends BaseActivity implements AdapterView.OnItemClickListener{
     private NoScrollGridView mGridView;
     private EditText mEt;
     private Button mBtn;
@@ -37,7 +38,7 @@ public class RepairFeedBackActivity extends BaseActivity implements AdapterView.
 
     private ImageTools mImageTools;
 
-    private Repair mRepair;
+    private XunJian mXJ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +46,9 @@ public class RepairFeedBackActivity extends BaseActivity implements AdapterView.
         setContentView(R.layout.activity_repair_feedback);
 
         setBack();
-        setTitleText("维修反馈");
+        setTitleText("巡检反馈");
 
-        mRepair = getIntent().getParcelableExtra(INTENT_ID);
+        mXJ = getIntent().getParcelableExtra(INTENT_ID);
         mList = new ArrayList<>();
         mList.add(null);
 
@@ -94,12 +95,9 @@ public class RepairFeedBackActivity extends BaseActivity implements AdapterView.
              维修前照片id	repairimg
              进度提示语	tips
              */
-            jb.put("order_id", mRepair.getOrder_id());
-            jb.put("uid", AppContext.USER_ID);
-            jb.put("status",5);
-            jb.put("action","takepic");
-            jb.put("repairimg",mImageTools.filePathToString(mList.get(0)));
-            jb.put("tips",tips);
+            jb.put("project_id", mXJ.getProject_id());
+            jb.put("desc", tips);
+            jb.put("pic",mImageTools.filePathToString(mList.get(0)));
 
         }catch (JSONException e){
 
@@ -107,17 +105,17 @@ public class RepairFeedBackActivity extends BaseActivity implements AdapterView.
 
 
         System.out.println("-------------"+jb.toString());
-        mHttpClient.postData1(ORDER_FLOW, jb.toString(), new AppAjaxCallback.onResultListener() {
+        mHttpClient.postData1(XUNJIAN_REPORT, jb.toString(), new AppAjaxCallback.onResultListener() {
             @Override
             public void onResult(String data, String msg) {
                 showToast(msg);
+                finish();
             }
 
             @Override
             public void onError(String msg) {
 
                 showToast(msg);
-                finish();
             }
         });
     }
@@ -143,7 +141,7 @@ public class RepairFeedBackActivity extends BaseActivity implements AdapterView.
 
 
         int maxNum = 1;
-        Intent intent = new Intent(RepairFeedBackActivity.this, MultiImageSelectorActivity.class);
+        Intent intent = new Intent(XunJianFeedBackActivity.this, MultiImageSelectorActivity.class);
         // 是否显示拍摄图片
         intent.putExtra(MultiImageSelectorActivity.EXTRA_SHOW_CAMERA, true);
         // 最大可选择图片数量

@@ -38,7 +38,9 @@
             android:drawableLeft="@mipmap/ic_repair_note_"
             android:hint="@string/input_dec"
             android:drawablePadding="@dimen/d8"
-            android:singleLine="false"/>
+            android:layout_height="wrap_content"
+            android:singleLine="false"
+            android:minHeight="@dimen/d48"/>
 
         <Button
             android:id="@+id/btn"

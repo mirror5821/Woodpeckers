@@ -108,6 +108,12 @@
                 android:text="@string/fukuan"/>
 
             <TextView
+                android:id="@+id/tv_ordercount"
+                style="@style/TvAbout"
+                android:drawableLeft="@mipmap/ic_my_4"
+                android:text="@string/order_count"/>
+
+            <TextView
                 android:id="@+id/tv_xunjian"
                 style="@style/TvAbout"
                 android:drawableLeft="@mipmap/ic_my_4"

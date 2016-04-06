@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Woodpecker</string>
+    <string name="app_name">啄木鸟运维</string>
 
 
 
@@ -39,7 +39,7 @@
     <string name="ok">确定</string>
     <string name="logout">退出登录</string>
     <string name="input_contact">请输入联系方式</string>
-    <string name="input_loc">请选择故障位置</string>
+    <string name="input_loc">请填写故障房间位置</string>
     <string name="input_dec">请输入故障描述</string>
     <string name="submit">提交</string>
     <string name="search_area">输入您所在的地区</string>
@@ -83,6 +83,7 @@
     <string name="fukuan">付款凭证</string>
     <string name="about_us">关于我们</string>
     <string name="xunjian">巡检</string>
+    <string name="order_count">订单统计</string>
 
     <string name="username">用户名称</string>
     <string name="email">邮箱</string>

@@ -33,6 +33,7 @@ public class MyFragment extends BaseFragment {
     private TextView mTvInfo;
     private TextView mTvAbout;
     private TextView mTvXunjian;
+    private TextView mTvOrderCount;
 
     private Button mBtnLogin,mBtnRegister;
     private Button mBtnMyRepair,mBtnRepairSub;
@@ -52,6 +53,8 @@ public class MyFragment extends BaseFragment {
         mViewLogin = (LinearLayout)view.findViewById(R.id.view_login);
         mViewRepair = (LinearLayout)view.findViewById(R.id.view_repair);
         mTvXunjian = (TextView)view.findViewById(R.id.tv_xunjian);
+        mTvOrderCount = (TextView)view.findViewById(R.id.tv_ordercount);
+        mTvOrderCount.setOnClickListener(this);
 
         mTvUpdatePass.setOnClickListener(this);
         mTvInfo.setOnClickListener(this);
@@ -139,6 +142,8 @@ public class MyFragment extends BaseFragment {
                 break;
             case R.id.tv_xunjian:
                 startActivity(new Intent(getActivity(), XunJianActivity.class));
+                break;
+            case R.id.tv_ordercount:
                 break;
 
         }

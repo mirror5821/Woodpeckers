@@ -14,6 +14,7 @@ public class XunJian implements Parcelable{
     private String status;//private String 0private String ,
     private String duetime;//private String 1606406400private String ,
     private String guantmoney;//private String 8000private String
+    private String picid;
 
     protected XunJian(Parcel in) {
         project_id = in.readInt();
@@ -23,6 +24,7 @@ public class XunJian implements Parcelable{
         status = in.readString();
         duetime = in.readString();
         guantmoney = in.readString();
+        picid = in.readString();
     }
 
     public static final Creator<XunJian> CREATOR = new Creator<XunJian>() {
@@ -93,6 +95,14 @@ public class XunJian implements Parcelable{
         this.guantmoney = guantmoney;
     }
 
+    public String getPicid() {
+        return picid;
+    }
+
+    public void setPicid(String picid) {
+        this.picid = picid;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -107,5 +117,6 @@ public class XunJian implements Parcelable{
         dest.writeString(status);
         dest.writeString(duetime);
         dest.writeString(guantmoney);
+        dest.writeString(picid);
     }
 }
