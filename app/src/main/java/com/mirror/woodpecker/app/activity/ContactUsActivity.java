@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.mirror.woodpecker.app.R;
-import com.mirror.woodpecker.app.util.AppAjaxCallback;
 
 import dev.mirror.library.android.util.UIHelper;
 
@@ -18,7 +17,8 @@ public class ContactUsActivity extends BaseActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_us);
-
+        setBack();
+        setTitleText("联系我们");
         mTvPhone = (TextView)findViewById(R.id.phone);
         mTvPhone.setOnClickListener(this);
         /*mHttpClient.postData1(CONSTANS, null, new AppAjaxCallback.onResultListener() {

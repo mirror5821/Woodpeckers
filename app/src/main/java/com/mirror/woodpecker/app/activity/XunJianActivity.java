@@ -1,6 +1,7 @@
 package com.mirror.woodpecker.app.activity;
 
 
+import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.TextView;
@@ -97,8 +98,10 @@ public class XunJianActivity extends BaseRecyclerViewActivity{
         holder.getConvertView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*startActivity(new Intent(new Intent(getActivity(), ServiceRepairDetailsActivity.class).putExtra(INTENT_ID,
-                        r.getOrder_id())));*/
+                if(xj.getStatus().equals("0")){
+                    startActivity(new Intent(new Intent(XunJianActivity.this, XunJianFeedBackActivity.class).putExtra(INTENT_ID,
+                            xj.getProject_id())));
+                }
             }
         });
     }

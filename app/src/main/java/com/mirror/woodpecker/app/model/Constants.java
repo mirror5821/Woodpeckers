@@ -100,6 +100,7 @@ public interface Constants {
     public final static String ZI_XUN = "consult";//业务咨询
     public final static String ORDER_COMMENT = "uordercomment";//维修单评论
     public final static String XUNJIAN_LIST = "xjremain";//巡检列表
+    public final static String XUNJIAN_FEED_BACK = "xjlog";//巡检记录
 
 
     public final static int ORDER_STATUS_ALL = 1;//订单列表状态
