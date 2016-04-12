@@ -40,7 +40,6 @@ public class XunJianActivity extends BaseRecyclerViewActivity{
         mHttpClient.postData(XUNJIAN_LIST, null, new AppAjaxCallback.onRecevierDataListener<XunJian>() {
             @Override
             public void onReceiverData(List<XunJian> data, String msg) {
-                mList.clear();
                 mList.addAll(data);
 
                 for(int i =0;i<mList.size();i++){
@@ -99,16 +98,11 @@ public class XunJianActivity extends BaseRecyclerViewActivity{
         holder.getConvertView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(xj.getPicid().equals("0"))
+                if(xj.getStatus().equals("0")){
                     startActivity(new Intent(new Intent(XunJianActivity.this, XunJianFeedBackActivity.class).putExtra(INTENT_ID,
-                            xj)));
+                            xj.getProject_id())));
+                }
             }
         });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        loadData();
     }
 }

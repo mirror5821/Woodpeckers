@@ -11,8 +11,6 @@ import android.widget.EditText;
 import com.mirror.woodpecker.app.R;
 import com.mirror.woodpecker.app.adapter.ImageAddsAdapter;
 import com.mirror.woodpecker.app.app.AppContext;
-import com.mirror.woodpecker.app.model.Repair;
-import com.mirror.woodpecker.app.model.XunJian;
 import com.mirror.woodpecker.app.util.AppAjaxCallback;
 
 import org.json.JSONException;
@@ -38,17 +36,17 @@ public class XunJianFeedBackActivity extends BaseActivity implements AdapterView
 
     private ImageTools mImageTools;
 
-    private XunJian mXJ;
+    private int mId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_repair_feedback);
+        setContentView(R.layout.activity_xunjian_feedback);
 
         setBack();
-        setTitleText("巡检反馈");
+        setTitleText("巡检记录");
 
-        mXJ = getIntent().getParcelableExtra(INTENT_ID);
+        mId = getIntent().getIntExtra(INTENT_ID, 0);
         mList = new ArrayList<>();
         mList.add(null);
 
@@ -95,9 +93,10 @@ public class XunJianFeedBackActivity extends BaseActivity implements AdapterView
              维修前照片id	repairimg
              进度提示语	tips
              */
-            jb.put("project_id", mXJ.getProject_id());
-            jb.put("desc", tips);
+            jb.put("project_id", mId);
+            jb.put("uid", AppContext.USER_ID);
             jb.put("pic",mImageTools.filePathToString(mList.get(0)));
+            jb.put("desc",tips);
 
         }catch (JSONException e){
 
@@ -105,11 +104,10 @@ public class XunJianFeedBackActivity extends BaseActivity implements AdapterView
 
 
         System.out.println("-------------"+jb.toString());
-        mHttpClient.postData1(XUNJIAN_REPORT, jb.toString(), new AppAjaxCallback.onResultListener() {
+        mHttpClient.postData1(XUNJIAN_FEED_BACK, jb.toString(), new AppAjaxCallback.onResultListener() {
             @Override
             public void onResult(String data, String msg) {
                 showToast(msg);
-                finish();
             }
 
             @Override

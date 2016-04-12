@@ -1,30 +1,18 @@
 package com.mirror.woodpecker.app.activity;
 
 import android.app.Activity;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.widget.TabHost;
-import android.widget.Toast;
 
 import com.mirror.woodpecker.app.R;
 import com.mirror.woodpecker.app.app.AppContext;
-import com.mirror.woodpecker.app.fragment.AutoScrollPagerFragment;
 import com.mirror.woodpecker.app.fragment.IndexFragment;
 import com.mirror.woodpecker.app.fragment.MyFragment;
 import com.mirror.woodpecker.app.fragment.RepairRepairRecyclerViewFragment;
 import com.mirror.woodpecker.app.fragment.ServiceRepairRecyclerViewFragment;
 import com.mirror.woodpecker.app.iface.OnTabSelect;
-import com.mirror.woodpecker.app.receiver.BackgroundDialerReceiver;
-import com.mirror.woodpecker.app.service.XunJianService;
-
-import java.util.Calendar;
-import java.util.TimeZone;
 
 /**
  * Created by dongqian on 16/1/3.
@@ -44,10 +32,10 @@ public class MainTabActivity extends BaseTabActivity implements OnTabSelect{
                     if(!AppContext.IS_LOGIN){
                         mCode = 1;
                         startActivityForResult(new Intent(MainTabActivity.this, Login2Activity.class), 7801);
+                        onSelect(0);
                     }else{
                         if (AppContext.USER_ROLE_ID != 3) {
                             showToast("您无权限查看此处内容");
-
                             onSelect(0);
                         }
                     }
@@ -76,11 +64,15 @@ public class MainTabActivity extends BaseTabActivity implements OnTabSelect{
             if(mCode == 1){
                 if(AppContext.USER_ROLE_ID != 3){
                    showToast("您无权限查看此处内容");
+                }else{
+                    onSelect(2);
                 }
             }
             if(mCode == 2){
                 if(AppContext.USER_ROLE_ID != 4){
                     showToast("您无权限查看此处内容");
+                }else{
+                    onSelect(3);
                 }
             }
             /*if(AppContext.USER_ROLE_ID == 3){
