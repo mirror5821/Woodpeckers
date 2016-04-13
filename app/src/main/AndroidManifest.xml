@@ -33,12 +33,12 @@
 
 
 
+        <activity android:name=".activity.PayActivity"/>
         <activity android:name=".activity.OrderCountActivity"/>
         <activity android:name=".activity.XunJianFeedBackActivity"/>
         <service android:name=".service.XunJianService"></service>
         <activity android:name=".activity.XunJianAlertActivity"/>
         <activity android:name=".activity.XunJianActivity"/>
-        <activity android:name=".activity.XunJianFeedBackActivity"/>
 
         <activity android:name=".activity.CommentActivity"/>
         <activity android:name=".activity.Login2Activity"/>

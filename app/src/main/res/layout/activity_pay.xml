@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <include layout="@layout/view_base_title_bar"/>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/phone"
+                style="@style/EtLogin"
+                android:hint="@string/input_phone"
+                android:drawablePadding="@dimen/d8"/>
+
+            <EditText
+                android:id="@+id/price"
+                style="@style/EtLogin"
+                android:hint="@string/login_price"
+                android:drawablePadding="@dimen/d8"
+                android:layout_marginTop="@dimen/d4"
+                android:inputType="textPassword"/>
+
+            <TextView
+                android:id="@+id/kefu"
+                style="@style/EtLogin"
+                android:hint="@string/select_kefu"
+                android:drawablePadding="@dimen/d8"
+                android:layout_marginTop="@dimen/d4"
+                android:textSize="16sp"
+                android:inputType="textPassword"/>
+
+            <dev.mirror.library.android.view.NoScrollGridView
+                android:id="@+id/gridview"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:horizontalSpacing="@dimen/product_list_spacing"
+                android:numColumns="4"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:verticalSpacing="@dimen/product_list_spacing"
+                android:layout_margin="@dimen/view_margin_top"/>
+
+
+            <View style="@style/Line1"
+                android:layout_marginTop="@dimen/d4"
+                android:background="@color/driver"
+                android:layout_marginLeft="@dimen/d8"
+                android:layout_marginRight="@dimen/d8"/>
+
+
+
+            <View style="@style/Line1"
+                android:layout_marginTop="@dimen/d4"
+                android:background="@color/driver"
+                android:layout_marginLeft="@dimen/d8"
+                android:layout_marginRight="@dimen/d8"/>
+
+
+            <Button
+                android:id="@+id/btn"
+                style="@style/BtnBlue"
+                android:text="@string/submit"
+                android:layout_margin="@dimen/d8"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

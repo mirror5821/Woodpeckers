@@ -1,8 +1,11 @@
 package com.mirror.woodpecker.app.activity;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.widget.TabHost;
 
@@ -13,6 +16,19 @@ import com.mirror.woodpecker.app.fragment.MyFragment;
 import com.mirror.woodpecker.app.fragment.RepairRepairRecyclerViewFragment;
 import com.mirror.woodpecker.app.fragment.ServiceRepairRecyclerViewFragment;
 import com.mirror.woodpecker.app.iface.OnTabSelect;
+import com.mirror.woodpecker.app.model.Version;
+import com.mirror.woodpecker.app.util.AppAjaxCallback;
+import com.mirror.woodpecker.app.util.AppUtil;
+
+import org.xutils.common.Callback;
+import org.xutils.http.RequestParams;
+import org.xutils.x;
+
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+
+import dev.mirror.library.android.util.JsonUtils;
 
 /**
  * Created by dongqian on 16/1/3.
@@ -23,6 +39,7 @@ public class MainTabActivity extends BaseTabActivity implements OnTabSelect{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        checkVersion();
         //得判断第三选项卡中是否已经登陆
 		mFragmentTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
 
@@ -136,5 +153,99 @@ public class MainTabActivity extends BaseTabActivity implements OnTabSelect{
 //			super.onBackPressed();
 //		}
 
+    }
+
+
+
+    private Version mApp;
+    public void checkVersion(){
+
+        mHttpClient.postData1(VERSION_CHECK, null, new AppAjaxCallback.onResultListener() {
+            @Override
+            public void onResult(String data, String msg) {
+                mApp = JsonUtils.parseList(data,Version.class).get(0);
+
+
+                int versionCode = AppUtil.getAppVersionCode(getApplication());
+
+                /**
+                 * 如果当前版本号小于更新版本号
+                 */
+                if(versionCode!=mApp.getSvnid()){
+                    if(mApp.getIs_update()==0){
+                        showNormalDialog("检测到新版本", "是否更新？", "确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                downLoadApk();
+                            }
+                        });
+                    }else{
+                        downLoadApk();
+                    }
+
+                }
+
+            }
+
+
+
+            @Override
+            public void onError(String msg) {
+            }
+        });
+    }
+
+    private String mFileStr = Environment.getExternalStorageDirectory().getPath()+"/zmn.apk";
+    public void downLoadApk(){
+        showProgressDialog("正在下载新版本");
+        final RequestParams params = new RequestParams(mApp.getDownurl());
+        File f = new File(mFileStr);
+        if(f.exists()){
+            f.delete();
+        }
+        params.setSaveFilePath(mFileStr);
+        Callback.Cancelable cancelable = x.http().get(params, new Callback.CommonCallback<File>() {
+
+            @Override
+            public void onSuccess(File result) {
+
+                /*Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setDataAndType(Uri.fromFile(new File(Environment.getExternalStorageDirectory().getPath() + "/dyjh.apk"),
+                        "application/vnd.android.package-archive");
+                *//*intent.setDataAndType(Uri.fromFile(new File(Environment
+                                .getExternalStorageDirectory(), Config.UPDATE_SAVENAME)),
+                        "application/vnd.android.package-archive");*/
+
+
+                Intent intent = new Intent();
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setAction(android.content.Intent.ACTION_VIEW);
+
+                /* 调用getMIMEType()来取得MimeType */
+                String type = "application/vnd.android.package-archive";
+                /* 设置intent的file与MimeType */
+                intent.setDataAndType(Uri.fromFile(result), type);
+
+                startActivity(intent);
+
+                cancelProgressDialog();
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                cancelProgressDialog();
+            }
+
+            @Override
+            public void onCancelled(Callback.CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
     }
 }

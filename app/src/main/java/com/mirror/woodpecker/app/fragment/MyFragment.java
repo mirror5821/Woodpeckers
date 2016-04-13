@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.mirror.woodpecker.app.R;
 import com.mirror.woodpecker.app.activity.ContactUsActivity;
 import com.mirror.woodpecker.app.activity.LoginActivity;
+import com.mirror.woodpecker.app.activity.PayActivity;
 import com.mirror.woodpecker.app.activity.RegistersActivity;
 import com.mirror.woodpecker.app.activity.RepairAddActivity;
 import com.mirror.woodpecker.app.activity.UpdatePassActivity;
@@ -34,6 +35,7 @@ public class MyFragment extends BaseFragment {
     private TextView mTvAbout;
     private TextView mTvXunjian;
     private TextView mTvOrderCount;
+    private TextView mTvPay;
 
     private Button mBtnLogin,mBtnRegister;
     private Button mBtnMyRepair,mBtnRepairSub;
@@ -54,6 +56,9 @@ public class MyFragment extends BaseFragment {
         mViewRepair = (LinearLayout)view.findViewById(R.id.view_repair);
         mTvXunjian = (TextView)view.findViewById(R.id.tv_xunjian);
         mTvOrderCount = (TextView)view.findViewById(R.id.tv_ordercount);
+        mTvPay = (TextView)view.findViewById(R.id.tv_pay);
+
+        mTvPay.setOnClickListener(this);
         mTvOrderCount.setOnClickListener(this);
 
         mTvUpdatePass.setOnClickListener(this);
@@ -144,6 +149,14 @@ public class MyFragment extends BaseFragment {
                 startActivity(new Intent(getActivity(), XunJianActivity.class));
                 break;
             case R.id.tv_ordercount:
+                break;
+
+            case R.id.tv_pay:
+                if(AppContext.USER_ROLE_ID==-1){
+                    startActivityForResult(new Intent(getActivity(), LoginActivity.class),LOGIN_CODE4);
+                }else{
+                    startActivity(new Intent(getActivity(), PayActivity.class));
+                }
                 break;
 
         }
