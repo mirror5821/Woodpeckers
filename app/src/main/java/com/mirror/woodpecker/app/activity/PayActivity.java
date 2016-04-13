@@ -219,7 +219,7 @@ public class PayActivity extends BaseActivity implements AdapterView.OnItemClick
         if(mLists.size()>0){
             initSelectUnitView();
         }else{
-            mHttpClient.postData(REPAIR_COM, null, new AppAjaxCallback.onRecevierDataListener<Kefu>() {
+            mHttpClient.postData(KEFU_LIST, null, new AppAjaxCallback.onRecevierDataListener<Kefu>() {
 
                 @Override
                 public void onReceiverData(List<Kefu> data, String msg) {
