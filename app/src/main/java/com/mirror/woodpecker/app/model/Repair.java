@@ -33,7 +33,7 @@ public class Repair implements Parcelable{
     private String project_name;
     private String type_name;
     private String catname;
-    private String comment;
+//    private String comment;
     private int sign;
     private String repairname;
 
@@ -62,7 +62,7 @@ public class Repair implements Parcelable{
         project_name = in.readString();
         type_name = in.readString();
         catname = in.readString();
-        comment = in.readString();
+//        comment = in.readString();
         sign = in.readInt();
         repairname = in.readString();
     }
@@ -111,13 +111,13 @@ public class Repair implements Parcelable{
         this.catname = catname;
     }
 
-    public String getComment() {
+   /* public String getComment() {
         return comment;
     }
 
     public void setComment(String comment) {
         this.comment = comment;
-    }
+    }*/
 
     public int getOrder_id() {
         return order_id;
@@ -326,7 +326,7 @@ public class Repair implements Parcelable{
         dest.writeString(project_name);
         dest.writeString(type_name);
         dest.writeString(catname);
-        dest.writeString(comment);
+//        dest.writeString(comment);
         dest.writeInt(sign);
         dest.writeString(repairname);
     }

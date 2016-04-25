@@ -22,6 +22,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.smssdk.SMSSDK;
+
 /**
  * Created by 王沛栋 on 2016/3/3.
  */
@@ -193,7 +195,7 @@ public class RegistersActivity extends BaseActivity {
             jb.put("mobile",phone);
             jb.put("email", mail);
 
-
+            SMSSDK.getVerificationCode("86",phone);
 
             if(mIsUnit){
                 if(mUnitId == -201){

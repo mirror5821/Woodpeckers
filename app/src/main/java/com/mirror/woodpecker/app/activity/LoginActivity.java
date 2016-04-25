@@ -68,6 +68,7 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
+
     public void login(){
         final String name;
         final String pass;

@@ -1,7 +1,8 @@
 package com.mirror.woodpecker.app.app;
 
-import com.baidu.mapapi.SDKInitializer;
+//import com.baidu.mapapi.SDKInitializer;
 
+import cn.smssdk.SMSSDK;
 import dev.mirror.library.android.app.BaseAppContext;
 
 /**
@@ -33,7 +34,11 @@ public class AppContext extends BaseAppContext {
         instance = this;
 
         // 在使用 SDK 各组间之前初始化 context 信息，传入 ApplicationContext
-        SDKInitializer.initialize(instance);
+//        SDKInitializer.initialize(instance);
+
+        //sharesdk短信
+        SMSSDK.initSDK(this, "11e4b9c5f05c8", "e482c03620d532d19327073a3b001ea7");
+
     }
 
     public static AppContext getInstance(){

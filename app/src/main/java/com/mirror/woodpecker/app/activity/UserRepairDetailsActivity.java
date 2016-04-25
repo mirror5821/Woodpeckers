@@ -174,7 +174,6 @@ public class UserRepairDetailsActivity extends BaseActivity {
                     JSONObject jb2 = jb.getJSONObject("extinfo");
 
 
-
                     mListJindu = new ArrayList<>();
 
                     Iterator<?> iterator = jb2.keys();
@@ -182,10 +181,9 @@ public class UserRepairDetailsActivity extends BaseActivity {
                         String key = (String) iterator.next();
                         //切记用optJSONObject();用getJSONObject()在为null的时候会报错哦！！！
 
-                        String ob = jb2.getString(key);
+                        String ob = String.valueOf(jb2.getString(key));
                         mListJindu.add(key);
                         mListJindu.add(ob);
-
                     }
 
                     for(int i = 1;i<=mListJindu.size()/4;i++){
@@ -210,7 +208,7 @@ public class UserRepairDetailsActivity extends BaseActivity {
 
             @Override
             public void onError(String msg) {
-
+                System.out.println("-------------err-----"+msg);
                 showToast( msg);
             }
         });

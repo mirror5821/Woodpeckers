@@ -171,7 +171,7 @@ public class RepairDetailsActivity extends BaseActivity {
                 break;
         }
         //项目名称
-        mTvOrderBelong.setText(TextUtils.isEmpty(mRepair.getProject_name()) ? "暂无故障描述" : mRepair.getProject_name());
+        mTvOrderBelong.setText(TextUtils.isEmpty(mRepair.getProject_name()) ? "" : mRepair.getProject_name());
         mTvOrderTypeSystem.setText(TextUtils.isEmpty(mRepair.getCatname()) ? "暂无数据" : mRepair.getCatname());
 
         if(mRepair.getRepair_id() == 0){
