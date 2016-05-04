@@ -33,6 +33,8 @@
     <string name="input_old_pass">请输入原始密码</string>
     <string name="input_phone">请输入手机号码</string>
     <string name="input_mail">请输入电子邮箱</string>
+    <string name="input_code">请输入验证码</string>
+    <string name="v_code">验证码</string>
     <string name="sign_type">签约类型</string>
     <string name="sign_no">未签约</string>
     <string name="signed">已签约</string>

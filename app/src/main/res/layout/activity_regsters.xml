@@ -60,6 +60,32 @@
                     android:layout_marginTop="@dimen/d4"
                     android:inputType="phone"/>
 
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/e_code"
+                        style="@style/EtLogin"
+                        android:drawableLeft="@mipmap/ic_r_phone"
+                        android:hint="@string/input_code"
+                        android:drawablePadding="@dimen/d8"
+                        android:layout_marginTop="@dimen/d4"
+                        android:inputType="phone"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"/>
+
+                    <Button
+                        android:id="@+id/btn_code"
+                        style="@style/BtnBlueR"
+                        android:text="@string/v_code"
+                        android:layout_width="120dp"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
                 <EditText
                     android:id="@+id/mail"
                     style="@style/EtLogin"

@@ -1,6 +1,7 @@
 package com.mirror.woodpecker.app.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +21,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import cn.smssdk.SMSSDK;
 
@@ -33,6 +38,8 @@ public class RegistersActivity extends BaseActivity {
     private TextView mTvSignUnit;
     private EditText mEtName,mEtPass,mEtPass2,mEtPhone,mEtMail;
     private Button mBtnRegister,mBtnLogin;
+    private Button mBtnCode;
+    private EditText mEtCode;
 
     private List<Units> mLists = new ArrayList<>();
     private int mUnitId = -201;
@@ -52,6 +59,9 @@ public class RegistersActivity extends BaseActivity {
 
         mBtnLogin = (Button)findViewById(R.id.btn_login);
         mBtnRegister = (Button)findViewById(R.id.btn);
+        mBtnCode = (Button)findViewById(R.id.btn_code);
+        mEtCode = (EditText) findViewById(R.id.e_code);
+        mBtnCode.setOnClickListener(this);
 
         mBtnRegister.setOnClickListener(this);
 
@@ -87,6 +97,9 @@ public class RegistersActivity extends BaseActivity {
                 break;
             case R.id.btn:
                 sub();
+                break;
+            case R.id.btn_code:
+                getPhoneCode();
                 break;
         }
     }
@@ -195,7 +208,7 @@ public class RegistersActivity extends BaseActivity {
             jb.put("mobile",phone);
             jb.put("email", mail);
 
-            SMSSDK.getVerificationCode("86",phone);
+
 
             if(mIsUnit){
                 if(mUnitId == -201){
@@ -226,4 +239,80 @@ public class RegistersActivity extends BaseActivity {
             }
         });
     }
+
+
+
+
+    /**
+     * 获取验证码
+     */
+    private void getPhoneCode(){
+        String phone = mEtPhone.getText().toString().trim();
+
+        if(TextUtils.isEmpty(phone)){
+            showToast("请输入手机号码");
+            return;
+        }
+        SMSSDK.getVerificationCode("86",phone);
+
+        startCountDown();
+    }
+
+    private final Handler mHandler = new Handler() {
+        @SuppressWarnings("unchecked")
+        @Override
+        public void handleMessage(android.os.Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+
+            }
+        }
+    };
+
+    private int mSeconds = 60;
+    private Timer mTimer;
+    private TimerTask mTimerTask;
+
+    private void startCountDown() {
+
+        mSeconds = 60;
+        stop();
+        mBtnCode.setEnabled(false);
+        mTimer = new Timer();
+        mTimerTask = new TimerTask() {
+
+            @Override
+            public void run() {
+                mSeconds--;
+                mHandler.post(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        if (mSeconds > 0) {
+                            mBtnCode.setText(mSeconds + "秒\n后重发");
+                        } else {
+
+                            stop();
+                        }
+                    }
+                });
+            }
+        };
+        mTimer.schedule(mTimerTask, 0, 1000);
+    }
+
+
+    private void stop() {
+        if (mTimer != null) {
+            mTimer.cancel();
+        }
+        if (mTimerTask != null) {
+            mTimerTask.cancel();
+        }
+
+        mBtnCode.setText("重发");
+        mBtnCode.setEnabled(true);
+    }
+
+
 }
