@@ -162,6 +162,7 @@
                     android:text="@string/register"/>
 
                 <TextView
+                    android:id="@+id/tv_forget"
                     style="@style/TvLight"
                     android:text="@string/forget_pass"
                     android:textSize="18sp"

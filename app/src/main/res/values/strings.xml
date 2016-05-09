@@ -24,7 +24,7 @@
     <string name="q_register">快速注册</string>
     <string name="q_login">立即登录</string>
     <string name="register">注册</string>
-    <string name="login_notifi">请输入手机号码/邮箱</string>
+    <string name="login_notifi">请输入用户名</string>
     <string name="login_price">请输入打款金额</string>
     <string name="select_kefu">请选择客服</string>
     <string name="login_notifi_pass">请输入密码</string>

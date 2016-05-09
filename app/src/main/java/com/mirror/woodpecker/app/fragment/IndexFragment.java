@@ -20,6 +20,7 @@ import com.mirror.woodpecker.app.activity.RepairAddActivity;
 import com.mirror.woodpecker.app.activity.UserRepairListActivity;
 import com.mirror.woodpecker.app.activity.ZiXunDetailsActivity;
 import com.mirror.woodpecker.app.app.AppContext;
+import com.mirror.woodpecker.app.model.Index;
 import com.mirror.woodpecker.app.model.User;
 import com.mirror.woodpecker.app.util.AppAjaxCallback;
 import com.mirror.woodpecker.app.util.AppHttpClient;
@@ -28,15 +29,17 @@ import com.mirror.woodpecker.app.util.SharePreferencesUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
+
 import dev.mirror.library.android.view.autoscrollviewpager.AutoScrollViewPager;
 
 /**
  * Created by dongqian on 16/1/3.
  */
 public class IndexFragment extends BaseFragment {
-    private String[] imgs = {"http://h.hiphotos.baidu.com/image/w%3D1920%3Bcrop%3D0%2C0%2C1920%2C1080/sign=fed1392e952bd40742c7d7f449b9a532/e4dde71190ef76c6501a5c2d9f16fdfaae5167e8.jpg",
-            "http://a.hiphotos.baidu.com/image/w%3D1920%3Bcrop%3D0%2C0%2C1920%2C1080/sign=25d477ebe51190ef01fb96d6fc2ba675/503d269759ee3d6df51a20cd41166d224e4adedc.jpg",
-            "http://c.hiphotos.baidu.com/image/w%3D1920%3Bcrop%3D0%2C0%2C1920%2C1080/sign=70d2b81e60d0f703e6b291d53aca6a5e/0ff41bd5ad6eddc4ab1b5af23bdbb6fd5266333f.jpg"};
+    private String[] imgs = {"http://77wdgj.com1.z0.glb.clouddn.com/zmn1.jpg",
+            "http://77wdgj.com1.z0.glb.clouddn.com/zmn2.jpg",
+            "http://77wdgj.com1.z0.glb.clouddn.com/zmn3.jpg"};
     private String[] titles = {"Page 1", "Page 2", "Page 3"};
 
     private Button mBtn1,mBtn2,mBtn3,mBtn4;
@@ -82,42 +85,99 @@ public class IndexFragment extends BaseFragment {
             mBtn3.setOnClickListener(this);
             mBtn4.setOnClickListener(this);
 
-            mAdapter = new PagerAdapter() {
+//            mHttpClient.postData1(INDEX,null,new On);
+            mHttpClient.postData(INDEX, null, new AppAjaxCallback.onRecevierDataListener<Index>() {
+
                 @Override
-                public int getCount() {
-                    return imgs.length;
+                public void onReceiverData(final List<Index> data, String msg) {
+                    if(data== null)
+                        return;
+                    mAdapter = new PagerAdapter() {
+                        @Override
+                        public int getCount() {
+                            return data.size();
+                        }
+
+                        @Override
+                        public boolean isViewFromObject(View view, Object o) {
+                            return view == o;
+                        }
+
+                        @Override
+                        public Object instantiateItem(ViewGroup container, int position) {
+                            ImageView view = new ImageView(container.getContext());
+                            view.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                            AppContext.displayImage(view,"http://zmnyw.cn/"+ data.get(position).getPath());
+                            container.addView(view);
+                            return view;
+                        }
+
+                        @Override
+                        public void destroyItem(ViewGroup container, int position, Object object) {
+                            container.removeView((View) object);
+                        }
+                    };
+
+                    pager.setAdapter(mAdapter);
+                    pager.setScrollFactgor(5);
+                    pager.setOffscreenPageLimit(3);
+                    pager.startAutoScroll(2000);
+                    pager.setOnPageClickListener(new AutoScrollViewPager.OnPageClickListener() {
+                        @Override
+                        public void onPageClick(AutoScrollViewPager autoScrollPager, int position) {
+                            showToast("You clicked page: " + (position + 1));
+                        }
+                    });
+
                 }
 
                 @Override
-                public boolean isViewFromObject(View view, Object o) {
-                    return view == o;
+                public void onReceiverError(String msg) {
+
                 }
 
                 @Override
-                public Object instantiateItem(ViewGroup container, int position) {
-                    ImageView view = new ImageView(container.getContext());
-                    view.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                    AppContext.displayImage(view, imgs[position]);
-                    container.addView(view);
-                    return view;
-                }
-
-                @Override
-                public void destroyItem(ViewGroup container, int position, Object object) {
-                    container.removeView((View) object);
-                }
-            };
-
-            pager.setAdapter(mAdapter);
-            pager.setScrollFactgor(5);
-            pager.setOffscreenPageLimit(3);
-            pager.startAutoScroll(2000);
-            pager.setOnPageClickListener(new AutoScrollViewPager.OnPageClickListener() {
-                @Override
-                public void onPageClick(AutoScrollViewPager autoScrollPager, int position) {
-                    showToast("You clicked page: " + (position + 1));
+                public Class<Index> dataTypeClass() {
+                    return Index.class;
                 }
             });
+
+//            mAdapter = new PagerAdapter() {
+//                @Override
+//                public int getCount() {
+//                    return imgs.length;
+//                }
+//
+//                @Override
+//                public boolean isViewFromObject(View view, Object o) {
+//                    return view == o;
+//                }
+//
+//                @Override
+//                public Object instantiateItem(ViewGroup container, int position) {
+//                    ImageView view = new ImageView(container.getContext());
+//                    view.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                    AppContext.displayImage(view, imgs[position]);
+//                    container.addView(view);
+//                    return view;
+//                }
+//
+//                @Override
+//                public void destroyItem(ViewGroup container, int position, Object object) {
+//                    container.removeView((View) object);
+//                }
+//            };
+//
+//            pager.setAdapter(mAdapter);
+//            pager.setScrollFactgor(5);
+//            pager.setOffscreenPageLimit(3);
+//            pager.startAutoScroll(2000);
+//            pager.setOnPageClickListener(new AutoScrollViewPager.OnPageClickListener() {
+//                @Override
+//                public void onPageClick(AutoScrollViewPager autoScrollPager, int position) {
+//                    showToast("You clicked page: " + (position + 1));
+//                }
+//            });
 
         }
 

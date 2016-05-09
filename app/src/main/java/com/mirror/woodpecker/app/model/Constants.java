@@ -74,8 +74,10 @@ public interface Constants {
 
     public final static String ALIPAY_NOTIFY_URL = BASE_URL+"app/pay/alipayNotify";
 
+    public final static String INDEX = "appimg";//首页图片
     public final static String LOGIN_TEST = "login";//登录
     public final static String REGISTERS = "register";//注册
+    public final static String FORGET = "forgetpswd";//注册
     public final static String UPDATE_PASS = "password";//找回密码
     public final static String REPAIR_COM = "select_company";//选择单位
     public final static String REPAIR = "repair";//提交保修

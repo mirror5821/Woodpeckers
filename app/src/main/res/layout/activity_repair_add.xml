@@ -6,51 +6,60 @@
 
     <include layout="@layout/view_base_title_bar"/>
 
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/d16"
-        android:layout_marginTop="@dimen/d16">
+        android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/phone"
-            style="@style/EtLogin"
-            android:drawableLeft="@mipmap/ic_repair_phone"
-            android:hint="@string/input_contact"
-            android:inputType="phone"
-            android:maxLength="11"
-            android:drawablePadding="@dimen/d8"/>
-
-        <EditText
-            android:id="@+id/loc"
-            style="@style/EtLogin"
-            android:drawableLeft="@mipmap/ic_repair_loc"
-            android:hint="@string/input_loc"
-            android:drawablePadding="@dimen/d8"
-            android:layout_marginTop="@dimen/d4"
-            android:textSize="18sp"/>
-
-        <EditText
-            android:id="@+id/dec"
-            style="@style/EtLogin"
-            android:drawableLeft="@mipmap/ic_repair_note_"
-            android:hint="@string/input_dec"
-            android:drawablePadding="@dimen/d8"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:singleLine="false"
-            android:minHeight="@dimen/d48"/>
+            android:orientation="vertical"
+            android:padding="@dimen/d16"
+            android:layout_marginTop="@dimen/d16">
 
-        <Button
-            android:id="@+id/btn"
-            style="@style/BtnBlue"
-            android:layout_marginTop="@dimen/d32"
-            android:text="@string/submit"/>
+            <EditText
+                android:id="@+id/phone"
+                style="@style/EtLogin"
+                android:drawableLeft="@mipmap/ic_repair_phone"
+                android:hint="@string/input_contact"
+                android:inputType="phone"
+                android:maxLength="11"
+                android:drawablePadding="@dimen/d8"/>
+
+            <EditText
+                android:id="@+id/loc"
+                style="@style/EtLogin"
+                android:drawableLeft="@mipmap/ic_repair_loc"
+                android:hint="@string/input_loc"
+                android:drawablePadding="@dimen/d8"
+                android:layout_marginTop="@dimen/d4"
+                android:textSize="18sp"/>
+
+            <EditText
+                android:id="@+id/dec"
+                style="@style/EtLogin"
+                android:hint="@string/input_dec"
+                android:drawablePadding="@dimen/d8"
+                android:layout_height="wrap_content"
+                android:singleLine="false"
+                android:minHeight="@dimen/d48"
+                android:gravity="top"
+                android:padding="@dimen/d20"
+                android:minLines="6"/>
+
+            <Button
+                android:id="@+id/btn"
+                style="@style/BtnBlue"
+                android:layout_marginTop="@dimen/d32"
+                android:text="@string/submit"/>
 
 
 
-    </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+
 
 
 

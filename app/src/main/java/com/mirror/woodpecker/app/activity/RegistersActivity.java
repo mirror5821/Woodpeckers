@@ -1,5 +1,6 @@
 package com.mirror.woodpecker.app.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -19,6 +20,9 @@ import com.mirror.woodpecker.app.util.UIHelper;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.xutils.common.Callback;
+import org.xutils.http.RequestParams;
+import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,6 +31,7 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import cn.smssdk.OnSendMessageHandler;
 import cn.smssdk.SMSSDK;
 
 /**
@@ -40,10 +45,13 @@ public class RegistersActivity extends BaseActivity {
     private Button mBtnRegister,mBtnLogin;
     private Button mBtnCode;
     private EditText mEtCode;
+    private TextView mTvForget;
 
     private List<Units> mLists = new ArrayList<>();
     private int mUnitId = -201;
     private boolean mIsUnit = false;//是否选择签约单位
+    private boolean mIsCode = false;//是否获取验证码
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +70,9 @@ public class RegistersActivity extends BaseActivity {
         mBtnCode = (Button)findViewById(R.id.btn_code);
         mEtCode = (EditText) findViewById(R.id.e_code);
         mBtnCode.setOnClickListener(this);
+        mTvForget = (TextView)findViewById(R.id.tv_forget);
 
+        mTvForget.setOnClickListener(this);
         mBtnRegister.setOnClickListener(this);
 
         mTvSignUnit = (TextView)findViewById(R.id.sign_unit);
@@ -100,6 +110,9 @@ public class RegistersActivity extends BaseActivity {
                 break;
             case R.id.btn_code:
                 getPhoneCode();
+                break;
+            case R.id.tv_forget:
+                startActivity(new Intent(RegistersActivity.this,ForgetPassActivity.class));
                 break;
         }
     }
@@ -186,9 +199,21 @@ public class RegistersActivity extends BaseActivity {
             return;
         }
 
+        showProgressDialog("正在注册。。。");
+        checkCodeByNet();
+    }
 
 
-        /**
+    private void sub2(){
+        String name = mEtName.getText().toString().trim();
+        String pass = mEtPass.getText().toString().trim();
+        String pass2 = mEtPass2.getText().toString().trim();
+        String phone = mEtPhone.getText().toString().trim();
+        String mail = mEtMail.getText().toString().trim();
+
+
+
+       /* *//**
 
          用户名	username
          密码	password
@@ -224,21 +249,27 @@ public class RegistersActivity extends BaseActivity {
             jb.put("company",mUnitId);
 
         }catch (JSONException e){
-
+            cancelProgressDialog();
         }
 
         ap.postData1(REGISTERS, jb.toString(), new AppAjaxCallback.onResultListener() {
             @Override
             public void onResult(String data, String msg) {
                 showToast(msg);
+                cancelProgressDialog();
+
+                startActivity(new Intent(RegistersActivity.this, LoginActivity.class));
+                finish();
             }
 
             @Override
             public void onError(String msg) {
                 showToast(msg);
+                cancelProgressDialog();
             }
         });
     }
+
 
 
 
@@ -314,5 +345,64 @@ public class RegistersActivity extends BaseActivity {
         mBtnCode.setEnabled(true);
     }
 
+
+    private void checkCodeByNet(){
+        if(mIsCode){
+            sub2();
+            return;
+        }
+        String code = mEtCode.getText().toString().trim();
+        String phone = mEtPhone.getText().toString().trim();
+
+        if(TextUtils.isEmpty(code)){
+            showToast("请填写验证码");
+            return;
+        }
+        String url = "https://webapi.sms.mob.com/sms/verify";
+//        String requsetStr = "appkey=11e4b9c5f05c8&amp;phone=18837145615&amp;zone=86&amp;&amp;code="+code;
+        RequestParams rq = new RequestParams(url);
+        rq.addParameter("appkey","11e4b9c5f05c8");
+        rq.addParameter("phone",phone);
+        rq.addParameter("zone","86");
+        rq.addParameter("code",code);
+
+        x.http().post(rq, new Callback.CommonCallback<String>() {
+
+            @Override
+            public void onSuccess(String result) {
+                try {
+                    JSONObject jb = new JSONObject(result);
+                    int code = jb.getInt("status");
+                    if(code == 200){
+                        mIsCode = true;
+                        sub2();
+                    }else {
+                        showToast("验证码错误");
+                        cancelProgressDialog();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    cancelProgressDialog();
+                }
+
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                showToast("验证验证码失败");
+                cancelProgressDialog();
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+    }
 
 }
