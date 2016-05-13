@@ -268,7 +268,7 @@ public class ForgetPassActivity extends BaseActivity {
         try {
             jb.put("username", name);
             jb.put("password", pass);
-            jb.put("cppassword", pass2);
+            jb.put("cpassword", pass2);
             jb.put("phone", phone);
             jb.put("code", code);
 

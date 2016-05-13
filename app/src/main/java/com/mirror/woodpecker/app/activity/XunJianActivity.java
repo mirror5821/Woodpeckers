@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dev.mirror.library.android.Holder.DevRecyclerViewHolder;
-import dev.mirror.library.android.util.DateUtil;
 
 public class XunJianActivity extends BaseRecyclerViewActivity{
 
@@ -45,6 +44,10 @@ public class XunJianActivity extends BaseRecyclerViewActivity{
                 for(int i =0;i<mList.size();i++){
                     XunJian xj = data.get(i);
                     if(xj.getStatus().equals("0")){
+                        if(isXunjian){
+                            break;
+                        }
+
                         XunJianUtil.startXunjian(XunJianActivity.this);
                         isXunjian = true;
                     }
@@ -83,8 +86,9 @@ public class XunJianActivity extends BaseRecyclerViewActivity{
         TextView time = holder.getView(R.id.time);
         TextView status = holder.getView(R.id.status);
 
-        time.setText(DateUtil.TimeStamp2Date("yyyy-MM-dd HH:mm",xj.getStart_time())+" 至\n"+
-                DateUtil.TimeStamp2Date("yyyy-MM-dd HH:mm",xj.getEnd_time()));
+//        time.setText(DateUtil.TimeStamp2Date("yyyy-MM-dd HH:mm",xj.getStart_time())+" 至\n"+
+//                DateUtil.TimeStamp2Date("yyyy-MM-dd HH:mm",xj.getEnd_time()));
+        time.setText(xj.getStart_time()+"号 至 "+xj.getEnd_time()+"号");
         name.setText(xj.getProject_name());
         if(xj.getStatus().equals("0")){
             status.setText("未巡检");

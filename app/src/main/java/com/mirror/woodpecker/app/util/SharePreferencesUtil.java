@@ -59,7 +59,23 @@ public class SharePreferencesUtil implements Constants {
             user.setEmail(mSPreferences.getString("USER_INFO_PASS",""));
             return user;
         }
+    }
 
+
+    /**
+     * 保存用户角色
+     * @param context
+     * @param roleId
+     */
+    public static void saveUserRoleId(Context context,int roleId){
+        mSPreferences = getInstance(context);
+        mSPreferences.edit().putInt(USER_INFO_ROLE_ID, roleId).commit();
+    }
+
+    public static int getUserRoldId(Context context){
+        mSPreferences = getInstance(context);
+        //如果是空 怎表示从未设置过推送开关  默认是开着的
+        return mSPreferences.getInt(USER_INFO_ROLE_ID,-1);
     }
 
     /**

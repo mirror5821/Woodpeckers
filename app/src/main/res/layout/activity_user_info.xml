@@ -179,7 +179,8 @@
                 android:id="@+id/btn"
                 style="@style/BtnRed"
                 android:text="@string/logout"
-                android:layout_margin="@dimen/d8"/>
+                android:layout_margin="@dimen/d8"
+                android:visibility="gone"/>
 
 
 

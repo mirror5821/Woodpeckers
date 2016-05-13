@@ -7,10 +7,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mirror.woodpecker.app.R;
+import com.mirror.woodpecker.app.app.AppContext;
 import com.mirror.woodpecker.app.model.Constants;
 import com.mirror.woodpecker.app.util.AppHttpClient;
 
-import cn.smssdk.SMSSDK;
 import dev.mirror.library.android.activity.DevBaseActivity;
 
 /**
@@ -29,6 +29,10 @@ public class BaseActivity extends DevBaseActivity implements Constants{
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 //        BaseActivityManager b = BaseActivityManager.getInstance();
 //        b.addActivity(this);
+        //如果没有巡检
+        if(!AppContext.IS_XUNJINNING){
+            new AppContext().loadXunjian();
+        }
 
     }
 

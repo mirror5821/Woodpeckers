@@ -20,7 +20,6 @@ import com.mirror.woodpecker.app.activity.UserInfoActivity;
 import com.mirror.woodpecker.app.activity.UserRepairListActivity;
 import com.mirror.woodpecker.app.activity.XunJianActivity;
 import com.mirror.woodpecker.app.app.AppContext;
-import com.mirror.woodpecker.app.util.AppAjaxCallback;
 import com.mirror.woodpecker.app.util.SharePreferencesUtil;
 
 /**
@@ -39,6 +38,7 @@ public class MyFragment extends BaseFragment {
 
     private Button mBtnLogin,mBtnRegister;
     private Button mBtnMyRepair,mBtnRepairSub;
+    private Button mBtnLogout;
     @Override
     public int setLayoutId() {
         return R.layout.fragment_my;
@@ -68,6 +68,7 @@ public class MyFragment extends BaseFragment {
 
         mBtnLogin = (Button)view.findViewById(R.id.btn_login);
         mBtnRegister = (Button)view.findViewById(R.id.btn_register);
+        mBtnLogout = (Button)view.findViewById(R.id.btn);
 
         mBtnMyRepair = (Button)view.findViewById(R.id.btn_my_repair);
         mBtnRepairSub = (Button)view.findViewById(R.id.btn_repair_sub);
@@ -78,19 +79,29 @@ public class MyFragment extends BaseFragment {
 
         mBtnMyRepair.setOnClickListener(this);
         mBtnRepairSub.setOnClickListener(this);
+        mBtnLogout.setOnClickListener(this);
 
     }
 
     private void initView(){
         if(AppContext.USER_ROLE_ID !=-1){
+            mBtnLogout.setVisibility(View.VISIBLE);
             mTvName.setText(SharePreferencesUtil.getUserInfo(getActivity()).getUsername());
             mTvName.setVisibility(View.VISIBLE);
             mViewLogin.setVisibility(View.GONE);
+
+            if(AppContext.USER_ROLE_ID==4|| AppContext.USER_ROLE_ID == 3){
+                mTvXunjian.setVisibility(View.VISIBLE);
+            }else{
+                mTvXunjian.setVisibility(View.GONE);
+            }
 
             /*if(AppContext.USER_ROLE_ID !=3 || AppContext.USER_ROLE_ID !=4){
                 mViewRepair.setVisibility(View.GONE);
             }*/
         }else{
+            mBtnLogout.setVisibility(View.GONE);
+            mTvXunjian.setVisibility(View.GONE);
             mTvName.setVisibility(View.GONE);
             mViewLogin.setVisibility(View.VISIBLE);
         }
@@ -157,6 +168,14 @@ public class MyFragment extends BaseFragment {
                 }else{
                     startActivity(new Intent(getActivity(), PayActivity.class));
                 }
+                break;
+
+            case R.id.btn:
+                AppContext.USER_ROLE_ID = -1;
+                AppContext.USER_ID = -1;
+                AppContext.IS_LOGIN = false;
+                SharePreferencesUtil.deleteInfo(getActivity());
+                initView();
                 break;
 
         }

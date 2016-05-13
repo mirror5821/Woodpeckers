@@ -115,6 +115,7 @@ public class Login2Activity extends BaseActivity {
                 SharePreferencesUtil.saveUserInfo(getApplicationContext(), data);
                 User user= SharePreferencesUtil.getUserInfo(getApplicationContext());
                 AppContext.USER_ROLE_ID = user.getRole_id();
+                SharePreferencesUtil.saveUserRoleId(getApplicationContext(),AppContext.USER_ROLE_ID);
                 AppContext.USER_ID = user.getId();
                 AppContext.IS_LOGIN = true;
 

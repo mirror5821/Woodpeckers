@@ -126,6 +126,14 @@
                 style="@style/TvAbout"
                 android:drawableLeft="@mipmap/ic_my_5"
                 android:text="@string/about_us"/>
+
+
+            <Button
+                android:id="@+id/btn"
+                style="@style/BtnRed"
+                android:text="@string/logout"
+                android:layout_margin="@dimen/d8"/>
+
         </LinearLayout>
     </ScrollView>
 

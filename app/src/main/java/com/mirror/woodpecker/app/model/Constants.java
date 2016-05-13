@@ -62,6 +62,7 @@ public interface Constants {
     public final static String USER_INFO_PHONE = "USER_INFO_PHONE";
     public final static String USER_INFO_PASS = "USER_INFO_PASS";
     public final static String SHOP_INFO1 = "SHOP_INFO1";
+    public final static String USER_INFO_ROLE_ID = "USER_INFO_ROLE_ID";
 
     public final static String SECRET = "caca51";
     public final static String JSONG_KEY = "info";
