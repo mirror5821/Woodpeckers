@@ -37,6 +37,11 @@
             android:process=":newinst">
         </receiver>
 
+        <receiver
+            android:name=".receiver.XunJian2Receiver"
+            android:process=":newinst">
+        </receiver>
+
 
 
 
