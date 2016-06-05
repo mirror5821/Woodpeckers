@@ -28,7 +28,7 @@
                 android:hint="@string/login_price"
                 android:drawablePadding="@dimen/d8"
                 android:layout_marginTop="@dimen/d4"
-                android:inputType="textPassword"/>
+                android:inputType="numberDecimal"/>
 
             <TextView
                 android:id="@+id/kefu"
@@ -36,8 +36,7 @@
                 android:hint="@string/select_kefu"
                 android:drawablePadding="@dimen/d8"
                 android:layout_marginTop="@dimen/d4"
-                android:textSize="16sp"
-                android:inputType="textPassword"/>
+                android:textSize="16sp"/>
 
             <dev.mirror.library.android.view.NoScrollGridView
                 android:id="@+id/gridview"

@@ -16,8 +16,6 @@ import com.mirror.woodpecker.app.util.AppAjaxCallback;
 import java.util.ArrayList;
 import java.util.List;
 
-import dev.mirror.library.android.activity.MultiImageSelectorActivity;
-
 /**
  * Created by 王沛栋 on 2016/3/11.
  */

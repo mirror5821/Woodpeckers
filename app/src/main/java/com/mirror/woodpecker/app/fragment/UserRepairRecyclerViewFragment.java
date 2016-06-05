@@ -83,23 +83,27 @@ public class UserRepairRecyclerViewFragment extends BaseRecyclerViewFragment {
             public void onReceiverData(List<Repair> data, String msg) {
                 if(pageNo == mDefaultPage){
                     mList.clear();
+                    mRecyclerView.refreshComplete();
                 }
                 mRecyclerView.setLoadingMoreEnabled(true);
+
                 if(data.size() == 0){
-                    mRecyclerView.setLoadingMoreEnabled(false);
+//                    mRecyclerView.setLoadingMoreEnabled(false);
                 }else{
                     mList.addAll(data);
                 }
 
                 setAdapter();
 
-                mRecyclerView.refreshComplete();
+
+
+                System.out.println("---------------------!----"+data.size());
             }
 
             @Override
             public void onReceiverError(String msg) {
-                setAdapter();
-                mRecyclerView.setLoadingMoreEnabled(false);
+//                setAdapter();
+//                mRecyclerView.setLoadingMoreEnabled(false);
             }
 
             @Override
@@ -107,6 +111,7 @@ public class UserRepairRecyclerViewFragment extends BaseRecyclerViewFragment {
                 return Repair.class;
             }
         });
+
     }
 
 

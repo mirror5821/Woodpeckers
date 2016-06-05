@@ -100,7 +100,7 @@ public abstract class BaseRecyclerViewFragment<T extends Parcelable> extends Bas
             //加入头部试图  可重新此方法
             addHeaderView();
             mRecyclerView.setAdapter(mAdapter);
-
+            mRecyclerView.setLoadingMoreEnabled(true);
             mRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
                 @Override
                 public void onRefresh() {
