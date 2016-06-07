@@ -7,8 +7,11 @@ import android.widget.TextView;
 import com.mirror.woodpecker.app.R;
 import com.mirror.woodpecker.app.activity.ServiceRepairDetailsActivity;
 import com.mirror.woodpecker.app.app.AppContext;
+import com.mirror.woodpecker.app.iface.DialogInterface;
+import com.mirror.woodpecker.app.model.Kefu;
 import com.mirror.woodpecker.app.model.Repair;
 import com.mirror.woodpecker.app.util.AppAjaxCallback;
+import com.mirror.woodpecker.app.util.UIHelper;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,7 +32,7 @@ public class ServiceRepairRecyclerViewFragment extends BaseRecyclerViewFragment 
     @Override
     public int setLayoutById() {
         mList = new ArrayList();
-        return R.layout.fragment_base_rview;
+        return R.layout.fragment_repairlist_service;
     }
 
 
@@ -46,6 +49,46 @@ public class ServiceRepairRecyclerViewFragment extends BaseRecyclerViewFragment 
     }*/
 
 
+    private List<Kefu> mLists;
+
+    private List<Kefu> mSelector(){
+        if(mLists == null){
+            mLists = new ArrayList<>();
+
+            Kefu kefu = new Kefu();
+            kefu.setId(-1);
+            kefu.setUsername("全部");
+
+            mLists.add(kefu);
+            for(int i=0;i<orderStatus.length;i++){
+                Kefu k = new Kefu();
+                k.setId(i);
+                k.setUsername(orderStatus[i]);
+
+                mLists.add(k);
+            }
+
+        }
+        return mLists;
+    }
+    @Override
+    public void onClick(View v) {
+        super.onClick(v);
+        switch (v.getId()){
+            case R.id.bar_title:
+                UIHelper uiHelper = new UIHelper();
+                uiHelper.initSelectUnitView(getActivity(),mSelector(), new DialogInterface() {
+                    @Override
+                    public void getPosition(int position) {
+                        Kefu u = mLists.get(position);
+//                        mTvKefu.setText(u.getUsername());
+//                        mKefuId = u.getId();
+
+                    }
+                });
+                break;
+        }
+    }
 
     @Override
     public void loadData() {

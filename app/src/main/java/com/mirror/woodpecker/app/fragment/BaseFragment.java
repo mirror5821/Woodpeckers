@@ -42,6 +42,7 @@ public class BaseFragment extends DevBaseFragment implements Constants{
     public void setTitleText(String title){
         mTvTitleBar = (TextView)getView().findViewById(R.id.bar_title);
         mTvTitleBar.setText(title);
+        mTvTitleBar.setOnClickListener(this);
     }
 
     /**

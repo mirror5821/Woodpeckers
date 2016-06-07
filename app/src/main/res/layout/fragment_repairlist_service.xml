@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:orientation="vertical"
+        android:background="@drawable/bg_title_bar_line" >
+
+        <ImageView
+            android:id="@+id/left_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"/>
+
+        <TextView
+            android:id="@+id/bar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:text="@string/loading_data"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="@color/tv_title"
+            android:drawableRight="@drawable/btn_select_more"/>
+
+        <ImageView
+            android:id="@+id/right_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="8dp"/>
+
+        <TextView
+            android:id="@+id/right_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/tv_title"
+            android:background="@drawable/bg_normal_press"
+            android:gravity="center_vertical"
+            android:paddingRight="8dp"
+            android:paddingLeft="8dp"
+            android:paddingTop="@dimen/d4"/>
+
+
+        <!--<View style="@style/Line1"-->
+        <!--android:layout_alignParentBottom="true"/>-->
+
+    </RelativeLayout>
+
+
+    <include layout="@layout/base_recyclerview"/>
+
+</LinearLayout>
