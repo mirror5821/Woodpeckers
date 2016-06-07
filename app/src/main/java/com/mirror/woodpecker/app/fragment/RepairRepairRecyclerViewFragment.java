@@ -39,11 +39,11 @@ public class RepairRepairRecyclerViewFragment extends BaseRecyclerViewFragment {
         setTitleText("维修单列表");
     }
 
-    @Override
+    /*@Override
     public void onResume() {
         super.onResume();
         loadData();
-    }
+    }*/
 
 
 
@@ -63,6 +63,7 @@ public class RepairRepairRecyclerViewFragment extends BaseRecyclerViewFragment {
             public void onReceiverData(List<Repair> data, String msg) {
                 if(pageNo == mDefaultPage){
                     mList.clear();
+                    mRecyclerView.refreshComplete();
                 }
 
                 mRecyclerView.setLoadingMoreEnabled(true);
@@ -74,8 +75,8 @@ public class RepairRepairRecyclerViewFragment extends BaseRecyclerViewFragment {
 
 //                mList.addAll(data);
                 setAdapter();
+                mRecyclerView.loadMoreComplete();
 
-                mRecyclerView.refreshComplete();
             }
 
             @Override

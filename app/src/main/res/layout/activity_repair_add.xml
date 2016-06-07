@@ -17,14 +17,31 @@
             android:padding="@dimen/d16"
             android:layout_marginTop="@dimen/d16">
 
-            <EditText
-                android:id="@+id/phone"
-                style="@style/EtLogin"
-                android:drawableLeft="@mipmap/ic_repair_phone"
-                android:hint="@string/input_contact"
-                android:inputType="phone"
-                android:maxLength="11"
-                android:drawablePadding="@dimen/d8"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/phone"
+                    style="@style/EtLogin"
+                    android:drawableLeft="@mipmap/ic_repair_phone"
+                    android:hint="@string/input_contact"
+                    android:inputType="phone"
+                    android:maxLength="11"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/d8"/>
+
+                <Button
+                    android:id="@+id/btn_phone"
+                    android:layout_width="32dp"
+                    android:layout_height="48dp"
+                    android:background="@mipmap/ic_contact_select"/>
+
+            </LinearLayout>
+
+
 
             <EditText
                 android:id="@+id/loc"

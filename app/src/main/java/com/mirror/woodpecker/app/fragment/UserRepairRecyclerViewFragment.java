@@ -48,6 +48,7 @@ public class UserRepairRecyclerViewFragment extends BaseRecyclerViewFragment {
 //        mRecyclerView.addHeaderView(view);
 //    }
 
+
     @Override
     public void loadData() {
 
@@ -86,24 +87,22 @@ public class UserRepairRecyclerViewFragment extends BaseRecyclerViewFragment {
                     mRecyclerView.refreshComplete();
                 }
                 mRecyclerView.setLoadingMoreEnabled(true);
-
+//
                 if(data.size() == 0){
-//                    mRecyclerView.setLoadingMoreEnabled(false);
+                    mRecyclerView.setLoadingMoreEnabled(false);
                 }else{
                     mList.addAll(data);
+
                 }
 
                 setAdapter();
-
-
-
-                System.out.println("---------------------!----"+data.size());
+                mRecyclerView.loadMoreComplete();
             }
 
             @Override
             public void onReceiverError(String msg) {
-//                setAdapter();
-//                mRecyclerView.setLoadingMoreEnabled(false);
+                setAdapter();
+                mRecyclerView.setLoadingMoreEnabled(false);
             }
 
             @Override

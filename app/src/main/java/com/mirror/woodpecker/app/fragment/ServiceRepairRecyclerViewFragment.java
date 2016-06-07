@@ -39,11 +39,11 @@ public class ServiceRepairRecyclerViewFragment extends BaseRecyclerViewFragment 
         setTitleText("维修单列表");
     }
 
-    @Override
+   /* @Override
     public void onResume() {
         super.onResume();
         loadData();
-    }
+    }*/
 
 
 
@@ -63,6 +63,7 @@ public class ServiceRepairRecyclerViewFragment extends BaseRecyclerViewFragment 
             public void onReceiverData(List<Repair> data, String msg) {
                 if(pageNo == mDefaultPage){
                     mList.clear();
+                    mRecyclerView.refreshComplete();
                 }
                 mRecyclerView.setLoadingMoreEnabled(true);
                 if(data.size() == 0){
@@ -70,17 +71,16 @@ public class ServiceRepairRecyclerViewFragment extends BaseRecyclerViewFragment 
                 }else{
                     mList.addAll(data);
                 }
-//                mList.addAll(data);
                 setAdapter();
+                mRecyclerView.loadMoreComplete();
 
-                mRecyclerView.refreshComplete();
+
             }
 
             @Override
             public void onReceiverError(String msg) {
                 setAdapter();
                 mRecyclerView.setLoadingMoreEnabled(false);
-//                showToast(msg);
             }
 
             @Override

@@ -2,12 +2,14 @@ package com.mirror.woodpecker.app.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.mirror.woodpecker.app.R;
 import com.mirror.woodpecker.app.app.AppContext;
@@ -23,6 +25,7 @@ import org.json.JSONObject;
 public class RepairAddActivity extends BaseActivity{
     private EditText mEtPhone,mEtDes;
     private EditText mTvLoc;
+    private Button mBtnPhone;
     private Button mBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +39,9 @@ public class RepairAddActivity extends BaseActivity{
 
         mTvLoc = (EditText) findViewById(R.id.loc);
         mBtn = (Button)findViewById(R.id.btn);
+        mBtnPhone = (Button)findViewById(R.id.btn_phone);
 
+        mBtnPhone.setOnClickListener(this);
         mBtn.setOnClickListener(this);
 //        mTvLoc.setOnClickListener(this);
     }
@@ -51,6 +56,11 @@ public class RepairAddActivity extends BaseActivity{
 //            case R.id.loc:
 //                startActivityForResult(new Intent(RepairAddActivity.this,MapSelectActivity.class), MAP_REQUESTCODE);
 //                break;
+            case R.id.btn_phone:
+                Intent intent = new Intent(Intent.ACTION_PICK,
+                        ContactsContract.Contacts.CONTENT_URI);
+                startActivityForResult(intent, 1);
+                break;
         }
     }
 
@@ -70,9 +80,56 @@ public class RepairAddActivity extends BaseActivity{
 
                     mTvLoc.setText(provinceName+cityName+areaName+street);
                     break;
+
+                case 1:
+                    //
+                    if (resultCode == RESULT_OK) {
+                        Uri contactData = data.getData();
+
+                        Cursor cursor = getContentResolver().query(contactData, null, null, null,
+                                null);
+                        cursor.moveToFirst();
+                        String num = this.getContactPhone(cursor);
+                        mEtPhone.setText(num);
+                        showToast(num);
+                    }
+                    break;
             }
         }
     }
+
+
+    private String getContactPhone(Cursor cursor) {
+        int phoneColumn = cursor
+                .getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER);
+        int phoneNum = cursor.getInt(phoneColumn);
+        String result = "";
+        if (phoneNum > 0) {
+            // 获得联系人的ID号
+            int idColumn = cursor.getColumnIndex(ContactsContract.Contacts._ID);
+            String contactId = cursor.getString(idColumn);
+            // 获得联系人电话的cursor
+            Cursor phone = getContentResolver().query(
+                    ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                    null,
+                    ContactsContract.CommonDataKinds.Phone.CONTACT_ID + "="
+                            + contactId, null, null);
+            if (phone.moveToFirst()) {
+                for (; !phone.isAfterLast(); phone.moveToNext()) {
+                    int index = phone
+                            .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+                    String phoneNumber = phone.getString(index);
+                    String phoneName = phone.getString(0);
+                    result = phoneNumber+"--"+phoneName;
+                }
+                if (!phone.isClosed()) {
+                    phone.close();
+                }
+            }
+        }
+        return result;
+    }
+
     public void sub(){
         final String phone = mEtPhone.getText().toString().trim();
         final String loc = mTvLoc.getText().toString().trim();
