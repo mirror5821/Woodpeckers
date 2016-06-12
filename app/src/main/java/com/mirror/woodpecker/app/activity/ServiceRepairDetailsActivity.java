@@ -15,7 +15,6 @@ import com.mirror.woodpecker.app.app.AppContext;
 import com.mirror.woodpecker.app.model.Repair;
 import com.mirror.woodpecker.app.util.AppAjaxCallback;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 

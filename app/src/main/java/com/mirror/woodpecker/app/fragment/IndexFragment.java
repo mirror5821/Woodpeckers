@@ -21,6 +21,7 @@ import com.mirror.woodpecker.app.model.User;
 import com.mirror.woodpecker.app.util.AppAjaxCallback;
 import com.mirror.woodpecker.app.util.SharePreferencesUtil;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -64,6 +65,25 @@ public class IndexFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        JSONObject j = new JSONObject();
+        try{
+            j.put("key1","我是key1的值");
+
+            JSONArray jaa = new JSONArray();
+            for (int i = 0;i<3;i++){
+                JSONObject jj = new JSONObject();
+                jj.put("image","我是图片"+i);
+                jaa.put(jj);
+            }
+
+            j.put("images",jaa.toString());
+
+            System.out.println("-------------------------"+j.toString());
+
+        }catch (JSONException e){
+            System.out.println("-------------------------"+e.getLocalizedMessage());
+        }
 
         if(!AppContext.IS_LOGIN){
             login();

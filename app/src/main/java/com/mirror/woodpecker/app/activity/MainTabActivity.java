@@ -14,7 +14,7 @@ import com.mirror.woodpecker.app.app.AppContext;
 import com.mirror.woodpecker.app.fragment.IndexFragment;
 import com.mirror.woodpecker.app.fragment.MyFragment;
 import com.mirror.woodpecker.app.fragment.RepairRepairRecyclerViewFragment;
-import com.mirror.woodpecker.app.fragment.ServiceRepairRecyclerViewFragment;
+import com.mirror.woodpecker.app.fragment.ServiceRepairFragment;
 import com.mirror.woodpecker.app.iface.OnTabSelect;
 import com.mirror.woodpecker.app.model.Version;
 import com.mirror.woodpecker.app.util.AppAjaxCallback;
@@ -25,8 +25,6 @@ import org.xutils.http.RequestParams;
 import org.xutils.x;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 
 import dev.mirror.library.android.util.JsonUtils;
 
@@ -117,8 +115,11 @@ public class MainTabActivity extends BaseTabActivity implements OnTabSelect{
 
     @Override
     public <T extends Fragment> Class<T>[] setFragment() {
-        return new Class[]{IndexFragment.class,ServiceRepairRecyclerViewFragment.class,
+//        return new Class[]{IndexFragment.class,ServiceRepairRecyclerViewFragment.class,
+//                RepairRepairRecyclerViewFragment.class,MyFragment.class};
+        return new Class[]{IndexFragment.class,ServiceRepairFragment.class,
                 RepairRepairRecyclerViewFragment.class,MyFragment.class};
+//        ServiceRepairFragment
     }
 
 

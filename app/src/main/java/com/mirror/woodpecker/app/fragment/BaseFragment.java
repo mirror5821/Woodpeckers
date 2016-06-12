@@ -16,7 +16,7 @@ import dev.mirror.library.android.fragment.DevBaseFragment;
 public class BaseFragment extends DevBaseFragment implements Constants{
     private ImageView mImgBack;
     private TextView mTvTitleRight;
-    private TextView mTvTitleBar;
+    public TextView mTvTitleBar;
 
     public AppHttpClient mHttpClient = new AppHttpClient();
 
