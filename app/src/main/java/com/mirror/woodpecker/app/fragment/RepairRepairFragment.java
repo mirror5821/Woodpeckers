@@ -17,9 +17,9 @@ import java.util.List;
 /**
  * Created by mirror on 16/1/3.
  */
-public class ServiceRepairFragment extends BaseFragment {
-    private String [] orderStatus = {"未处理","客服关闭", "已查看", "等待接单", "已接单", "解决中", "等待调货状态",
-            "确定调货，货已到", "已解决", "最终关闭"};
+public class RepairRepairFragment extends BaseFragment {
+    private String [] orderStatus = {"未处理","已完成", "已查看", "等待接单", "已接单", "解决中", "等待调货",
+            "确定调货，货已到", "已解决"};
 
     @Override
     public int setLayoutId() {
@@ -30,17 +30,18 @@ public class ServiceRepairFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if(AppContext.USER_ROLE_ID != 3){
-            return;
+
+        if(AppContext.USER_ROLE_ID != 4){
+           return;
         }
 
         if(!isLoad){
             isLoad = true;
             setTitleText("全部维修单列表");
 
-            ServiceRepairRecyclerViewRefreshFragment fragment = new ServiceRepairRecyclerViewRefreshFragment();
+            RepairRepairRecyclerViewRefreshFragment fragment = new RepairRepairRecyclerViewRefreshFragment();
             Bundle b = new Bundle();
-            b.putInt(INTENT_ID,-1);
+            b.putInt(INTENT_ID,0);
             fragment.setArguments(b);
 
             FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -55,12 +56,6 @@ public class ServiceRepairFragment extends BaseFragment {
     private List<Kefu> mSelector(){
         if(mLists == null){
             mLists = new ArrayList<>();
-
-            Kefu kefu = new Kefu();
-            kefu.setId(-1);
-            kefu.setUsername("全部维修单列表");
-
-            mLists.add(kefu);
             for(int i=0;i<orderStatus.length;i++){
                 Kefu k = new Kefu();
                 k.setId(i);
@@ -83,7 +78,7 @@ public class ServiceRepairFragment extends BaseFragment {
                     @Override
                     public void getPosition(int position) {
                         Kefu u = mLists.get(position);
-                        ServiceRepairRecyclerViewRefreshFragment fragment = new ServiceRepairRecyclerViewRefreshFragment();
+                        RepairRepairRecyclerViewRefreshFragment fragment = new RepairRepairRecyclerViewRefreshFragment();
                         Bundle b = new Bundle();
                         b.putInt(INTENT_ID,u.getId());
                         fragment.setArguments(b);

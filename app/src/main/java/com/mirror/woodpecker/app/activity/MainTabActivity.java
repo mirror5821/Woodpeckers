@@ -13,7 +13,7 @@ import com.mirror.woodpecker.app.R;
 import com.mirror.woodpecker.app.app.AppContext;
 import com.mirror.woodpecker.app.fragment.IndexFragment;
 import com.mirror.woodpecker.app.fragment.MyFragment;
-import com.mirror.woodpecker.app.fragment.RepairRepairRecyclerViewFragment;
+import com.mirror.woodpecker.app.fragment.RepairRepairFragment;
 import com.mirror.woodpecker.app.fragment.ServiceRepairFragment;
 import com.mirror.woodpecker.app.iface.OnTabSelect;
 import com.mirror.woodpecker.app.model.Version;
@@ -118,7 +118,7 @@ public class MainTabActivity extends BaseTabActivity implements OnTabSelect{
 //        return new Class[]{IndexFragment.class,ServiceRepairRecyclerViewFragment.class,
 //                RepairRepairRecyclerViewFragment.class,MyFragment.class};
         return new Class[]{IndexFragment.class,ServiceRepairFragment.class,
-                RepairRepairRecyclerViewFragment.class,MyFragment.class};
+                RepairRepairFragment.class,MyFragment.class};
 //        ServiceRepairFragment
     }
 
