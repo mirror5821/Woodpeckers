@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <include layout="@layout/view_base_title_bar"/>
+    <include layout="@layout/view_base_title_bar"
+        android:id="@+id/title_bar"/>
 
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title_bar">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -67,14 +69,17 @@
                 android:layout_marginRight="@dimen/d8"/>
 
 
-            <Button
-                android:id="@+id/btn"
-                style="@style/BtnBlue"
-                android:text="@string/submit"
-                android:layout_margin="@dimen/d8"/>
+
 
         </LinearLayout>
 
     </ScrollView>
 
-</LinearLayout>
+    <Button
+        android:id="@+id/btn"
+        style="@style/BtnBlue"
+        android:layout_alignParentBottom="true"
+        android:text="@string/submit"
+        android:layout_margin="@dimen/d8"/>
+
+</RelativeLayout>

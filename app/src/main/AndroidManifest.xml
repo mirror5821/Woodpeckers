@@ -51,56 +51,186 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:windowSoftInputMode="stateHidden|adjustResize"/>
 
-        <activity android:name=".activity.PayActivity"/>
-        <activity android:name=".activity.OrderCountActivity"/>
-        <activity android:name=".activity.XunJianFeedBackActivity"/>
+        <activity android:name=".activity.PayActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"/>
+
+        <activity android:name=".activity.OrderCountActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.XunJianFeedBackActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
         <service android:name=".service.XunJianService"></service>
-        <activity android:name=".activity.XunJianAlertActivity"/>
-        <activity android:name=".activity.XunJianActivity"/>
 
-        <activity android:name=".activity.CommentActivity"/>
-        <activity android:name=".activity.Login2Activity"/>
-        <activity android:name=".activity.ZiXunDetailsActivity"/>
-        <activity android:name=".activity.ContactUsActivity"/>
-        <activity android:name=".activity.UserInfoActivity"/>
-        <activity android:name=".activity.UpdatePassActivity"/>
-        <activity android:name=".activity.ForgetPassActivity"/>
-        <activity android:name=".activity.ComplainReplayListActivity"/>
-        <activity android:name=".activity.ComplainListActivity"/>
-        <activity android:name=".activity.ComplainActivity"/>
-        <activity android:name=".activity.RepairChangeActivity"/>
-        <activity android:name=".activity.RepairFinishActivity"/>
-        <activity android:name=".activity.RepairFeedBackActivity"/>
-        <activity android:name=".activity.RepairDetailsActivity"/>
-        <activity android:name=".activity.ServiceRepairActionActivity"/>
-        <activity android:name=".activity.ServiceRepairDetailsActivity"/>
-        <activity android:name=".activity.AboutUsListViewActivity"/>
-        <activity android:name=".activity.NormalWebViewActivity"/>
-        <activity android:name=".activity.AboutUsGridViewActivity"/>
-        <activity android:name=".activity.AboutUsDetailsActivity"/>
-        <activity android:name=".activity.AboutUsActivity"/>
-        <activity android:name=".activity.UserRepairDetailsActivity"/>
-        <activity android:name=".activity.UserRepairListActivity"/>
+        <activity android:name=".activity.XunJianAlertActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.XunJianActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.CommentActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.Login2Activity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.ZiXunDetailsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.ContactUsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.UserInfoActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.UpdatePassActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.ForgetPassActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.ComplainReplayListActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.ComplainListActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.ComplainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.RepairChangeActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.RepairFinishActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.RepairFeedBackActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.RepairDetailsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.ServiceRepairActionActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.ServiceRepairDetailsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.AboutUsListViewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.NormalWebViewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.AboutUsGridViewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.AboutUsDetailsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.AboutUsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.UserRepairDetailsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.UserRepairListActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
         <!--<activity android:name=".activity.MapSelectActivity"/>-->
-        <activity android:name=".activity.RepairAddActivity"/>
-        <activity android:name=".activity.OrderDetailsActivity"/>
-        <activity android:name=".activity.RegistersActivity"/>
-        <activity android:name=".activity.LoginActivity"/>
-        <!--<activity android:name=".activity.MainActivity"/>-->
-        <activity android:name=".activity.TestCameraActivity"/>
-        <activity android:name=".activity.TestRecyclerViewActivity"/>
-        <activity android:name=".activity.TestPhoneInfoActivity"/>
-        <activity android:name=".activity.TestSelectContactsActivity"/>
-        <activity android:name=".activity.TestQQServiceActivity"/>
-        <activity android:name=".activity.TestNetActivity"/>
-        <activity android:name=".activity.TestViewPageActivity"/>
-        <activity android:name=".activity.TestSpinnerActivity"/>
-        <activity android:name=".activity.TestSpinnerRecyclerViewActivity"/>
+        <activity android:name=".activity.RepairAddActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
 
+        <activity android:name=".activity.OrderDetailsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.RegistersActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.LoginActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <!--<activity android:name=".activity.MainActivity"/>-->
+        <activity android:name=".activity.TestCameraActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.TestRecyclerViewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.TestPhoneInfoActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.TestSelectContactsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.TestQQServiceActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.TestNetActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.TestViewPageActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.TestSpinnerActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.TestSpinnerRecyclerViewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
 
         <activity
             android:configChanges="orientation|screenSize"
-            android:name="dev.mirror.library.android.activity.MultiImageSelectorActivity"/>
+            android:name="dev.mirror.library.android.activity.MultiImageSelectorActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.UserRepairListSinnersActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
 
         <service android:name=".service.XunJianService"/>
     </application>

@@ -37,7 +37,7 @@ public class RepairRepairFragment extends BaseFragment {
 
         if(!isLoad){
             isLoad = true;
-            setTitleText("全部维修单列表");
+            setTitleText("未处理维修单列表");
 
             RepairRepairRecyclerViewRefreshFragment fragment = new RepairRepairRecyclerViewRefreshFragment();
             Bundle b = new Bundle();

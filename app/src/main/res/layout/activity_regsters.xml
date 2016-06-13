@@ -13,188 +13,196 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/d16"
-                android:layout_marginTop="@dimen/d16">
-
-                <EditText
-                    android:id="@+id/name"
-                    style="@style/EtLogin"
-                    android:drawableLeft="@mipmap/ic_login_accout"
-                    android:hint="@string/login_notifi"
-                    android:drawablePadding="@dimen/d8"/>
-
-                <EditText
-                    android:id="@+id/pass"
-                    style="@style/EtLogin"
-                    android:drawableLeft="@mipmap/ic_login_password"
-                    android:hint="@string/login_notifi_pass"
-                    android:drawablePadding="@dimen/d8"
-                    android:layout_marginTop="@dimen/d4"
-                    android:inputType="textPassword"/>
-
-
-                <EditText
-                    android:id="@+id/pass2"
-                    style="@style/EtLogin"
-                    android:drawableLeft="@mipmap/ic_login_password"
-                    android:hint="@string/login_notifi_pass2"
-                    android:drawablePadding="@dimen/d8"
-                    android:layout_marginTop="@dimen/d4"
-                    android:inputType="textPassword"/>
-
-                <EditText
-                    android:id="@+id/phone"
-                    style="@style/EtLogin"
-                    android:drawableLeft="@mipmap/ic_r_phone"
-                    android:hint="@string/input_phone"
-                    android:drawablePadding="@dimen/d8"
-                    android:layout_marginTop="@dimen/d4"
-                    android:inputType="phone"/>
-
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical"
+                    android:padding="@dimen/d16"
+                    android:layout_marginTop="@dimen/d16">
 
                     <EditText
-                        android:id="@+id/e_code"
+                        android:id="@+id/name"
                         style="@style/EtLogin"
-                        android:drawableLeft="@mipmap/ic_r_phone"
-                        android:hint="@string/input_code"
+                        android:drawableLeft="@mipmap/ic_login_accout"
+                        android:hint="@string/login_notifi"
+                        android:drawablePadding="@dimen/d8"/>
+
+                    <EditText
+                        android:id="@+id/pass"
+                        style="@style/EtLogin"
+                        android:drawableLeft="@mipmap/ic_login_password"
+                        android:hint="@string/login_notifi_pass"
                         android:drawablePadding="@dimen/d8"
                         android:layout_marginTop="@dimen/d4"
-                        android:inputType="phone"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"/>
+                        android:inputType="textPassword"/>
+
+
+                    <EditText
+                        android:id="@+id/pass2"
+                        style="@style/EtLogin"
+                        android:drawableLeft="@mipmap/ic_login_password"
+                        android:hint="@string/login_notifi_pass2"
+                        android:drawablePadding="@dimen/d8"
+                        android:layout_marginTop="@dimen/d4"
+                        android:inputType="textPassword"/>
+
+                    <EditText
+                        android:id="@+id/phone"
+                        style="@style/EtLogin"
+                        android:drawableLeft="@mipmap/ic_r_phone"
+                        android:hint="@string/input_phone"
+                        android:drawablePadding="@dimen/d8"
+                        android:layout_marginTop="@dimen/d4"
+                        android:inputType="phone"/>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/e_code"
+                            style="@style/EtLogin"
+                            android:drawableLeft="@mipmap/ic_r_phone"
+                            android:hint="@string/input_code"
+                            android:drawablePadding="@dimen/d8"
+                            android:layout_marginTop="@dimen/d4"
+                            android:inputType="phone"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"/>
+
+                        <Button
+                            android:id="@+id/btn_code"
+                            style="@style/BtnBlueR"
+                            android:text="@string/v_code"
+                            android:layout_width="120dp"
+                            android:layout_height="match_parent"/>
+
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/mail"
+                        style="@style/EtLogin"
+                        android:drawableLeft="@mipmap/ic_r_mail"
+                        android:hint="@string/input_mail"
+                        android:drawablePadding="@dimen/d8"
+                        android:layout_marginTop="@dimen/d4"/>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/d8">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/sign_type"
+                            android:textColor="@color/tv_title"
+                            android:textSize="18sp"/>
+
+                        <RadioGroup
+                            android:id="@+id/rg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginLeft="@dimen/d16">
+
+                            <RadioButton
+                                android:id="@+id/rb1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/sign_no"
+                                android:textColor="@color/tv_title"/>
+
+
+                            <RadioButton
+                                android:id="@+id/rb2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/signed"
+                                android:layout_marginLeft="@dimen/d8"
+                                android:textColor="@color/tv_title"/>
+                        </RadioGroup>
+
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/sign_unit"
+                        android:visibility="gone"
+                        style="@style/EtLogin"
+                        android:drawableRight="@mipmap/ic_select_dot2"
+                        android:textColor="@color/tv_title"
+                        android:textSize="16sp"
+                        android:hint="@string/select_sign_unit"/>
+
+                    <EditText
+                        android:id="@+id/code"
+                        style="@style/EtLogin"
+                        android:drawableLeft="@mipmap/ic_r_code"
+                        android:hint="@string/login_notifi_pass"
+                        android:drawablePadding="@dimen/d8"
+                        android:layout_marginTop="@dimen/d4"
+                        android:visibility="gone"/>
 
                     <Button
-                        android:id="@+id/btn_code"
-                        style="@style/BtnBlueR"
-                        android:text="@string/v_code"
-                        android:layout_width="120dp"
-                        android:layout_height="match_parent"/>
+                        android:id="@+id/btn"
+                        style="@style/BtnBlue"
+                        android:layout_marginTop="@dimen/d32"
+                        android:text="@string/register"/>
+
+                    <TextView
+                        android:id="@+id/tv_forget"
+                        style="@style/TvLight"
+                        android:text="@string/forget_pass"
+                        android:textSize="18sp"
+                        android:layout_marginTop="@dimen/d8"
+                        android:layout_gravity="right"/>
 
                 </LinearLayout>
-
-                <EditText
-                    android:id="@+id/mail"
-                    style="@style/EtLogin"
-                    android:drawableLeft="@mipmap/ic_r_mail"
-                    android:hint="@string/input_mail"
-                    android:drawablePadding="@dimen/d8"
-                    android:layout_marginTop="@dimen/d4"/>
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/normal_height"
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
-                    android:padding="@dimen/d8">
+                    android:layout_marginTop="@dimen/d32">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        style="@style/Line1"
+                        android:background="@color/driver"/>
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/sign_type"
-                        android:textColor="@color/tv_title"
-                        android:textSize="18sp"/>
+                        style="@style/TvBlue"
+                        android:text="@string/no_register"
+                        android:textSize="18sp"
+                        android:padding="@dimen/d4"/>
 
-                    <RadioGroup
-                        android:id="@+id/rg"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginLeft="@dimen/d16">
-
-                        <RadioButton
-                            android:id="@+id/rb1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/sign_no"
-                            android:textColor="@color/tv_title"/>
-
-
-                        <RadioButton
-                            android:id="@+id/rb2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/signed"
-                            android:layout_marginLeft="@dimen/d8"
-                            android:textColor="@color/tv_title"/>
-                    </RadioGroup>
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:background="@color/driver"
+                        style="@style/Line1"/>
 
 
                 </LinearLayout>
 
-
-                <TextView
-                    android:id="@+id/sign_unit"
-                    android:visibility="gone"
-                    style="@style/EtLogin"
-                    android:drawableRight="@mipmap/ic_select_dot2"
-                    android:textColor="@color/tv_title"
-                    android:textSize="16sp"
-                    android:hint="@string/select_sign_unit"/>
-
-                <EditText
-                    android:id="@+id/code"
-                    style="@style/EtLogin"
-                    android:drawableLeft="@mipmap/ic_r_code"
-                    android:hint="@string/login_notifi_pass"
-                    android:drawablePadding="@dimen/d8"
-                    android:layout_marginTop="@dimen/d4"
-                    android:visibility="gone"/>
-
-                <Button
-                    android:id="@+id/btn"
-                    style="@style/BtnBlue"
-                    android:layout_marginTop="@dimen/d32"
-                    android:text="@string/register"/>
-
-                <TextView
-                    android:id="@+id/tv_forget"
-                    style="@style/TvLight"
-                    android:text="@string/forget_pass"
-                    android:textSize="18sp"
-                    android:layout_marginTop="@dimen/d8"
-                    android:layout_gravity="right"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/normal_height"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginTop="@dimen/d32">
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    style="@style/Line1"
-                    android:background="@color/driver"/>
-
-                <TextView
-                    style="@style/TvBlue"
-                    android:text="@string/no_register"
-                    android:textSize="18sp"
-                    android:padding="@dimen/d4"/>
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:background="@color/driver"
-                    style="@style/Line1"/>
 
 
             </LinearLayout>
@@ -203,9 +211,13 @@
                 android:id="@+id/btn_login"
                 style="@style/BtnYellow"
                 android:text="@string/q_login"
-                android:layout_margin="@dimen/d32"/>
+                android:layout_margin="@dimen/d32"
+                android:layout_alignParentBottom="true"
+                />
 
-        </LinearLayout>
+        </RelativeLayout>
+
+
 
     </ScrollView>
 

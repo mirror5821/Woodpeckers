@@ -36,7 +36,6 @@ public class IndexFragment extends BaseFragment {
     private String[] imgs = {"http://77wdgj.com1.z0.glb.clouddn.com/zmn1.jpg",
             "http://77wdgj.com1.z0.glb.clouddn.com/zmn2.jpg",
             "http://77wdgj.com1.z0.glb.clouddn.com/zmn3.jpg"};
-    private String[] titles = {"Page 1", "Page 2", "Page 3"};
 
     private Button mBtn1,mBtn2,mBtn3,mBtn4;
     private AutoScrollViewPager pager;

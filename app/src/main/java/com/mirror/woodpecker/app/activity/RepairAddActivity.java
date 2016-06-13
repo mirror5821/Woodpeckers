@@ -91,7 +91,6 @@ public class RepairAddActivity extends BaseActivity{
                         cursor.moveToFirst();
                         String num = this.getContactPhone(cursor);
                         mEtPhone.setText(num);
-                        showToast(num);
                     }
                     break;
             }

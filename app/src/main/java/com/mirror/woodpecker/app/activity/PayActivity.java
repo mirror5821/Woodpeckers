@@ -14,10 +14,10 @@ import com.mirror.woodpecker.app.adapter.ImageAddsAdapter;
 import com.mirror.woodpecker.app.app.AppContext;
 import com.mirror.woodpecker.app.iface.DialogInterface;
 import com.mirror.woodpecker.app.model.Kefu;
-import com.mirror.woodpecker.app.model.Units;
 import com.mirror.woodpecker.app.util.AppAjaxCallback;
 import com.mirror.woodpecker.app.util.UIHelper;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -115,7 +115,17 @@ public class PayActivity extends BaseActivity implements AdapterView.OnItemClick
              */
             jb.put("kefuid", mKefuId);
             jb.put("uid", AppContext.USER_ID);
-            jb.put("playurl",mImageTools.filePathToString(mList.get(0)));
+
+            JSONArray jaa = new JSONArray();
+            for (int i = 0;i<mList.size();i++){
+                JSONObject jj = new JSONObject();
+//                jj.put("image",mImageTools.filePathToString(mList.get(i)));
+                jj.put("image","我是图片流"+i);
+                jaa.put(jj);
+            }
+
+            jb.put("playurl",jaa.toString());
+//            jb.put("playurl",mImageTools.filePathToString(mList.get(0)));
             jb.put("money",price);
             jb.put("phone",phone);
         }catch (JSONException e){
@@ -160,7 +170,7 @@ public class PayActivity extends BaseActivity implements AdapterView.OnItemClick
 //        selectedMode = MultiImageSelectorActivity.MODE_SINGLE;
 
 
-        int maxNum = 1;
+        int maxNum = 5;
         Intent intent = new Intent(PayActivity.this, MultiImageSelectorActivity.class);
         // 是否显示拍摄图片
         intent.putExtra(MultiImageSelectorActivity.EXTRA_SHOW_CAMERA, true);

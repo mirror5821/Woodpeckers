@@ -18,6 +18,7 @@ import com.mirror.woodpecker.app.activity.RepairAddActivity;
 import com.mirror.woodpecker.app.activity.UpdatePassActivity;
 import com.mirror.woodpecker.app.activity.UserInfoActivity;
 import com.mirror.woodpecker.app.activity.UserRepairListActivity;
+import com.mirror.woodpecker.app.activity.UserRepairListSinnersActivity;
 import com.mirror.woodpecker.app.activity.XunJianActivity;
 import com.mirror.woodpecker.app.app.AppContext;
 import com.mirror.woodpecker.app.util.SharePreferencesUtil;
@@ -145,7 +146,8 @@ public class MyFragment extends BaseFragment {
                 if(AppContext.USER_ROLE_ID==-1){
                     startActivityForResult(new Intent(getActivity(), LoginActivity.class),LOGIN_CODE4);
                 }else{
-                    startActivity(new Intent(getActivity(), UserRepairListActivity.class));
+//                    startActivity(new Intent(getActivity(), UserRepairListActivity.class));
+                    startActivity(new Intent(getActivity(), UserRepairListSinnersActivity.class));
                 }
                 break;
 
