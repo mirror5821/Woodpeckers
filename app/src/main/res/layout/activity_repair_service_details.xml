@@ -15,17 +15,18 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!--<LinearLayout
+            <LinearLayout
                 style="@style/LayoutDetailsH"
                 android:background="@drawable/bg_detail">
 
                 <TextView
-                    android:text="@string/report_time"
+                    android:text="@string/order_num"
                     style="@style/TvDetailsNotif" />
 
                 <TextView
+                    android:id="@+id/order_no"
                     style="@style/TvDetailsValue" />
-            </LinearLayout>-->
+            </LinearLayout>
 
 
 

@@ -30,6 +30,7 @@ import dev.mirror.library.android.util.JsonUtils;
  * Created by 王沛栋 on 2016/3/11.
  */
 public class RepairDetailsActivity extends BaseActivity {
+    private TextView mTvNo;
     private TextView mTvPhone;
     private TextView mTvLoc;
     private TextView mTvDes;
@@ -132,6 +133,7 @@ public class RepairDetailsActivity extends BaseActivity {
     }
 
     private void initView(){
+        mTvNo = (TextView)findViewById(R.id.order_no);
         mTvPhone = (TextView)findViewById(R.id.phone);
         mTvLoc = (TextView)findViewById(R.id.loc);
         mTvDes = (TextView)findViewById(R.id.dec);
@@ -170,6 +172,8 @@ public class RepairDetailsActivity extends BaseActivity {
                 mTvOrderType.setText("APP");
                 break;
         }
+
+        mTvNo.setText(mRepair.getOrder_id()+"");
         //项目名称
         mTvOrderBelong.setText(TextUtils.isEmpty(mRepair.getProject_name()) ? "" : mRepair.getProject_name());
         mTvOrderTypeSystem.setText(TextUtils.isEmpty(mRepair.getCatname()) ? "暂无数据" : mRepair.getCatname());

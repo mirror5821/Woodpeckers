@@ -18,7 +18,7 @@
             android:id="@+id/name"
             style="@style/EtLogin"
             android:drawableLeft="@mipmap/ic_login_accout"
-            android:hint="@string/login_notifi"
+            android:hint="@string/input_login_name"
             android:drawablePadding="@dimen/d8"/>
 
         <EditText

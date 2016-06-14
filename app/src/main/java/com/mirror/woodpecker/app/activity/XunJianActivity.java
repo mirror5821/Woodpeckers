@@ -1,6 +1,82 @@
 package com.mirror.woodpecker.app.activity;
 
 
+import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
+import android.view.View;
+
+import com.mirror.woodpecker.app.R;
+import com.mirror.woodpecker.app.fragment.XunJianRecyclerViewRefreshFragment;
+import com.mirror.woodpecker.app.iface.DialogInterface;
+import com.mirror.woodpecker.app.model.Kefu;
+import com.mirror.woodpecker.app.util.UIHelper;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class XunJianActivity extends BaseActivity{
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_xunjian_list);
+        setTitleText("未巡检项目列表");
+        setBack();
+        XunJianRecyclerViewRefreshFragment fragment = new XunJianRecyclerViewRefreshFragment();
+        Bundle b = new Bundle();
+        b.putInt(INTENT_ID,0);
+        fragment.setArguments(b);
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_content, fragment).commit();
+    }
+
+    private List<Kefu> mLists;
+    private String [] orderStatus = {"未巡检","已巡检"};
+    private List<Kefu> mSelector(){
+        if(mLists == null){
+            mLists = new ArrayList<>();
+            for(int i=0;i<orderStatus.length;i++){
+                Kefu k = new Kefu();
+                k.setId(i);
+                k.setUsername(orderStatus[i]+"项目列表");
+
+                mLists.add(k);
+            }
+
+        }
+        return mLists;
+    }
+
+    @Override
+    public void onClick(View v) {
+        super.onClick(v);
+        switch (v.getId()){
+            case R.id.bar_title:
+                UIHelper uiHelper = new UIHelper();
+                uiHelper.initSelectUnitView(XunJianActivity.this,mSelector(), new DialogInterface() {
+                    @Override
+                    public void getPosition(int position) {
+                        Kefu u = mLists.get(position);
+                        XunJianRecyclerViewRefreshFragment fragment = new XunJianRecyclerViewRefreshFragment();
+                        Bundle b = new Bundle();
+                        b.putInt(INTENT_ID,u.getId());
+                        fragment.setArguments(b);
+
+                        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.setTransition(fragmentTransaction.TRANSIT_ENTER_MASK);
+                        fragmentTransaction.replace(R.id.fragment_content, fragment).commit();
+
+                        mTvTitleBar.setText(u.getUsername());
+                    }
+                });
+                break;
+        }
+    }
+}
+/*
+package com.mirror.woodpecker.app.activity;
+
+
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
@@ -10,6 +86,9 @@ import com.mirror.woodpecker.app.R;
 import com.mirror.woodpecker.app.model.XunJian;
 import com.mirror.woodpecker.app.util.AppAjaxCallback;
 import com.mirror.woodpecker.app.util.XunJianUtil;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +115,16 @@ public class XunJianActivity extends BaseRecyclerViewActivity{
     private boolean isXunjian = false;
     @Override
     public void loadData() {
-        mHttpClient.postData(XUNJIAN_LIST, null, new AppAjaxCallback.onRecevierDataListener<XunJian>() {
+        //页码	page
+        //状态值	status    0为未巡检，1为已巡检
+        JSONObject jb = new JSONObject();
+        try{
+            jb.put("page",1);
+            jb.put("status",0);
+        }catch (JSONException e){
+
+        }
+        mHttpClient.postData(XUNJIAN_LIST, jb.toString(), new AppAjaxCallback.onRecevierDataListener<XunJian>() {
             @Override
             public void onReceiverData(List<XunJian> data, String msg) {
                 mList.addAll(data);
@@ -65,6 +153,8 @@ public class XunJianActivity extends BaseRecyclerViewActivity{
             @Override
             public void onReceiverError(String msg) {
                 showToast(msg);
+                mRecyclerView.refreshComplete();
+                setAdapter();
             }
 
             @Override
@@ -109,4 +199,4 @@ public class XunJianActivity extends BaseRecyclerViewActivity{
             }
         });
     }
-}
+}*/

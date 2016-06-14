@@ -24,6 +24,7 @@
     <string name="q_register">快速注册</string>
     <string name="q_login">立即登录</string>
     <string name="register">注册</string>
+    <string name="input_login_name">请输入用户名</string>
     <string name="login_notifi">请输入用户名(注册后不能修改)</string>
     <string name="login_price">请输入打款金额</string>
     <string name="select_kefu">请选择客服</string>
@@ -62,6 +63,7 @@
     <string name="order_type_system">订单类型(系统类型)</string>
     <string name="repair_man">维修人员</string>
     <string name="report_time">报单时间</string>
+    <string name="order_num">订单编号</string>
     <string name="order_status">订单状态</string>
     <string name="close_order">关闭订单</string>
     <string name="pai_order">派单</string>
@@ -116,5 +118,6 @@
     <string name="str_text2">响铃延迟</string>
     <string name="str_text3">秒</string>
     <string name="hello">当前没有设置闹钟!</string>
+    <string name="send_email">将投诉建议发至邮箱:zmnyw4001380089@163.com</string>
 
 </resources>

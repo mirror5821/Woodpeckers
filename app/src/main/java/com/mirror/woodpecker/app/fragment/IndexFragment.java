@@ -4,10 +4,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.mirror.woodpecker.app.R;
 import com.mirror.woodpecker.app.activity.AboutUsActivity;
@@ -15,13 +19,13 @@ import com.mirror.woodpecker.app.activity.LoginActivity;
 import com.mirror.woodpecker.app.activity.NormalWebViewActivity;
 import com.mirror.woodpecker.app.activity.RepairAddActivity;
 import com.mirror.woodpecker.app.activity.UserRepairListActivity;
+import com.mirror.woodpecker.app.activity.UserRepairListSinnersActivity;
 import com.mirror.woodpecker.app.app.AppContext;
 import com.mirror.woodpecker.app.model.Index;
 import com.mirror.woodpecker.app.model.User;
 import com.mirror.woodpecker.app.util.AppAjaxCallback;
 import com.mirror.woodpecker.app.util.SharePreferencesUtil;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -39,6 +43,7 @@ public class IndexFragment extends BaseFragment {
 
     private Button mBtn1,mBtn2,mBtn3,mBtn4;
     private AutoScrollViewPager pager;
+    private RadioGroup mRG;
     private PagerAdapter mAdapter;
 
 //    public IndexFragment() {
@@ -65,7 +70,7 @@ public class IndexFragment extends BaseFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        JSONObject j = new JSONObject();
+        /*JSONObject j = new JSONObject();
         try{
             j.put("key1","我是key1的值");
 
@@ -82,13 +87,14 @@ public class IndexFragment extends BaseFragment {
 
         }catch (JSONException e){
             System.out.println("-------------------------"+e.getLocalizedMessage());
-        }
+        }*/
 
         if(!AppContext.IS_LOGIN){
             login();
         }
 
         if(mAdapter == null){
+            mRG = (RadioGroup)view.findViewById(R.id.layout_dot);
             pager = (AutoScrollViewPager) view.findViewById(R.id.scroll_pager);
             mBtn1 = (Button)view.findViewById(R.id.btn1);
             mBtn2 = (Button)view.findViewById(R.id.btn2);
@@ -106,6 +112,13 @@ public class IndexFragment extends BaseFragment {
                 public void onReceiverData(final List<Index> data, String msg) {
                     if(data== null)
                         return;
+
+                    for(int i=0; i<data.size(); i++){
+                        RadioButton rb = (RadioButton) getActivity().getLayoutInflater().inflate(R.layout.view_pager_rb,null);
+                        rb.setId(147+i);
+                        mRG.addView(rb, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    }
+
                     mAdapter = new PagerAdapter() {
                         @Override
                         public int getCount() {
@@ -140,6 +153,22 @@ public class IndexFragment extends BaseFragment {
                         @Override
                         public void onPageClick(AutoScrollViewPager autoScrollPager, int position) {
 //                            showToast("You clicked page: " + (position + 1));
+                        }
+                    });
+                    pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                        @Override
+                        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                        }
+
+                        @Override
+                        public void onPageSelected(int position) {
+                            mRG.check(147+position);
+                        }
+
+                        @Override
+                        public void onPageScrollStateChanged(int state) {
+
                         }
                     });
 
@@ -193,6 +222,8 @@ public class IndexFragment extends BaseFragment {
 //                }
 //            });
 
+        }else{
+            pager.startAutoScroll();
         }
 
     }
@@ -220,7 +251,8 @@ public class IndexFragment extends BaseFragment {
                 break;
             case R.id.btn2:
                 if(AppContext.IS_LOGIN){
-                    startActivity(new Intent(getActivity(), UserRepairListActivity.class));
+//                    startActivity(new Intent(getActivity(), UserRepairListActivity.class));
+                    startActivity(new Intent(getActivity(), UserRepairListSinnersActivity.class));
                 }else{
                     startActivityForResult(new Intent(getActivity(), LoginActivity.class), LOGIN_CODE1);
                 }

@@ -19,7 +19,7 @@ import dev.mirror.library.android.activity.DevBaseActivity;
 public class BaseActivity extends DevBaseActivity implements Constants{
     private ImageView mImgBack;
     private TextView mTvTitleRight;
-    private TextView mTvTitleBar;
+    public TextView mTvTitleBar;
 
     public AppHttpClient mHttpClient = new AppHttpClient();
     @Override
@@ -58,6 +58,7 @@ public class BaseActivity extends DevBaseActivity implements Constants{
     public void setTitleText(String title){
         mTvTitleBar = (TextView)findViewById(R.id.bar_title);
         mTvTitleBar.setText(title);
+        mTvTitleBar.setOnClickListener(this);
     }
 
     /**

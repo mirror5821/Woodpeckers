@@ -25,13 +25,10 @@ import org.xutils.http.RequestParams;
 import org.xutils.x;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import cn.smssdk.OnSendMessageHandler;
 import cn.smssdk.SMSSDK;
 
 /**
@@ -57,7 +54,7 @@ public class RegistersActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regsters);
         setBack();
-        setTitleText("登录");
+        setTitleText("注册");
 
         mEtName = (EditText)findViewById(R.id.name);
         mEtPass = (EditText)findViewById(R.id.pass);

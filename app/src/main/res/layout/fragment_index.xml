@@ -28,11 +28,27 @@
 
     </dev.mirror.library.android.view.SquareLinearLayout>-->
 
-    <dev.mirror.library.android.view.autoscrollviewpager.AutoScrollViewPager
-        android:id="@+id/scroll_pager"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1">
+
+        <dev.mirror.library.android.view.autoscrollviewpager.AutoScrollViewPager
+            android:id="@+id/scroll_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <RadioGroup
+            android:id="@+id/layout_dot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:orientation="horizontal"/>
+
+    </RelativeLayout>
+
+
 
 
 

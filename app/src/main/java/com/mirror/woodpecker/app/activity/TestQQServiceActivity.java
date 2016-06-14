@@ -15,7 +15,7 @@ public class TestQQServiceActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String url="mqqwpa://im/chat?chat_type=wpa&uin=839738393";
+        String url="mqqwpa://im/chat?chat_type=wpa&uin=582202278";
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
     }
 }

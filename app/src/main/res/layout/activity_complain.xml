@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <include layout="@layout/view_base_title_bar"/>
+    <include layout="@layout/view_base_title_bar"
+        android:id="@+id/t2"/>
 
     <EditText
         android:id="@+id/et"
@@ -14,13 +15,23 @@
         android:background="@null"
         android:padding="@dimen/d8"
         android:minLines="10"
-        android:gravity="top"/>
+        android:gravity="top"
+        android:layout_below="@id/t2"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/send_email"
+        android:layout_below="@id/et"
+        android:gravity="center"
+        android:autoLink="email"/>
 
 
     <Button
         android:id="@+id/btn"
         style="@style/BtnBlue"
         android:text="@string/submit"
-        android:layout_margin="@dimen/d8"/>
+        android:layout_margin="@dimen/d8"
+        android:layout_alignParentBottom="true"/>
 
-</LinearLayout>
+</RelativeLayout>

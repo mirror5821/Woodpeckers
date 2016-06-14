@@ -82,6 +82,7 @@ public class RepairRepairRecyclerViewRefreshFragment extends BaseRecyclerViewFra
 
             @Override
             public void onReceiverError(String msg) {
+                mRecyclerView.refreshComplete();
                 setAdapter();
                 mRecyclerView.setLoadingMoreEnabled(false);
             }

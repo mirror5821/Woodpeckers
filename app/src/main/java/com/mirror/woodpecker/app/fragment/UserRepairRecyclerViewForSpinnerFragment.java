@@ -97,13 +97,13 @@ public class UserRepairRecyclerViewForSpinnerFragment extends BaseRecyclerViewFr
                     mList.addAll(data);
 
                 }
-
                 setAdapter();
                 mRecyclerView.loadMoreComplete();
             }
 
             @Override
             public void onReceiverError(String msg) {
+                mRecyclerView.refreshComplete();
                 setAdapter();
                 mRecyclerView.setLoadingMoreEnabled(false);
             }

@@ -29,6 +29,7 @@ import dev.mirror.library.android.util.JsonUtils;
  * Created by 王沛栋 on 2016/3/11.
  */
 public class UserRepairDetailsActivity extends BaseActivity {
+    private TextView mTvNo;
     private TextView mTvPhone;
     private TextView mTvLoc;
     private TextView mTvDes;
@@ -63,6 +64,7 @@ public class UserRepairDetailsActivity extends BaseActivity {
     String [] orderStatus = {"未处理","客服关闭", "已查看", "等待接单", "已接单", "解决中", "等待调货状态", "确定调货，货已到", "已解决", "最终关闭"};
 
     private void initView(){
+        mTvNo = (TextView)findViewById(R.id.order_no);
         mTvPhone = (TextView)findViewById(R.id.phone);
         mTvLoc = (TextView)findViewById(R.id.loc);
         mTvDes = (TextView)findViewById(R.id.dec);
@@ -79,6 +81,7 @@ public class UserRepairDetailsActivity extends BaseActivity {
         mViewRepairMan = (LinearLayout)findViewById(R.id.view_repair_man);
         mViewJindu = (LinearLayout)findViewById(R.id.view_jindu);
 
+        mTvNo.setText(mRepair.getOrder_id()+"");
         mTvPhone.setText(TextUtils.isEmpty(mRepair.getPhone())?"暂无联系方式":mRepair.getPhone());
         mTvLoc.setText(TextUtils.isEmpty(mRepair.getGz_postion())?"暂无保修位置":mRepair.getGz_postion());
         mTvDes.setText(TextUtils.isEmpty(mRepair.getGz_desc())?"暂无故障描述":mRepair.getGz_desc());

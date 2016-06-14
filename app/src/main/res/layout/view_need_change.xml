@@ -23,7 +23,6 @@
             style="@style/EtLogin"
             android:drawableLeft="@mipmap/ic_set"
             android:hint="@string/input_project_type"
-            android:inputType="phone"
             android:drawablePadding="@dimen/d8"/>
 
        <!-- <TextView

@@ -2,6 +2,8 @@ package com.mirror.woodpecker.app.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
@@ -84,8 +86,8 @@ public class PayActivity extends BaseActivity implements AdapterView.OnItemClick
     }
 
     private void sub(){
-        String phone = mEtPhone.getText().toString();
-        String price = mEtPrice.getText().toString();
+        final String phone = mEtPhone.getText().toString();
+        final String price = mEtPrice.getText().toString();
         if(TextUtils.isEmpty(phone)){
             showToast("请输入电话");
             return;
@@ -104,52 +106,90 @@ public class PayActivity extends BaseActivity implements AdapterView.OnItemClick
         }
 
         showProgressDialog("正在提交");
-        JSONObject jb = new JSONObject();
-        try{
-            /**
-             * 登录ID	uid
-             客服ID	kefuid
-             打款金额	money
-             上传图片	playurl
-             电话	phone
-             */
-            jb.put("kefuid", mKefuId);
-            jb.put("uid", AppContext.USER_ID);
 
-            JSONArray jaa = new JSONArray();
-            for (int i = 0;i<mList.size();i++){
-                JSONObject jj = new JSONObject();
-//                jj.put("image",mImageTools.filePathToString(mList.get(i)));
-                jj.put("image","我是图片流"+i);
-                jaa.put(jj);
-            }
 
-            jb.put("playurl",jaa.toString());
+        new Thread(){
+            @Override
+            public void run() {
+                super.run();
+
+                JSONObject jb = new JSONObject();
+                try{
+                    /**
+                     * 登录ID	uid
+                     客服ID	kefuid
+                     打款金额	money
+                     上传图片	playurl
+                     电话	phone
+                     */
+                    jb.put("kefuid", mKefuId);
+                    jb.put("uid", AppContext.USER_ID);
+
+                    JSONArray jaa = new JSONArray();
+                    for (int i = 0;i<mList.size();i++){
+                        JSONObject jj = new JSONObject();
+                        jj.put("image",mImageTools.filePathToString(mList.get(i)));
+//                jj.put("image","我是图片流"+i);
+                        jaa.put(jj);
+                    }
+
+                    jb.put("playurl",jaa.toString().replace("\"",""));
 //            jb.put("playurl",mImageTools.filePathToString(mList.get(0)));
-            jb.put("money",price);
-            jb.put("phone",phone);
-        }catch (JSONException e){
+                    jb.put("money",price);
+                    jb.put("phone",phone);
+                }catch (JSONException e){
 
-        }
+                }
 
 
-        mHttpClient.postData1(PAY_MENT, jb.toString(), new AppAjaxCallback.onResultListener() {
-            @Override
-            public void onResult(String data, String msg) {
-                showToast(msg);
-                cancelProgressDialog();
-                finish();
+                Message message = Message.obtain();
+
+                Bundle b = new Bundle();
+                b.putString(INTENT_ID, jb.toString());
+                message.setData(b);
+
+//                message.obj = jb.toString();
+                message.what = 1;
+                mHandler.sendMessage(message);
+
             }
+        }.start();
 
-            @Override
-            public void onError(String msg) {
 
-                showToast(msg);
-                cancelProgressDialog();
-            }
-        });
+
     }
 
+
+    private Handler mHandler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+
+            switch(msg.what){
+                case 1:
+
+                    Bundle b = msg.getData();
+
+                    mHttpClient.postData1(PAY_MENT,b.getString(INTENT_ID), new AppAjaxCallback.onResultListener() {
+                        @Override
+                        public void onResult(String data, String msg) {
+                            showToast(msg);
+                            cancelProgressDialog();
+                            finish();
+                        }
+
+                        @Override
+                        public void onError(String msg) {
+
+                            showToast(msg);
+                            cancelProgressDialog();
+                        }
+                    });
+                    break;
+
+            }
+        }
+    };
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         //表示点击上传照片的按钮

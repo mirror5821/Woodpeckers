@@ -111,6 +111,7 @@
             android:screenOrientation="portrait" />
 
         <activity android:name=".activity.ComplainActivity"
+            android:windowSoftInputMode="adjustResize"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
 
