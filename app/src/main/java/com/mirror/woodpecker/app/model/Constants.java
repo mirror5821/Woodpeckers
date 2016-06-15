@@ -108,6 +108,7 @@ public interface Constants {
     public final static String PAY_MENT = "payment";//付款凭证
     public final static String KEFU_LIST = "kefulist";//客服列表
     public final static String KEFU_LIST_BY_STATUS = "statusorderlist";//根据状态请求列表
+    public final static String USER_INFO_UPDATE = "uinfoedit";//用户信息修改
 
 
     public final static int ORDER_STATUS_ALL = 1;//订单列表状态

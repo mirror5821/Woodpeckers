@@ -1,15 +1,15 @@
 package com.mirror.woodpecker.app.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mirror.woodpecker.app.R;
 import com.mirror.woodpecker.app.app.AppContext;
-import com.mirror.woodpecker.app.model.Constants;
 import com.mirror.woodpecker.app.model.User;
 import com.mirror.woodpecker.app.util.AppAjaxCallback;
 import com.mirror.woodpecker.app.util.SharePreferencesUtil;
@@ -17,7 +17,12 @@ import com.mirror.woodpecker.app.util.SharePreferencesUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import dev.mirror.library.android.activity.MultiImageSelectorActivity;
 import dev.mirror.library.android.util.DateUtil;
+import dev.mirror.library.android.util.ImageTools;
 import dev.mirror.library.android.util.JsonUtils;
 
 /**
@@ -28,17 +33,27 @@ public class UserInfoActivity extends BaseActivity {
     private User mUser;
 
     private Button mBtn;
+    private ImageView mImgHeader;
+
+    private ImageTools mImageTools;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
         setBack();
-        setTitleText("用户信息");
+//        setTitleText("用户信息");
         mUserId = AppContext.USER_ID;
-        loadData();
+
+        mImageTools = new ImageTools(this);
 
         mBtn = (Button)findViewById(R.id.btn);
         mBtn.setOnClickListener(this);
+
+        mImgHeader = (ImageView)findViewById(R.id.img_header);
+        mList = new ArrayList<>();
+
+        loadData();
+
     }
     private void loadData(){
         JSONObject jb = new JSONObject();
@@ -95,7 +110,11 @@ public class UserInfoActivity extends BaseActivity {
         mTvSubFinishCount.setText(mUser.getDonecount()+"单");
         mTvSubingCount.setText(mUser.getOncount()+"单");
 
+        if(!TextUtils.isEmpty(mUser.getHeadimg())){
+            AppContext.displayHeaderImage(mImgHeader,mUser.getHeadimg());
+        }
 
+        mImgHeader.setOnClickListener(this);
     }
 
     @Override
@@ -109,6 +128,78 @@ public class UserInfoActivity extends BaseActivity {
                 SharePreferencesUtil.deleteInfo(getApplicationContext());
                 finish();
                 break;
+            case R.id.img_header:
+                openImage();
+                break;
         }
+    }
+
+    private List<String> mList;
+
+    private ArrayList<String> mSelectPath;
+    private static final int REQUEST_IMAGE = 2;
+    private void openImage(){
+        int selectedMode = MultiImageSelectorActivity.MODE_MULTI;;
+//        selectedMode = MultiImageSelectorActivity.MODE_SINGLE;
+
+
+        int maxNum = 1;
+        Intent intent = new Intent(UserInfoActivity.this, MultiImageSelectorActivity.class);
+        // 是否显示拍摄图片
+        intent.putExtra(MultiImageSelectorActivity.EXTRA_SHOW_CAMERA, true);
+        // 最大可选择图片数量
+        intent.putExtra(MultiImageSelectorActivity.EXTRA_SELECT_COUNT, maxNum);
+        // 选择模式
+        intent.putExtra(MultiImageSelectorActivity.EXTRA_SELECT_MODE, selectedMode);
+        // 默认选择
+//        if (mSelectPath != null && mSelectPath.size() > 0) {
+//            intent.putExtra(MultiImageSelectorActivity.EXTRA_DEFAULT_SELECTED_LIST, mSelectPath);
+//        }
+        if (mList != null && mList.size() > 1) {
+            mList.remove(mList.size()-1);
+            intent.putExtra(MultiImageSelectorActivity.EXTRA_DEFAULT_SELECTED_LIST, (ArrayList)mList);
+        }
+        startActivityForResult(intent, REQUEST_IMAGE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode,final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_IMAGE){
+            if(resultCode == RESULT_OK){
+                mSelectPath = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
+                String imgUrl = mSelectPath.get(0);
+
+                AppContext.displayLocHeaderImage(mImgHeader,imgUrl);
+
+                uploadHeader(imgUrl);
+            }
+        }
+    }
+
+    private void uploadHeader(String imageUrl){
+//        37.用户信息修改接口（uinfoedit）
+//        用户ID	uid
+//        头像	headimg
+//        真实姓名	truename
+        JSONObject jb = new JSONObject();
+        try{
+            jb.put("uid",mUserId);
+            jb.put("headimg",mImageTools.filePathToString(imageUrl));
+            jb.put("truename","");
+        }catch (JSONException e){
+
+        }
+        mHttpClient.postData1(USER_INFO_UPDATE, jb.toString(), new AppAjaxCallback.onResultListener() {
+            @Override
+            public void onResult(String data, String msg) {
+                showToast(data);
+            }
+
+            @Override
+            public void onError(String msg) {
+
+            }
+        });
     }
 }

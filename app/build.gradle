@@ -23,6 +23,7 @@ dependencies {
     compile project(':devmirrorlibrary')
 //    compile project(':bmaplibrary')
     compile project(':moblibrary')
+    compile project(':jPushLibrary')
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
 }

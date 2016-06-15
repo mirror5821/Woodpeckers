@@ -55,6 +55,7 @@ public class UserRepairDetailsActivity extends BaseActivity {
         setContentView(R.layout.activity_repair_details);
         mOrderId = getIntent().getIntExtra(INTENT_ID,0);
         setTitleText("维修单详情");
+        setRightTitle("撤回");
         setBack();
 
         mInflater = getLayoutInflater();
@@ -152,7 +153,14 @@ public class UserRepairDetailsActivity extends BaseActivity {
         super.onClick(v);
         switch (v.getId()){
             case R.id.right_text:
-                startActivity(new Intent(UserRepairDetailsActivity.this,CommentActivity.class).putExtra(INTENT_ID,mOrderId));
+                int status = mRepair.getOrder_status();
+                if(status == 1 || status == 9){
+                    startActivity(new Intent(UserRepairDetailsActivity.this,CommentActivity.class).putExtra(INTENT_ID,mOrderId));
+                }else{
+                    //撤回订单
+                    deleteOrder();
+                }
+
                 break;
         }
     }
@@ -213,6 +221,31 @@ public class UserRepairDetailsActivity extends BaseActivity {
             public void onError(String msg) {
                 System.out.println("-------------err-----"+msg);
                 showToast( msg);
+            }
+        });
+    }
+
+
+    private void deleteOrder(){
+        //登录id	uid
+//        订单id	order_id
+        JSONObject jb = new JSONObject();
+        try{
+            jb.put("uid", AppContext.USER_ID);
+            jb.put("order_id", mOrderId);
+        }catch (JSONException e){
+
+        }
+        mHttpClient.postData1(ORDER_DELETE, jb.toString(), new AppAjaxCallback.onResultListener() {
+            @Override
+            public void onResult(String data, String msg) {
+                showToast(msg);
+                finish();
+            }
+
+            @Override
+            public void onError(String msg) {
+                showToast(msg);
             }
         });
     }

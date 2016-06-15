@@ -33,6 +33,7 @@ public class User {
     private int count;//private String 0private String ,
     private int donecount;//private String 0private String ,
     private int oncount;//0
+    private String headimg;
 
     public int getId() {
         return id;
@@ -224,5 +225,13 @@ public class User {
 
     public void setOncount(int oncount) {
         this.oncount = oncount;
+    }
+
+    public String getHeadimg() {
+        return headimg;
+    }
+
+    public void setHeadimg(String headimg) {
+        this.headimg = headimg;
     }
 }

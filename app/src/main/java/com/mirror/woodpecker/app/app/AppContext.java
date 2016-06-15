@@ -1,6 +1,6 @@
 package com.mirror.woodpecker.app.app;
 
-//import com.baidu.mapapi.SDKInitializer;
+import android.widget.ImageView;
 
 import com.mirror.woodpecker.app.model.Constants;
 import com.mirror.woodpecker.app.model.XunJian;
@@ -8,8 +8,15 @@ import com.mirror.woodpecker.app.util.AppAjaxCallback;
 import com.mirror.woodpecker.app.util.AppHttpClient;
 import com.mirror.woodpecker.app.util.XunJianUtil;
 
+import org.xutils.DbManager;
+import org.xutils.db.table.TableEntity;
+import org.xutils.image.ImageOptions;
+import org.xutils.x;
+
+import java.io.File;
 import java.util.List;
 
+import cn.jpush.android.api.JPushInterface;
 import cn.smssdk.SMSSDK;
 import dev.mirror.library.android.app.BaseAppContext;
 
@@ -49,6 +56,10 @@ public class AppContext extends BaseAppContext {
         //sharesdk短信
         SMSSDK.initSDK(this, "11e4b9c5f05c8", "e482c03620d532d19327073a3b001ea7");
         loadXunjian();
+
+        //初始化极光推送
+        JPushInterface.setDebugMode(false); 	// 设置开启日志,发布时请关闭日志
+        JPushInterface.init(this);     		// 初始化 JPush
     }
 
     public static AppContext getInstance(){
@@ -97,4 +108,73 @@ public class AppContext extends BaseAppContext {
             }
         });
     }
+
+
+    /**
+     * 加载网络头像
+     * @param iv
+     * @param url
+     */
+    public static void displayHeaderImage(ImageView iv, String url){
+        ImageOptions imageOptions = new ImageOptions.Builder()
+                .setSize(200,200)
+                .setCircular(true)
+                .setFadeIn(true)
+                .setAutoRotate(true)
+                .build();
+        x.image().bind(iv, url,imageOptions);
+    }
+
+    /**
+     * 加载本地图片 -- 头像
+     * @param iv
+     * @param fileUrl
+     */
+    public static void displayLocHeaderImage(ImageView iv,String fileUrl){
+        File imageFile = new File(fileUrl);
+        ImageOptions imageOptions = new ImageOptions.Builder()
+                .setSize(200,200)
+                .setCircular(true)
+                .setFadeIn(true)
+                .setAutoRotate(true)
+                .build();
+        x.image().bind(iv, imageFile.toURI().toString(), imageOptions);
+    }
+
+
+    /**
+     * 初始化数据库
+     */
+    protected static DbManager db;
+    protected static void initDb(){
+        //本地数据的初始化
+        DbManager.DaoConfig daoConfig = new DbManager.DaoConfig()
+                .setDbName("xutils3_db") //设置数据库名
+                .setDbVersion(1) //设置数据库版本,每次启动应用时将会检查该版本号,
+                //发现数据库版本低于这里设置的值将进行数据库升级并触发DbUpgradeListener
+                .setAllowTransaction(true)//设置是否开启事务,默认为false关闭事务
+                .setTableCreateListener(new DbManager.TableCreateListener() {
+                    @Override
+                    public void onTableCreate(DbManager db, TableEntity<?> table) {
+                        //balabala...
+                    }
+                })//设置数据库创建时的Listener
+                .setDbUpgradeListener(new DbManager.DbUpgradeListener() {
+                    @Override
+                    public void onUpgrade(DbManager db, int oldVersion, int newVersion) {
+                        //balabala...
+                    }
+                });//设置数据库升级时的Listener,这里可以执行相关数据库表的相关修改,比如alter语句增加字段等
+        //.setDbDir(null);//设置数据库.db文件存放的目录,默认为包名下databases目录下
+        db = x.getDb(daoConfig);
+    }
+
+    public static  DbManager mDB(){
+        if(mDB() == null){
+            initDb();
+        }
+        return db;
+    }
+
+
 }

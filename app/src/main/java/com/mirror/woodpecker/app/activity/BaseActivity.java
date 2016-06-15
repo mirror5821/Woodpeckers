@@ -11,6 +11,7 @@ import com.mirror.woodpecker.app.app.AppContext;
 import com.mirror.woodpecker.app.model.Constants;
 import com.mirror.woodpecker.app.util.AppHttpClient;
 
+import cn.jpush.android.api.JPushInterface;
 import dev.mirror.library.android.activity.DevBaseActivity;
 
 /**
@@ -34,6 +35,7 @@ public class BaseActivity extends DevBaseActivity implements Constants{
             new AppContext().loadXunjian();
         }
 
+        JPushInterface.init(getApplicationContext());
     }
 
     /**
@@ -72,6 +74,23 @@ public class BaseActivity extends DevBaseActivity implements Constants{
         mTvTitleRight.setOnClickListener(this);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        JPushInterface.onResume(getApplicationContext());
 
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        JPushInterface.onPause(getApplicationContext());
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+    }
 
 }

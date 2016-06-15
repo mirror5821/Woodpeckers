@@ -23,6 +23,8 @@ import com.mirror.woodpecker.app.activity.XunJianActivity;
 import com.mirror.woodpecker.app.app.AppContext;
 import com.mirror.woodpecker.app.util.SharePreferencesUtil;
 
+import dev.mirror.library.android.view.CircleImageView;
+
 /**
  * Created by 王沛栋 on 2016/3/21.
  */
@@ -40,6 +42,8 @@ public class MyFragment extends BaseFragment {
     private Button mBtnLogin,mBtnRegister;
     private Button mBtnMyRepair,mBtnRepairSub;
     private Button mBtnLogout;
+
+    private CircleImageView mImgHeader;
     @Override
     public int setLayoutId() {
         return R.layout.fragment_my;
@@ -58,6 +62,9 @@ public class MyFragment extends BaseFragment {
         mTvXunjian = (TextView)view.findViewById(R.id.tv_xunjian);
         mTvOrderCount = (TextView)view.findViewById(R.id.tv_ordercount);
         mTvPay = (TextView)view.findViewById(R.id.tv_pay);
+        mImgHeader = (CircleImageView)view.findViewById(R.id.img_header);
+
+        mImgHeader.setOnClickListener(this);
 
         mTvPay.setOnClickListener(this);
         mTvOrderCount.setOnClickListener(this);
@@ -132,6 +139,13 @@ public class MyFragment extends BaseFragment {
                 startActivity(new Intent(getActivity(), RegistersActivity.class));
                 break;
             case R.id.tv_info:
+                if(AppContext.USER_ROLE_ID==-1){
+                    startActivityForResult(new Intent(getActivity(), LoginActivity.class),LOGIN_CODE3);
+                }else{
+                    startActivity(new Intent(getActivity(), UserInfoActivity.class));
+                }
+                break;
+            case R.id.img_header:
                 if(AppContext.USER_ROLE_ID==-1){
                     startActivityForResult(new Intent(getActivity(), LoginActivity.class),LOGIN_CODE3);
                 }else{
