@@ -1,6 +1,7 @@
 package com.mirror.woodpecker.app.util;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.mirror.woodpecker.app.model.Constants;
 
@@ -21,6 +22,7 @@ public class AppHttpClient{
         sb.append(fName);
 
         if(!TextUtils.isEmpty(p)){
+            Log.v("--------------",p.toString());
             System.out.println("-------------------"+p);
         }
         AppAjaxParam param = new AppAjaxParam(fName,sb.toString());

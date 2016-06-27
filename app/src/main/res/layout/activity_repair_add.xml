@@ -24,7 +24,27 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <EditText
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/phone"
+                        android:hint="@string/input_contact"
+                        android:completionThreshold="1"
+                        style="@style/EtLogin"
+                        android:drawableLeft="@mipmap/ic_repair_phone"
+                        android:inputType="phone"
+                        android:maxLength="11"
+                        android:layout_width="match_parent"
+                        android:drawablePadding="@dimen/d8"/>
+
+                </LinearLayout>
+
+                <!--<EditText
                     android:id="@+id/phone"
                     style="@style/EtLogin"
                     android:drawableLeft="@mipmap/ic_repair_phone"
@@ -33,7 +53,21 @@
                     android:maxLength="11"
                     android:layout_width="wrap_content"
                     android:layout_weight="1"
-                    android:drawablePadding="@dimen/d8"/>
+                    android:drawablePadding="@dimen/d8"/>-->
+
+                <!-- 声明一个AutoCompleteTextView控件，设定其下拉框标题为“Famous Citi” 并且输入一个字符开始提示-->
+                <!--<AutoCompleteTextView
+                    android:id="@+id/phone"
+                    android:completionHint="@string/input_contact"
+                    android:completionThreshold="1"
+                    style="@style/EtLogin"
+                    android:drawableLeft="@mipmap/ic_repair_phone"
+                    android:inputType="phone"
+                    android:maxLength="11"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/d8"
+                    />-->
 
                 <Button
                     android:id="@+id/btn_phone"
@@ -42,6 +76,10 @@
                     android:background="@mipmap/ic_contact_select"/>
 
             </LinearLayout>
+
+
+
+
 
 
 

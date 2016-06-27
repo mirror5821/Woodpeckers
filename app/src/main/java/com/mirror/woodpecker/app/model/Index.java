@@ -12,10 +12,12 @@ public class Index implements Parcelable{
     }
     private int id;//":"2",
     private String path;//":
+    private String url;
 
     protected Index(Parcel in) {
         id = in.readInt();
         path = in.readString();
+        url = in.readString();
     }
 
     public static final Creator<Index> CREATOR = new Creator<Index>() {
@@ -46,6 +48,14 @@ public class Index implements Parcelable{
         this.path = path;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -55,5 +65,6 @@ public class Index implements Parcelable{
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id);
         dest.writeString(path);
+        dest.writeString(url);
     }
 }

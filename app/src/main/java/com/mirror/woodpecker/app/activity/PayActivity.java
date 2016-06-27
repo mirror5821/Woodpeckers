@@ -2,6 +2,7 @@ package com.mirror.woodpecker.app.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
@@ -23,6 +24,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +39,7 @@ import dev.mirror.library.android.view.NoScrollGridView;
  */
 public class PayActivity extends BaseActivity implements AdapterView.OnItemClickListener{
     private NoScrollGridView mGridView;
-    private EditText mEtPhone,mEtPrice;
+    private EditText mEtPhone,mEtPrice,mEtOrderNum;
     private TextView mTvKefu;
     private Button mBtn;
 
@@ -61,7 +65,9 @@ public class PayActivity extends BaseActivity implements AdapterView.OnItemClick
 
         mEtPhone = (EditText)findViewById(R.id.phone);
         mEtPrice = (EditText)findViewById(R.id.price);
+        mEtOrderNum = (EditText)findViewById(R.id.num);
         mTvKefu = (TextView)findViewById(R.id.kefu);
+
         mTvKefu.setOnClickListener(this);
         mBtn = (Button)findViewById(R.id.btn);
         mGridView = (NoScrollGridView)findViewById(R.id.gridview);
@@ -88,6 +94,7 @@ public class PayActivity extends BaseActivity implements AdapterView.OnItemClick
     private void sub(){
         final String phone = mEtPhone.getText().toString();
         final String price = mEtPrice.getText().toString();
+        final String num = mEtOrderNum.getText().toString();
         if(TextUtils.isEmpty(phone)){
             showToast("请输入电话");
             return;
@@ -102,6 +109,11 @@ public class PayActivity extends BaseActivity implements AdapterView.OnItemClick
         }
         if(mList.size()<=1){
             showToast("请拍摄维修前照片");
+            return;
+        }
+
+        if(TextUtils.isEmpty(num)){
+            showToast("请输入订单号");
             return;
         }
 
@@ -126,22 +138,29 @@ public class PayActivity extends BaseActivity implements AdapterView.OnItemClick
                     jb.put("uid", AppContext.USER_ID);
 
                     JSONArray jaa = new JSONArray();
-                    for (int i = 0;i<mList.size();i++){
+                    for (int i = 0;i<mList.size()-1;i++){
                         JSONObject jj = new JSONObject();
-                        jj.put("image",mImageTools.filePathToString(mList.get(i)));
+                        jj.put("image",mImageTools.filePathToString(mList.get(i)));//\\\
+//                        jj.put("image",mImageTools.filePathToString(mList.get(i)).replace("\\\\\\/","/"));
 //                jj.put("image","我是图片流"+i);
                         jaa.put(jj);
                     }
-
-                    jb.put("playurl",jaa.toString().replace("\"",""));
+                    jb.put("playurl",jaa.toString());
+//                    jb.put("playurl",jaa.toString().replace("\"",""));
 //            jb.put("playurl",mImageTools.filePathToString(mList.get(0)));
                     jb.put("money",price);
                     jb.put("phone",phone);
+                    jb.put("order_id",num);
                 }catch (JSONException e){
 
                 }
 
-
+                try {
+                    writeFileSdcardFile("a.txt",jb.toString());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    showToast("写入失败"+e.getLocalizedMessage());
+                }
                 Message message = Message.obtain();
 
                 Bundle b = new Bundle();
@@ -202,6 +221,24 @@ public class PayActivity extends BaseActivity implements AdapterView.OnItemClick
         }
     }
 
+
+    //写数据到SD中的文件
+    public void writeFileSdcardFile(String fileName,String write_str) throws IOException{
+        try{
+
+            File file = new File(Environment.getExternalStorageDirectory(),
+                    fileName);
+            FileOutputStream fout = new FileOutputStream(file);
+            byte [] bytes = write_str.getBytes();
+
+            fout.write(bytes);
+            fout.close();
+        }
+
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 
     private ArrayList<String> mSelectPath;
     private static final int REQUEST_IMAGE = 2;

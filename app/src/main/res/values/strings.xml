@@ -27,6 +27,7 @@
     <string name="input_login_name">请输入用户名</string>
     <string name="login_notifi">请输入用户名(注册后不能修改)</string>
     <string name="login_price">请输入打款金额</string>
+    <string name="input_order_num">请输入订单编号</string>
     <string name="select_kefu">请选择客服</string>
     <string name="login_notifi_pass">请输入密码</string>
     <string name="input_new_pass">请输入新的密码</string>

@@ -44,6 +44,25 @@ public class AppContext extends BaseAppContext {
 
     private static AppContext instance;
 
+    private static DbManager.DaoConfig daoConfig;
+    public static DbManager.DaoConfig getDaoConfig() {
+        if(daoConfig == null){
+            daoConfig = new DbManager.DaoConfig()
+                    .setDbName("zmn_db")//创建数据库的名称
+                    .setDbVersion(1)//数据库版本号
+                    .setDbUpgradeListener(new DbManager.DbUpgradeListener() {
+                        @Override
+                        public void onUpgrade(DbManager db, int oldVersion, int newVersion) {
+                            // TODO: ...
+                            // db.addColumn(...);
+                            // db.dropTable(...);
+                            // ...
+                        }
+                    });//数据库更新操作
+        }
+        return daoConfig;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -61,6 +80,7 @@ public class AppContext extends BaseAppContext {
         JPushInterface.setDebugMode(false); 	// 设置开启日志,发布时请关闭日志
         JPushInterface.init(this);     		// 初始化 JPush
     }
+
 
     public static AppContext getInstance(){
 

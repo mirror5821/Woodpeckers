@@ -22,12 +22,22 @@
                 android:id="@+id/phone"
                 style="@style/EtLogin"
                 android:hint="@string/input_phone"
+                android:inputType="phone"
+                android:maxLength="11"
                 android:drawablePadding="@dimen/d8"/>
 
             <EditText
                 android:id="@+id/price"
                 style="@style/EtLogin"
                 android:hint="@string/login_price"
+                android:drawablePadding="@dimen/d8"
+                android:layout_marginTop="@dimen/d4"
+                android:inputType="numberDecimal"/>
+
+            <EditText
+                android:id="@+id/num"
+                style="@style/EtLogin"
+                android:hint="@string/input_order_num"
                 android:drawablePadding="@dimen/d8"
                 android:layout_marginTop="@dimen/d4"
                 android:inputType="numberDecimal"/>

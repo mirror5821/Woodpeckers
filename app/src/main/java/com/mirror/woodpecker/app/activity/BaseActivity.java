@@ -1,6 +1,7 @@
 package com.mirror.woodpecker.app.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -11,7 +12,10 @@ import com.mirror.woodpecker.app.app.AppContext;
 import com.mirror.woodpecker.app.model.Constants;
 import com.mirror.woodpecker.app.util.AppHttpClient;
 
+import java.util.Set;
+
 import cn.jpush.android.api.JPushInterface;
+import cn.jpush.android.api.TagAliasCallback;
 import dev.mirror.library.android.activity.DevBaseActivity;
 
 /**
@@ -36,7 +40,70 @@ public class BaseActivity extends DevBaseActivity implements Constants{
         }
 
         JPushInterface.init(getApplicationContext());
+
+        mHandler.sendMessage(mHandler.obtainMessage(MSG_SET_ALIAS, "13938423219"));
     }
+
+
+    /**
+     * 以下内容为设置推送消息
+     */
+    private final TagAliasCallback mAliasCallback = new TagAliasCallback() {
+
+        @Override
+        public void gotResult(int code, String alias, Set<String> tags) {
+            switch (code) {
+                case 0:
+                    break;
+
+                case 6002:
+                    mHandler.sendMessageDelayed(mHandler.obtainMessage(MSG_SET_ALIAS, alias), 1000 * 60);
+                    break;
+
+            }
+
+        }
+
+    };
+
+    private final TagAliasCallback mTagsCallback = new TagAliasCallback() {
+
+        @Override
+        public void gotResult(int code, String alias, Set<String> tags) {
+            switch (code) {
+                case 0:
+                    break;
+
+                case 6002:
+                    mHandler.sendMessageDelayed(mHandler.obtainMessage(MSG_SET_TAGS, tags), 1000 * 60);
+                    break;
+
+            }
+
+        }
+
+    };
+
+    private static final int MSG_SET_ALIAS = 1001;
+    private static final int MSG_SET_TAGS = 1002;
+
+    private final Handler mHandler = new Handler() {
+        @SuppressWarnings("unchecked")
+        @Override
+        public void handleMessage(android.os.Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case MSG_SET_ALIAS:
+                    JPushInterface.setAliasAndTags(getApplicationContext(), (String) msg.obj, null, mAliasCallback);
+                    break;
+
+                case MSG_SET_TAGS:
+                    JPushInterface.setAliasAndTags(getApplicationContext(), null, (Set<String>) msg.obj, mTagsCallback);
+                    break;
+            }
+        }
+    };
+
 
     /**
      * 设置后退事件

@@ -299,7 +299,8 @@ public class ImageTools{
 			}while ((width >= ImageTools.this.defaultWidth) && (height >= ImageTools.this.defaultHeight));
 			BitmapFactory.Options options=new BitmapFactory.Options();
 			options.inJustDecodeBounds = false;
-			options.inSampleSize = size;
+			options.inSampleSize = 10;
+//			options.inSampleSize = size;
 			bitmap.recycle();
 
 			Bitmap mBitmap = BitmapFactory.decodeFile(st, options);

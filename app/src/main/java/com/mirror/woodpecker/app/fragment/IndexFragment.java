@@ -16,6 +16,7 @@ import android.widget.RadioGroup;
 import com.mirror.woodpecker.app.R;
 import com.mirror.woodpecker.app.activity.AboutUsActivity;
 import com.mirror.woodpecker.app.activity.LoginActivity;
+import com.mirror.woodpecker.app.activity.NormalWebView2Activity;
 import com.mirror.woodpecker.app.activity.NormalWebViewActivity;
 import com.mirror.woodpecker.app.activity.RepairAddActivity;
 import com.mirror.woodpecker.app.activity.UserRepairListActivity;
@@ -172,6 +173,12 @@ public class IndexFragment extends BaseFragment {
                         }
                     });
 
+                    pager.setOnPageClickListener(new AutoScrollViewPager.OnPageClickListener() {
+                        @Override
+                        public void onPageClick(AutoScrollViewPager autoScrollPager, int position) {
+                            startActivity(new Intent(getActivity(), NormalWebView2Activity.class).putExtra(INTENT_ID,data.get(position).getUrl()));
+                        }
+                    });
                 }
 
                 @Override
@@ -215,12 +222,7 @@ public class IndexFragment extends BaseFragment {
 //            pager.setScrollFactgor(5);
 //            pager.setOffscreenPageLimit(3);
 //            pager.startAutoScroll(2000);
-//            pager.setOnPageClickListener(new AutoScrollViewPager.OnPageClickListener() {
-//                @Override
-//                public void onPageClick(AutoScrollViewPager autoScrollPager, int position) {
-//                    showToast("You clicked page: " + (position + 1));
-//                }
-//            });
+
 
         }else{
             pager.startAutoScroll();

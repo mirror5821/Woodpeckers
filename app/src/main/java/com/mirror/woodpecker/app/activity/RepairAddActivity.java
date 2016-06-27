@@ -8,25 +8,34 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.mirror.woodpecker.app.R;
 import com.mirror.woodpecker.app.app.AppContext;
+import com.mirror.woodpecker.app.model.cache.PhoneCache;
 import com.mirror.woodpecker.app.util.AppAjaxCallback;
 import com.mirror.woodpecker.app.util.AppHttpClient;
+import com.mirror.woodpecker.app.util.DBUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
 
 /**
  * Created by 王沛栋 on 2016/3/10.
  */
 public class RepairAddActivity extends BaseActivity{
-    private EditText mEtPhone,mEtDes;
+    private AutoCompleteTextView mEtPhone;
+    private EditText mEtDes;
     private EditText mTvLoc;
     private Button mBtnPhone;
     private Button mBtn;
+
+    private AutoCompleteTextView autotext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +43,7 @@ public class RepairAddActivity extends BaseActivity{
         setBack();
         setTitleText("故障申报");
 
-        mEtPhone = (EditText)findViewById(R.id.phone);
+        mEtPhone = (AutoCompleteTextView)findViewById(R.id.phone);
         mEtDes = (EditText)findViewById(R.id.dec);
 
         mTvLoc = (EditText) findViewById(R.id.loc);
@@ -44,6 +53,26 @@ public class RepairAddActivity extends BaseActivity{
         mBtnPhone.setOnClickListener(this);
         mBtn.setOnClickListener(this);
 //        mTvLoc.setOnClickListener(this);
+
+
+        List<PhoneCache> phoneCaches = DBUtil.getPhoneCache();
+        if(phoneCaches != null){
+            int l = phoneCaches.size();
+            String []  autoStrings = new String [l];
+            for (int i=0;i<l;i++){
+                autoStrings[i] = phoneCaches.get(i).getNum();
+            }
+
+            //设置数据源
+//            String[] autoStrings=new String[]{"15555","135665","beijing","london","Seoul Special","Los Angeles"};
+            //设置ArrayAdapter，并且设定以单行下拉列表风格展示（第二个参数设定）。
+            ArrayAdapter<String> adapter=new ArrayAdapter<String>(RepairAddActivity.this,
+                    android.R.layout.simple_dropdown_item_1line, autoStrings);
+            //设置AutoCompleteTextView的Adapter
+            mEtPhone.setAdapter(adapter);
+        }
+
+
     }
 
     @Override
@@ -89,7 +118,8 @@ public class RepairAddActivity extends BaseActivity{
                         Cursor cursor = getContentResolver().query(contactData, null, null, null,
                                 null);
                         cursor.moveToFirst();
-                        String num = this.getContactPhone(cursor);
+                        String num = this.getContactPhone(cursor).substring(0,11);
+                        DBUtil.savePhoneCache(num);
                         mEtPhone.setText(num);
                     }
                     break;
@@ -173,6 +203,8 @@ public class RepairAddActivity extends BaseActivity{
             public void onResult(String data, String msg) {
                 showToast(msg);
                 startActivity(new Intent(RepairAddActivity.this,RepairDetailsActivity.class).putExtra(INTENT_ID,Integer.valueOf(data)));
+
+                DBUtil.savePhoneCache(phone);
                 finish();
             }
 
