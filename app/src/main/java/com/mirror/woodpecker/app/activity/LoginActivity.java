@@ -3,6 +3,7 @@ package com.mirror.woodpecker.app.activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +19,11 @@ import com.mirror.woodpecker.app.util.SharePreferencesUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Set;
+
+import cn.jpush.android.api.JPushInterface;
+import cn.jpush.android.api.TagAliasCallback;
 
 /**
  * Created by 王沛栋 on 2016/3/3.
@@ -107,6 +113,7 @@ public class LoginActivity extends BaseActivity {
         ap.postData1(LOGIN_TEST, jb.toString(), new AppAjaxCallback.onResultListener() {
             @Override
             public void onResult(String data, String msg) {
+                mHandler.sendMessage(mHandler.obtainMessage(MSG_SET_ALIAS, name));
                 /**
                  * 返回的数据中role_id为角色ID，数据1代表单位主管，
                  * 2代表部门主管，3代表客服，4代表维修人员，0为普通用户
@@ -133,4 +140,64 @@ public class LoginActivity extends BaseActivity {
             }
         });
     }
+
+
+    /**
+     * 以下内容为设置推送消息
+     */
+    private final TagAliasCallback mAliasCallback = new TagAliasCallback() {
+
+        @Override
+        public void gotResult(int code, String alias, Set<String> tags) {
+            switch (code) {
+                case 0:
+                    break;
+
+                case 6002:
+                    mHandler.sendMessageDelayed(mHandler.obtainMessage(MSG_SET_ALIAS, alias), 1000 * 60);
+                    break;
+
+            }
+
+        }
+
+    };
+
+    private final TagAliasCallback mTagsCallback = new TagAliasCallback() {
+
+        @Override
+        public void gotResult(int code, String alias, Set<String> tags) {
+            switch (code) {
+                case 0:
+                    break;
+
+                case 6002:
+                    mHandler.sendMessageDelayed(mHandler.obtainMessage(MSG_SET_TAGS, tags), 1000 * 60);
+                    break;
+
+            }
+
+        }
+
+    };
+
+    private static final int MSG_SET_ALIAS = 1001;
+    private static final int MSG_SET_TAGS = 1002;
+
+    private final Handler mHandler = new Handler() {
+        @SuppressWarnings("unchecked")
+        @Override
+        public void handleMessage(android.os.Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case MSG_SET_ALIAS:
+                    JPushInterface.setAliasAndTags(getApplicationContext(), (String) msg.obj, null, mAliasCallback);
+                    break;
+
+                case MSG_SET_TAGS:
+                    JPushInterface.setAliasAndTags(getApplicationContext(), null, (Set<String>) msg.obj, mTagsCallback);
+                    break;
+            }
+        }
+    };
 }

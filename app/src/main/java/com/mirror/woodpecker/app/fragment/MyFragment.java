@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -21,9 +23,8 @@ import com.mirror.woodpecker.app.activity.UserRepairListActivity;
 import com.mirror.woodpecker.app.activity.UserRepairListSinnersActivity;
 import com.mirror.woodpecker.app.activity.XunJianActivity;
 import com.mirror.woodpecker.app.app.AppContext;
+import com.mirror.woodpecker.app.model.User;
 import com.mirror.woodpecker.app.util.SharePreferencesUtil;
-
-import dev.mirror.library.android.view.CircleImageView;
 
 /**
  * Created by 王沛栋 on 2016/3/21.
@@ -43,7 +44,7 @@ public class MyFragment extends BaseFragment {
     private Button mBtnMyRepair,mBtnRepairSub;
     private Button mBtnLogout;
 
-    private CircleImageView mImgHeader;
+    private ImageView mImgHeader;
     @Override
     public int setLayoutId() {
         return R.layout.fragment_my;
@@ -62,7 +63,7 @@ public class MyFragment extends BaseFragment {
         mTvXunjian = (TextView)view.findViewById(R.id.tv_xunjian);
         mTvOrderCount = (TextView)view.findViewById(R.id.tv_ordercount);
         mTvPay = (TextView)view.findViewById(R.id.tv_pay);
-        mImgHeader = (CircleImageView)view.findViewById(R.id.img_header);
+        mImgHeader = (ImageView)view.findViewById(R.id.img_header);
 
         mImgHeader.setOnClickListener(this);
 
@@ -89,6 +90,8 @@ public class MyFragment extends BaseFragment {
         mBtnRepairSub.setOnClickListener(this);
         mBtnLogout.setOnClickListener(this);
 
+
+
     }
 
     private void initView(){
@@ -103,6 +106,12 @@ public class MyFragment extends BaseFragment {
             }else{
                 mTvXunjian.setVisibility(View.GONE);
             }
+
+            User user = SharePreferencesUtil.getUserInfo(getActivity());
+            if(!TextUtils.isEmpty(user.getHeadimg())){
+                AppContext.displayHeaderImage(mImgHeader,"http://zmnyw.cn"+user.getHeadimg());
+            }
+
 
             /*if(AppContext.USER_ROLE_ID !=3 || AppContext.USER_ROLE_ID !=4){
                 mViewRepair.setVisibility(View.GONE);

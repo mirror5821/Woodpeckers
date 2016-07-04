@@ -159,7 +159,13 @@ public class RepairAddActivity extends BaseActivity{
         return result;
     }
 
+    private boolean isSub = false;
     public void sub(){
+
+        if(isSub)
+            return;
+
+        isSub = true;
         final String phone = mEtPhone.getText().toString().trim();
         final String loc = mTvLoc.getText().toString().trim();
         final String des = mEtDes.getText().toString().trim();
@@ -201,6 +207,7 @@ public class RepairAddActivity extends BaseActivity{
         ap.postData1(REPAIR, jb.toString(), new AppAjaxCallback.onResultListener() {
             @Override
             public void onResult(String data, String msg) {
+                isSub = false;
                 showToast(msg);
                 startActivity(new Intent(RepairAddActivity.this,RepairDetailsActivity.class).putExtra(INTENT_ID,Integer.valueOf(data)));
 
@@ -210,6 +217,7 @@ public class RepairAddActivity extends BaseActivity{
 
             @Override
             public void onError(String msg) {
+                isSub = false;
                 showToast(msg);
             }
         });

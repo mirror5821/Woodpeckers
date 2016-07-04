@@ -52,7 +52,7 @@ public class AppAjaxCallback<T> implements Callback.CommonCallback<String> {
     @Override
     public void onSuccess(String result) {
         String t =  result.toString();
-        System.out.println("--------------------"+t);
+        System.out.println("----------------callback----"+t);
         if(!TextUtils.isEmpty(t)){
             try{
                 JSONObject jb = new JSONObject(t);

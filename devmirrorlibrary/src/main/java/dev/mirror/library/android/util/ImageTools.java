@@ -299,7 +299,7 @@ public class ImageTools{
 			}while ((width >= ImageTools.this.defaultWidth) && (height >= ImageTools.this.defaultHeight));
 			BitmapFactory.Options options=new BitmapFactory.Options();
 			options.inJustDecodeBounds = false;
-			options.inSampleSize = 10;
+			options.inSampleSize = 4;
 //			options.inSampleSize = size;
 			bitmap.recycle();
 

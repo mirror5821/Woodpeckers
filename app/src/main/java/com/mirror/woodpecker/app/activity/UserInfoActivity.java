@@ -65,6 +65,7 @@ public class UserInfoActivity extends BaseActivity {
         mHttpClient.postData1(USER_INFOMATION, jb.toString(), new AppAjaxCallback.onResultListener() {
             @Override
             public void onResult(String data, String msg) {
+                SharePreferencesUtil.saveUserInfo(getApplicationContext(),data);
                 mUser = JsonUtils.parse(data,User.class);
                 initView();
             }
@@ -111,7 +112,7 @@ public class UserInfoActivity extends BaseActivity {
         mTvSubingCount.setText(mUser.getOncount()+"单");
 
         if(!TextUtils.isEmpty(mUser.getHeadimg())){
-            AppContext.displayHeaderImage(mImgHeader,mUser.getHeadimg());
+            AppContext.displayHeaderImage(mImgHeader,"http://zmnyw.cn"+mUser.getHeadimg());
         }
 
         mImgHeader.setOnClickListener(this);
@@ -193,7 +194,10 @@ public class UserInfoActivity extends BaseActivity {
         mHttpClient.postData1(USER_INFO_UPDATE, jb.toString(), new AppAjaxCallback.onResultListener() {
             @Override
             public void onResult(String data, String msg) {
-                showToast(data);
+
+                showToast(msg);
+
+                loadData();
             }
 
             @Override

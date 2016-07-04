@@ -9,7 +9,6 @@ import android.util.Log;
 import com.mirror.woodpecker.app.activity.MainTabActivity;
 import com.mirror.woodpecker.app.model.Constants;
 import com.mirror.woodpecker.app.model.Message;
-import com.mirror.woodpecker.app.util.MessageUtil;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -32,7 +31,7 @@ public class JPushReceiver extends BroadcastReceiver{
 
         } else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {
             Log.d(TAG, "[MyReceiver] 接收到推送下来的通知");
-			MessageUtil.savePushMessage(bundle.getString(JPushInterface.EXTRA_ALERT),bundle.getString(JPushInterface.EXTRA_ALERT));
+//			MessageUtil.savePushMessage(bundle.getString(JPushInterface.EXTRA_ALERT),bundle.getString(JPushInterface.EXTRA_ALERT));
 //			System.out.println("----------------" + bundle.getString(JPushInterface.EXTRA_NOTIFICATION_TITLE)+"---" + bundle.getString(JPushInterface.EXTRA_MESSAGE)+"&"+bundle.getString(JPushInterface.EXTRA_ALERT));
 			System.out.println("[MyReceiver]"+printBundle(bundle)+"---"+bundle.getString(JPushInterface.EXTRA_ALERT)+"---"+bundle.getString(JPushInterface.EXTRA_MESSAGE)+"---"+bundle.getString(JPushInterface.EXTRA_EXTRA));
 			int notifactionId = bundle.getInt(JPushInterface.EXTRA_NOTIFICATION_ID);

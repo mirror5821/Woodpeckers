@@ -190,10 +190,15 @@ public class AppContext extends BaseAppContext {
     }
 
     public static  DbManager mDB(){
-        if(mDB() == null){
-            initDb();
+        try{
+            if(mDB() == null){
+                initDb();
+            }
+            return db;
+        }catch (Exception e){
+
         }
-        return db;
+        return null;
     }
 
 

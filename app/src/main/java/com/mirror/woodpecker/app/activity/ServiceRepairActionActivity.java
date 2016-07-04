@@ -87,6 +87,8 @@ public class ServiceRepairActionActivity extends BaseActivity {
                 return;
             }
 
+
+
             /**
              维修价	repair_price
              订单id	order_id
@@ -102,8 +104,8 @@ public class ServiceRepairActionActivity extends BaseActivity {
 
             }
 
-            System.out.println("-------------"+jb.toString());
-            mHttpClient.postData1(UP_REPARI_PRICE, jb.toString(), new AppAjaxCallback.onResultListener() {
+//            System.out.println("-------------"+jb.toString());
+            mHttpClient.postData1(ORDER_FLOW, jb.toString(), new AppAjaxCallback.onResultListener() {
                 @Override
                 public void onResult(String data, String msg) {
                     sub();
@@ -115,6 +117,35 @@ public class ServiceRepairActionActivity extends BaseActivity {
                     showToast(msg);
                 }
             });
+
+
+           /* RequestParams params = new RequestParams(HOST_HEADER+UP_REPARI_PRICE);
+            System.out.println("-------------"+jb.toString());
+            params.addParameter(Constants.JSONG_KEY, jb.toString());
+
+
+            x.http().post(params, new Callback.CommonCallback<String>() {
+
+                @Override
+                public void onSuccess(String result) {
+                    System.out.println("---------------777777777777777------"+result.toString());
+                }
+
+                @Override
+                public void onError(Throwable ex, boolean isOnCallback) {
+                    System.out.println("---------------777777777777778------"+ex.getLocalizedMessage().toString());
+                }
+
+                @Override
+                public void onCancelled(CancelledException cex) {
+
+                }
+
+                @Override
+                public void onFinished() {
+
+                }
+            });*/
         }
 
     }
@@ -156,6 +187,7 @@ public class ServiceRepairActionActivity extends BaseActivity {
             @Override
             public void onResult(String data, String msg) {
                 showToast(msg);
+                finish();
             }
 
             @Override
