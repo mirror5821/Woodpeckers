@@ -1,5 +1,6 @@
 package com.mirror.woodpecker.app.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -200,6 +201,7 @@ public class RepairDetailsActivity extends BaseActivity {
                 mTvRepairMan.setVisibility(View.GONE);
                 mEt.setVisibility(View.GONE);
                 mBtn.setVisibility(View.GONE);
+                setRightTitle("撤回");
                 break;
             case 1:
                 break;
@@ -254,7 +256,50 @@ public class RepairDetailsActivity extends BaseActivity {
             case R.id.btn_change:
                 startActivity(new Intent(RepairDetailsActivity.this,RepairChangeActivity.class).putExtra(INTENT_ID,mRepair));
                 break;
+
+            case R.id.right_text:
+                int status = mRepair.getOrder_status();
+                if(status == 1 || status == 9){
+                }else{
+                    //撤回订单
+                    showNormalDialog("撤回维修单", "确定撤回该维修单？", "确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            deleteOrder();
+                        }
+                    });
+
+                }
+
+                break;
         }
+    }
+
+    /**
+     * 撤回订单
+     */
+    private void deleteOrder(){
+        //登录id	uid
+//        订单id	order_id
+        JSONObject jb = new JSONObject();
+        try{
+            jb.put("uid", AppContext.USER_ID);
+            jb.put("order_id", mOrderId);
+        }catch (JSONException e){
+
+        }
+        mHttpClient.postData1(ORDER_DELETE, jb.toString(), new AppAjaxCallback.onResultListener() {
+            @Override
+            public void onResult(String data, String msg) {
+                showToast(msg);
+                finish();
+            }
+
+            @Override
+            public void onError(String msg) {
+                showToast(msg);
+            }
+        });
     }
 
     private void sub(){

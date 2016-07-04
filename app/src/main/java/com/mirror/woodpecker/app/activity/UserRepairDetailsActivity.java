@@ -1,5 +1,6 @@
 package com.mirror.woodpecker.app.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -158,7 +159,12 @@ public class UserRepairDetailsActivity extends BaseActivity {
                     startActivity(new Intent(UserRepairDetailsActivity.this,CommentActivity.class).putExtra(INTENT_ID,mOrderId));
                 }else{
                     //撤回订单
-                    deleteOrder();
+                    showNormalDialog("撤回维修单", "确定撤回该维修单？", "确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            deleteOrder();
+                        }
+                    });
                 }
 
                 break;
