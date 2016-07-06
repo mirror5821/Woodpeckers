@@ -21,16 +21,17 @@ public class About implements AddrBase ,Parcelable{
     private String meta_title;//private String private String ,
     private String keywords;//private String private String ,
     private String description;//private String private String ,
-    private String model;//private String 2private String ,
+    private int model;//private String 2private String ,
     private String type;//private String 2,1,3private String ,
     private String link_id;//private String 0private String ,
     private String create_time;//private String 1448270900private String ,
     private String update_time;//private String 1454146122private String ,
     private String status;//private String 1private String ,
-    private int icon;//1,
+    private String icon;//1,
     private Info info;
     private List<Other> list;
     private String aurl;
+
 
 
     protected About(Parcel in) {
@@ -43,13 +44,13 @@ public class About implements AddrBase ,Parcelable{
         meta_title = in.readString();
         keywords = in.readString();
         description = in.readString();
-        model = in.readString();
+        model = in.readInt();
         type = in.readString();
         link_id = in.readString();
         create_time = in.readString();
         update_time = in.readString();
         status = in.readString();
-        icon = in.readInt();
+        icon = in.readString();
         aurl = in.readString();
     }
 
@@ -81,13 +82,13 @@ public class About implements AddrBase ,Parcelable{
         dest.writeString(meta_title);
         dest.writeString(keywords);
         dest.writeString(description);
-        dest.writeString(model);
+        dest.writeInt(model);
         dest.writeString(type);
         dest.writeString(link_id);
         dest.writeString(create_time);
         dest.writeString(update_time);
         dest.writeString(status);
-        dest.writeInt(icon);
+        dest.writeString(icon);
         dest.writeString(aurl);
     }
 
@@ -354,11 +355,11 @@ public class About implements AddrBase ,Parcelable{
         this.description = description;
     }
 
-    public String getModel() {
+    public int getModel() {
         return model;
     }
 
-    public void setModel(String model) {
+    public void setModel(int model) {
         this.model = model;
     }
 
@@ -402,11 +403,11 @@ public class About implements AddrBase ,Parcelable{
         this.status = status;
     }
 
-    public int getIcon() {
+    public String getIcon() {
         return icon;
     }
 
-    public void setIcon(int icon) {
+    public void setIcon(String icon) {
         this.icon = icon;
     }
 

@@ -8,7 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.mirror.woodpecker.app.R;
-import com.mirror.woodpecker.app.adapter.NormalAdapter;
+import com.mirror.woodpecker.app.adapter.ItemWithImgAdapter;
 import com.mirror.woodpecker.app.app.AppContext;
 import com.mirror.woodpecker.app.model.About;
 import com.mirror.woodpecker.app.util.AppAjaxCallback;
@@ -23,7 +23,7 @@ public class AboutUsActivity extends BaseActivity{
     private ListView mListView;
 
     private List<About> mList;
-    private NormalAdapter mAdapter;
+    private ItemWithImgAdapter mAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +48,8 @@ public class AboutUsActivity extends BaseActivity{
                 //添加投诉建议
                 About about = new About();
                 about.setTitle("投诉建议");
-                about.setIcon(4);
+                about.setModel(4);
+                about.setIcon("/Uploads/Picture/Link/2016-07-05/577b6b57af9e6.png");
 
                 mList.add(about);
 
@@ -68,7 +69,7 @@ public class AboutUsActivity extends BaseActivity{
     }
 
     private void initView(){
-        mAdapter = new NormalAdapter(getApplicationContext(),mList,R.layout.item_about);
+        mAdapter = new ItemWithImgAdapter(getApplicationContext(),mList,R.layout.item_title);
         mListView.setAdapter(mAdapter);
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -77,7 +78,7 @@ public class AboutUsActivity extends BaseActivity{
                 About about = mList.get(position);
                 List<About.Other> list = about.getList();
 
-                switch (about.getIcon()){
+                switch (about.getModel()){
                     case 1:
 //                        startActivity(new Intent(AboutUsActivity.this, AboutUsDetailsActivity.class).
 //                                putExtra(INTENT_ID, about.getInfo().getContent()).putExtra("TITLE", about.getTitle()));
