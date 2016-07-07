@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/jPushLibrary/jPushLibrary.iml" filepath="$PROJECT_DIR$/jPushLibrary/jPushLibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/moblibrary/moblibrary.iml" filepath="$PROJECT_DIR$/moblibrary/moblibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/xrecyclerview/xrecyclerview.iml" filepath="$PROJECT_DIR$/xrecyclerview/xrecyclerview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xunfeilibrary/xunfeilibrary.iml" filepath="$PROJECT_DIR$/xunfeilibrary/xunfeilibrary.iml" />
     </modules>
   </component>
 </project>

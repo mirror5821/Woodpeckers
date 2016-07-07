@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/jPushLibrary" />
             <option value="$PROJECT_DIR$/moblibrary" />
             <option value="$PROJECT_DIR$/xrecyclerview" />
+            <option value="$PROJECT_DIR$/xunfeilibrary" />
           </set>
         </option>
         <option name="myModules">
@@ -26,6 +27,7 @@
             <option value="$PROJECT_DIR$/jPushLibrary" />
             <option value="$PROJECT_DIR$/moblibrary" />
             <option value="$PROJECT_DIR$/xrecyclerview" />
+            <option value="$PROJECT_DIR$/xunfeilibrary" />
           </set>
         </option>
       </GradleProjectSettings>

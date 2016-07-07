@@ -1,1 +1,1 @@
-include ':app', ':bmaplibrary', ':xrecyclerview', ':devmirrorlibrary', ':moblibrary', ':jPushLibrary'
+include ':app', ':bmaplibrary', ':xrecyclerview', ':devmirrorlibrary', ':moblibrary', ':jPushLibrary', ':xunfeilibrary'
