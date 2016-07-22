@@ -2,6 +2,7 @@ package com.mirror.woodpecker.app.app;
 
 import android.widget.ImageView;
 
+import com.iflytek.cloud.SpeechUtility;
 import com.mirror.woodpecker.app.model.Constants;
 import com.mirror.woodpecker.app.model.XunJian;
 import com.mirror.woodpecker.app.util.AppAjaxCallback;
@@ -65,6 +66,7 @@ public class AppContext extends BaseAppContext {
 
     @Override
     public void onCreate() {
+        SpeechUtility.createUtility(AppContext.this, "appid=" + getString(com.iflytek.R.string.app_id));
         super.onCreate();
 
         instance = this;

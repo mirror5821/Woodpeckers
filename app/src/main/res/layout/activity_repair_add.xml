@@ -92,7 +92,43 @@
                 android:layout_marginTop="@dimen/d4"
                 android:textSize="18sp"/>
 
-            <EditText
+            <LinearLayout
+                style="@style/EtLogin"
+                android:hint="@string/input_dec"
+                android:drawablePadding="@dimen/d8"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/d48">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/ic_desc"/>
+
+                <EditText
+                    android:id="@+id/dec"
+                    style="@style/EtLogin"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="0dp"
+                    android:paddingTop="0dp"
+                    android:hint="@string/input_dec"
+                    android:layout_height="wrap_content"
+                    android:singleLine="false"
+                    android:minHeight="@dimen/d48"
+                    android:gravity="top"
+                    android:minLines="6"
+                    />
+
+                <ImageView
+                    android:id="@+id/img_mc"
+                    android:layout_width="28dp"
+                    android:layout_height="40dp"
+                    android:background="@mipmap/ic_mc"/>
+
+            </LinearLayout>
+
+
+            <!--<EditText
                 android:id="@+id/dec"
                 style="@style/EtLogin"
                 android:hint="@string/input_dec"
@@ -102,7 +138,7 @@
                 android:minHeight="@dimen/d48"
                 android:gravity="top"
                 android:padding="@dimen/d20"
-                android:minLines="6"/>
+                android:minLines="6"/>-->
 
 
 

@@ -392,6 +392,15 @@
         <meta-data android:name="JPUSH_CHANNEL" android:value="developer-default"/>
         <meta-data android:name="JPUSH_APPKEY" android:value="16b252de00f04aa7079738b4" /> <!--  </>值来自开发者平台取得的AppKey-->
 
+
+        <!-- 移动统计分析 -->
+        <meta-data
+            android:name="IFLYTEK_APPKEY"
+            android:value="'577b1f11'" />
+        <meta-data
+            android:name="IFLYTEK_CHANNEL"
+            android:value="Android_Demo" />
+
     </application>
 
 
@@ -453,5 +462,6 @@
     <!-- Optional for location -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+
 
 </manifest>

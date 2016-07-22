@@ -12,7 +12,10 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
+import com.iflytek.util.VoiceResult;
+import com.iflytek.util.VoiceToTxUtil;
 import com.mirror.woodpecker.app.R;
 import com.mirror.woodpecker.app.app.AppContext;
 import com.mirror.woodpecker.app.model.cache.PhoneCache;
@@ -34,6 +37,7 @@ public class RepairAddActivity extends BaseActivity{
     private EditText mTvLoc;
     private Button mBtnPhone;
     private Button mBtn;
+    private ImageView mImgMc;
 
     private AutoCompleteTextView autotext;
     @Override
@@ -49,6 +53,8 @@ public class RepairAddActivity extends BaseActivity{
         mTvLoc = (EditText) findViewById(R.id.loc);
         mBtn = (Button)findViewById(R.id.btn);
         mBtnPhone = (Button)findViewById(R.id.btn_phone);
+        mImgMc = (ImageView)findViewById(R.id.img_mc);
+        mImgMc.setOnClickListener(this);
 
         mBtnPhone.setOnClickListener(this);
         mBtn.setOnClickListener(this);
@@ -89,6 +95,15 @@ public class RepairAddActivity extends BaseActivity{
                 Intent intent = new Intent(Intent.ACTION_PICK,
                         ContactsContract.Contacts.CONTENT_URI);
                 startActivityForResult(intent, 1);
+                break;
+            case R.id.img_mc:
+                VoiceToTxUtil util = new VoiceToTxUtil(RepairAddActivity.this, new VoiceResult() {
+                    @Override
+                    public String getVoiceToTx(String msg) {
+                        mEtDes.setText(msg);
+                        return null;
+                    }
+                });
                 break;
         }
     }
