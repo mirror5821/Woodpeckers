@@ -113,7 +113,7 @@ public class LoginActivity extends BaseActivity {
         ap.postData1(LOGIN_TEST, jb.toString(), new AppAjaxCallback.onResultListener() {
             @Override
             public void onResult(String data, String msg) {
-                mHandler.sendMessage(mHandler.obtainMessage(MSG_SET_ALIAS, name));
+
                 /**
                  * 返回的数据中role_id为角色ID，数据1代表单位主管，
                  * 2代表部门主管，3代表客服，4代表维修人员，0为普通用户
@@ -122,6 +122,7 @@ public class LoginActivity extends BaseActivity {
                 SharePreferencesUtil.saveUserInfo(getApplicationContext(), data);
                 User user= SharePreferencesUtil.getUserInfo(getApplicationContext());
                 AppContext.USER_ROLE_ID = user.getRole_id();
+                mHandler.sendMessage(mHandler.obtainMessage(MSG_SET_ALIAS, user.getMobile()));
 
                 SharePreferencesUtil.saveUserRoleId(getApplicationContext(),AppContext.USER_ROLE_ID);
                 AppContext.USER_ID = user.getId();

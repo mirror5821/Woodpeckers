@@ -65,6 +65,12 @@ public class ServiceRepairDetailsActivity extends BaseActivity {
         loadData();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadData();
+    }
+
     private String [] orderStatus = {"未处理","客服关闭", "已查看", "等待接单", "已接单", "解决中", "等待调货状态",
             "确定调货，货已到", "已解决", "最终关闭"};
     private void initView(){

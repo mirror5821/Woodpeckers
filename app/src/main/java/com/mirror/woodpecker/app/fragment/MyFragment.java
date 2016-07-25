@@ -2,6 +2,7 @@ package com.mirror.woodpecker.app.fragment;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -196,6 +197,11 @@ public class MyFragment extends BaseFragment {
                 break;
 
             case R.id.btn:
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    mImgHeader.setImageDrawable(getResources().getDrawable(R.mipmap.ic_user_header_d,null));
+                }else{
+                    mImgHeader.setImageDrawable(getResources().getDrawable(R.mipmap.ic_user_header_d));
+                }
                 AppContext.USER_ROLE_ID = -1;
                 AppContext.USER_ID = -1;
                 AppContext.IS_LOGIN = false;
