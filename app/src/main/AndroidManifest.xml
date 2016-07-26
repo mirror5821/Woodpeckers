@@ -73,6 +73,11 @@
             android:screenOrientation="portrait"
             android:launchMode="singleTask"/>
 
+        <activity android:name=".activity.PayListActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"/>
+
 
 
         <activity android:name=".activity.XunJianFeedBackActivity"

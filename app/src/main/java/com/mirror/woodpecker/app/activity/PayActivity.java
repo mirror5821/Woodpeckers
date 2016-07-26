@@ -57,6 +57,7 @@ public class PayActivity extends BaseActivity implements AdapterView.OnItemClick
 
         setBack();
         setTitleText("付款凭证");
+        setRightTitle("付款记录");
 
         mList = new ArrayList<>();
         mList.add(null);
@@ -87,6 +88,9 @@ public class PayActivity extends BaseActivity implements AdapterView.OnItemClick
                 break;
             case R.id.kefu:
                 loadUnit();
+                break;
+            case R.id.right_text:
+                startActivity(new Intent(PayActivity.this,PayListActivity.class));
                 break;
         }
     }

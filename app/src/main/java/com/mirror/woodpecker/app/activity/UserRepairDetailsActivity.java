@@ -66,6 +66,7 @@ public class UserRepairDetailsActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        setRightTitle("");
         loadData();
     }
     String [] orderStatus = {"未处理","客服关闭", "已查看", "等待接单", "已接单", "解决中", "等待调货状态", "确定调货，货已到", "已解决", "最终关闭"};
@@ -208,6 +209,7 @@ public class UserRepairDetailsActivity extends BaseActivity {
                         mListJindu.add(ob);
                     }
 
+                    mViewJindu.removeAllViews();
                     for(int i = 1;i<=mListJindu.size()/4;i++){
                         View view = mInflater.inflate(R.layout.item_jindu,null);
                         TextView status = (TextView)view.findViewById(R.id.status);

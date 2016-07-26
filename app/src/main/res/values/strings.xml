@@ -50,6 +50,8 @@
     <string name="submit">提交</string>
     <string name="search_area">输入您所在的地区</string>
 
+    <string name="user_name">用户名称:</string>
+    <string name="server_name">客服名称:</string>
     <string name="xunjian_time">起始时间:</string>
     <string name="xunjian_status">巡检状态:</string>
     <string name="prp_name">项目名称:</string>

@@ -72,6 +72,7 @@ public class RepairDetailsActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        setRightTitle("");
         loadData();
     }
 
@@ -111,6 +112,7 @@ public class RepairDetailsActivity extends BaseActivity {
 
                     }
 
+                    mViewJindu.removeAllViews();
                     for(int i = 1;i<=mListJindu.size()/4;i++){
                         View view = mInflater.inflate(R.layout.item_jindu,null);
                         TextView status = (TextView)view.findViewById(R.id.status);

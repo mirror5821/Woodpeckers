@@ -1,65 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/d16"
-        android:layout_marginTop="@dimen/d16">
+        android:layout_below="@id/title_bar">
 
-        <EditText
-            android:id="@+id/name"
-            style="@style/EtLogin"
-            android:drawableLeft="@mipmap/ic_set"
-            android:hint="@string/input_project_name"
-            android:drawablePadding="@dimen/d8"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/d16"
+            android:layout_marginTop="@dimen/d16">
 
-        <EditText
-            android:id="@+id/type"
-            style="@style/EtLogin"
-            android:drawableLeft="@mipmap/ic_set"
-            android:hint="@string/input_project_type"
-            android:drawablePadding="@dimen/d8"/>
+            <EditText
+                android:id="@+id/name"
+                style="@style/EtLogin"
+                android:drawableLeft="@mipmap/ic_set"
+                android:hint="@string/input_project_name"
+                android:drawablePadding="@dimen/d8"/>
 
-       <!-- <TextView
-            android:id="@+id/loc"
-            style="@style/EtLogin"
-            android:drawableLeft="@mipmap/ic_repair_loc"
-            android:hint="@string/input_loc"
-            android:drawablePadding="@dimen/d8"
-            android:layout_marginTop="@dimen/d4"
-            android:textSize="18sp"/>-->
+            <EditText
+                android:id="@+id/type"
+                style="@style/EtLogin"
+                android:drawableLeft="@mipmap/ic_set"
+                android:hint="@string/input_project_type"
+                android:drawablePadding="@dimen/d8"/>
 
-        <EditText
-            android:id="@+id/price"
-            style="@style/EtLogin"
-            android:drawableLeft="@mipmap/ic_bank_card"
-            android:hint="@string/input_price"
-            android:drawablePadding="@dimen/d8"
-            android:inputType="number"
-            android:singleLine="false"/>
+           <!-- <TextView
+                android:id="@+id/loc"
+                style="@style/EtLogin"
+                android:drawableLeft="@mipmap/ic_repair_loc"
+                android:hint="@string/input_loc"
+                android:drawablePadding="@dimen/d8"
+                android:layout_marginTop="@dimen/d4"
+                android:textSize="18sp"/>-->
+
+            <EditText
+                android:id="@+id/price"
+                style="@style/EtLogin"
+                android:drawableLeft="@mipmap/ic_bank_card"
+                android:hint="@string/input_price"
+                android:drawablePadding="@dimen/d8"
+                android:inputType="number"
+                android:singleLine="false"/>
 
 
-        <EditText
-            android:id="@+id/dec"
-            style="@style/EtLogin"
-            android:drawableLeft="@mipmap/ic_msg"
-            android:hint="@string/input_notify_word"
-            android:drawablePadding="@dimen/d8"
-            android:singleLine="false"/>
+            <EditText
+                android:id="@+id/dec"
+                style="@style/EtLogin"
+                android:drawableLeft="@mipmap/ic_msg"
+                android:hint="@string/input_notify_word"
+                android:drawablePadding="@dimen/d8"
+                android:singleLine="false"/>
+
+            <dev.mirror.library.android.view.NoScrollGridView
+                android:id="@+id/gridview"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:horizontalSpacing="@dimen/product_list_spacing"
+                android:numColumns="4"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:verticalSpacing="@dimen/product_list_spacing"
+                android:layout_margin="@dimen/view_margin_top"/>
+
+        </LinearLayout>
+    </ScrollView>
 
         <Button
             android:id="@+id/btn"
             style="@style/BtnBlue"
             android:layout_marginTop="@dimen/d32"
-            android:text="@string/submit"/>
+            android:text="@string/submit"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/d16"/>
 
 
 
-    </LinearLayout>
 
-</LinearLayout>
+
+</RelativeLayout>

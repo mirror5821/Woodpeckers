@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/d8"
+    android:background="@drawable/bg_normal_press_w">
+
+    <!--android:background="@drawable/bg_et_line"-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="28dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:text="@string/user_name"
+                style="@style/TvListDark"
+                android:layout_width="78dp"/>
+
+            <TextView
+                android:id="@+id/username"
+                style="@style/TvListLight"
+                android:layout_marginLeft="@dimen/d8"/>
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:id="@+id/time"
+            android:gravity="right"
+            style="@style/TvListLight2"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="28dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:text="@string/contact_no"
+                style="@style/TvListDark"
+                android:layout_width="78dp"/>
+
+            <TextView
+                android:id="@+id/phone"
+                style="@style/TvListLight"
+                android:layout_marginLeft="@dimen/d8"/>
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:id="@+id/price"
+            android:gravity="right"
+            style="@style/TvListLight2"
+            android:layout_height="wrap_content"
+            android:textColor="#caab44"/>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/d4">
+
+        <!--style="@style/TvListDark"-->
+
+        <TextView
+            android:text="@string/server_name"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d4"
+            android:textSize="16sp"
+            android:textColor="@color/tv_dark"
+            android:layout_width="78dp"
+            android:gravity="top"/>
+
+        <TextView
+            android:id="@+id/server_name"
+            style="@style/TvListLight"
+            android:singleLine="false"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="@dimen/d8"
+            android:layout_marginRight="@dimen/d8"/>
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

@@ -68,6 +68,7 @@ public class ServiceRepairDetailsActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        setRightTitle("");
         loadData();
     }
 
@@ -154,6 +155,7 @@ public class ServiceRepairDetailsActivity extends BaseActivity {
                 mOrderFlowStatus = 1;
                 break;
             case 3:
+                setRightTitle("撤回派单");
                 break;
             case 4:
                 break;
@@ -199,7 +201,34 @@ public class ServiceRepairDetailsActivity extends BaseActivity {
                 startActivity(new Intent(ServiceRepairDetailsActivity.this,
                         ServiceRepairActionActivity.class).putExtra(INTENT_ID,mRepair));
                 break;
+            case R.id.right_text:
+                if(mRepair.getOrder_status() == 3){
+                    cancalOrder();
+                }
+                break;
         }
+    }
+
+    private void cancalOrder(){
+        JSONObject jb = new JSONObject();
+        try{
+            jb.put("order_id",mOrderId);
+        }catch (JSONException e){
+
+        }
+        mHttpClient.postData1(SERVER_CANCAL_ORDER, jb.toString(), new AppAjaxCallback.onResultListener() {
+            @Override
+            public void onResult(String data, String msg) {
+                showToast(msg);
+                finish();
+            }
+
+            @Override
+            public void onError(String msg) {
+
+                showToast(msg);
+            }
+        });
     }
 
     private void sub(){
@@ -329,6 +358,7 @@ public class ServiceRepairDetailsActivity extends BaseActivity {
 
                     }
 
+                    mViewJindu.removeAllViews();
                     for(int i = 1;i<=mListJindu.size()/4;i++){
                         View view = mInflater.inflate(R.layout.item_jindu,null);
                         TextView status = (TextView)view.findViewById(R.id.status);
