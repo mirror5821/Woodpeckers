@@ -150,8 +150,8 @@
                     style="@style/TvDetailsValue" />
             </LinearLayout>
 
-            <LinearLayout
-                style="@style/LayoutDetailsH">
+            <LinearLayout style="@style/LayoutDetailsH"
+                android:background="@drawable/bg_detail">
 
                 <TextView
                     android:text="@string/order_status"
@@ -160,6 +160,20 @@
                 <TextView
                     android:id="@+id/order_status"
                     style="@style/TvDetailsValueYellow" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/LayoutDetailsH"
+                android:background="@drawable/bg_detail">
+
+                <TextView
+                    android:id="@+id/tv_r_history"
+                    style="@style/TvDetailsNotif"
+                    android:text="@string/repair_history"
+                    android:layout_width="match_parent"
+                    android:drawableRight="@mipmap/ic_next"/>
+
+
             </LinearLayout>
 
             <EditText

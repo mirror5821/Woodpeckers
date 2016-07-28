@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/main_bg"
+    android:padding="@dimen/d4">
+
+
+    <LinearLayout
+        style="@style/LayoutDetailsH"
+        android:background="@drawable/bg_detail">
+
+        <TextView
+            style="@style/TvDetailsNotif"
+            android:text="@string/customer_contact_no"/>
+
+        <TextView
+            android:id="@+id/phone"
+            style="@style/TvDetailsValue" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/LayoutDetailsH"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_detail">
+
+        <TextView
+            android:text="@string/repair_loc2"
+            style="@style/TvDetailsNotif"
+            android:layout_height="@dimen/d48"/>
+
+        <TextView
+            android:id="@+id/loc"
+            style="@style/TvDetailsValue"
+            android:singleLine="false"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/d20" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/LayoutDetailsH"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_detail">
+
+        <TextView
+            android:text="@string/repair_des"
+            style="@style/TvDetailsNotif"
+            android:layout_height="@dimen/d48"/>
+
+        <TextView
+            android:id="@+id/dec"
+            style="@style/TvDetailsValue"
+            android:singleLine="false"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/d20"/>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/LayoutDetailsH"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_detail">
+
+        <TextView
+            android:text="@string/details_des"
+            style="@style/TvDetailsNotif"
+            android:layout_height="@dimen/d48"/>
+
+        <TextView
+            android:id="@+id/d_dec"
+            style="@style/TvDetailsValue"
+            android:singleLine="false"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/d20"/>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/LayoutDetailsH"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_detail">
+
+        <TextView
+            android:text="@string/solution_method"
+            style="@style/TvDetailsNotif"
+            android:layout_height="@dimen/d48"/>
+
+        <TextView
+            android:id="@+id/s_m"
+            style="@style/TvDetailsValue"
+            android:singleLine="false"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/d20"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/LayoutDetailsH"
+        android:background="@drawable/bg_detail">
+
+        <TextView
+            android:text="@string/order_type"
+            style="@style/TvDetailsNotif" />
+
+        <TextView
+            android:id="@+id/order_type"
+            style="@style/TvDetailsValue" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        style="@style/LayoutDetailsH"
+        android:background="@drawable/bg_detail">
+
+        <TextView
+            android:text="@string/belong_object"
+            style="@style/TvDetailsNotif" />
+
+        <TextView
+            android:id="@+id/order_belong"
+            style="@style/TvDetailsValue" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/view_repair_man"
+        style="@style/LayoutDetailsH">
+
+        <TextView
+            android:text="@string/repair_man"
+            style="@style/TvDetailsNotif" />
+
+        <TextView
+            android:id="@+id/repair_man"
+            style="@style/TvDetailsValue" />
+    </LinearLayout>
+
+
+</LinearLayout>

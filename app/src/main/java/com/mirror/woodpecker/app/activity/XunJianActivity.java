@@ -1,6 +1,7 @@
 package com.mirror.woodpecker.app.activity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
@@ -20,6 +21,8 @@ public class XunJianActivity extends BaseActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_xunjian_list);
         setTitleText("未巡检项目列表");
+
+        setRightTitle("巡检记录");
         setBack();
         XunJianRecyclerViewRefreshFragment fragment = new XunJianRecyclerViewRefreshFragment();
         Bundle b = new Bundle();
@@ -69,6 +72,9 @@ public class XunJianActivity extends BaseActivity{
                         mTvTitleBar.setText(u.getUsername());
                     }
                 });
+                break;
+            case R.id.right_text:
+                startActivity(new Intent(XunJianActivity.this,XunJianHistotyActivity.class));
                 break;
         }
     }

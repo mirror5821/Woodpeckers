@@ -67,6 +67,8 @@ public interface Constants {
     public final static String SECRET = "caca51";
     public final static String JSONG_KEY = "info";
     public final static String ORDER_DELETE = "delOrder";
+    public final static String REPAIR_HISTORY = "repairlog";
+    public final static String XUNJIAN_HISTORY = "xjloglist";
 
 
     //请求都和地址

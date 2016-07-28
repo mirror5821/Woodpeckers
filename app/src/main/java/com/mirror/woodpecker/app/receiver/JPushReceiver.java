@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.mirror.woodpecker.app.activity.MainTabActivity;
+import com.mirror.woodpecker.app.app.AppContext;
 import com.mirror.woodpecker.app.model.Constants;
 import com.mirror.woodpecker.app.model.Message;
+import com.mirror.woodpecker.app.util.ServerNotifUtil;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -30,6 +32,14 @@ public class JPushReceiver extends BroadcastReceiver{
         	processCustomMessage(context, bundle);
 
         } else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {
+			try{
+				if(AppContext.USER_ROLE_ID == 3){
+					ServerNotifUtil.startXunjian(context);
+				}
+			}catch (Exception e){
+
+			}
+
             Log.d(TAG, "[MyReceiver] 接收到推送下来的通知");
 //			MessageUtil.savePushMessage(bundle.getString(JPushInterface.EXTRA_ALERT),bundle.getString(JPushInterface.EXTRA_ALERT));
 //			System.out.println("----------------" + bundle.getString(JPushInterface.EXTRA_NOTIFICATION_TITLE)+"---" + bundle.getString(JPushInterface.EXTRA_MESSAGE)+"&"+bundle.getString(JPushInterface.EXTRA_ALERT));
@@ -39,6 +49,11 @@ public class JPushReceiver extends BroadcastReceiver{
 
         } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
             Log.d(TAG, "[MyReceiver] 用户点击打开了通知");
+			try{
+				ServerNotifUtil.stopXunjian(context);
+			}catch (Exception e){
+
+			}
 
 //        	//打开自定义的Activity
 //        	Intent i = new Intent(context, SplashActivity.class);

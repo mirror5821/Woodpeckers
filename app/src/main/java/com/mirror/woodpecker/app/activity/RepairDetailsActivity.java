@@ -41,6 +41,7 @@ public class RepairDetailsActivity extends BaseActivity {
     private TextView mTvRepairMan;
     private TextView mTvTime;
     private TextView mTvOrderStatus;
+    private TextView mTvRepairHistroy;
     private EditText mEt;
     private Button mBtn;
     private Button mBtnRepaing;
@@ -152,6 +153,8 @@ public class RepairDetailsActivity extends BaseActivity {
         mTvRepairMan = (TextView)findViewById(R.id.repair_man);
         mTvTime = (TextView)findViewById(R.id.time);
         mTvOrderStatus = (TextView)findViewById(R.id.order_status);
+        mTvRepairHistroy = (TextView)findViewById(R.id.tv_r_history);
+        mTvRepairHistroy.setOnClickListener(this);
 
         mEt = (EditText)findViewById(R.id.et);
         mBtn = (Button)findViewById(R.id.btn);
@@ -204,6 +207,8 @@ public class RepairDetailsActivity extends BaseActivity {
          * 如果是分类查询列表  关闭和最终关闭都是1
          */
 
+        mBtn.setVisibility(View.GONE);
+        mViewOpration.setVisibility(View.GONE);
         switch (mRepair.getOrder_status()){
             case 0:
                 mTvRepairMan.setVisibility(View.GONE);
@@ -228,6 +233,7 @@ public class RepairDetailsActivity extends BaseActivity {
                 mBtn.setOnClickListener(this);
                 break;
             case 5:
+                mBtn.setVisibility(View.GONE);
                 mViewOpration.setVisibility(View.VISIBLE);
                 mBtnNeedChange.setOnClickListener(this);
                 mBtnRepaing.setOnClickListener(this);
@@ -279,6 +285,9 @@ public class RepairDetailsActivity extends BaseActivity {
 
                 }
 
+                break;
+            case R.id.tv_r_history:
+                startActivity(new Intent(RepairDetailsActivity.this,RepairHistotyActivity.class).putExtra(INTENT_ID,mRepair.getProject_id()));
                 break;
         }
     }
@@ -361,6 +370,7 @@ public class RepairDetailsActivity extends BaseActivity {
             @Override
             public void onResult(String data, String msg) {
                 showToast(msg);
+                finish();
             }
 
             @Override

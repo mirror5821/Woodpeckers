@@ -111,6 +111,7 @@ public class RepairFeedBackActivity extends BaseActivity implements AdapterView.
             @Override
             public void onResult(String data, String msg) {
                 showToast(msg);
+                finish();
             }
 
             @Override

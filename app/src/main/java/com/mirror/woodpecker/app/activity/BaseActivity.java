@@ -10,6 +10,7 @@ import com.mirror.woodpecker.app.R;
 import com.mirror.woodpecker.app.app.AppContext;
 import com.mirror.woodpecker.app.model.Constants;
 import com.mirror.woodpecker.app.util.AppHttpClient;
+import com.mirror.woodpecker.app.util.ServerNotifUtil;
 
 import cn.jpush.android.api.JPushInterface;
 import dev.mirror.library.android.activity.DevBaseActivity;
@@ -33,6 +34,12 @@ public class BaseActivity extends DevBaseActivity implements Constants{
         //如果没有巡检
         if(!AppContext.IS_XUNJINNING){
             new AppContext().loadXunjian();
+        }
+
+        try{
+            ServerNotifUtil.stopXunjian(getApplicationContext());
+        }catch (Exception e){
+
         }
 
         JPushInterface.init(getApplicationContext());

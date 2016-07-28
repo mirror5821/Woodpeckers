@@ -47,6 +47,11 @@
             android:process=":newinst">
         </receiver>
 
+        <receiver
+            android:name=".receiver.ServerReceiver"
+            android:process=":newinst">
+        </receiver>
+
 
 
 
@@ -86,6 +91,7 @@
             android:launchMode="singleTask"/>
 
         <service android:name=".service.XunJianService"></service>
+        <service android:name=".service.ServerService"></service>
 
         <activity android:name=".activity.XunJianAlertActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -102,6 +108,12 @@
             android:screenOrientation="portrait"
             android:launchMode="singleTask"/>
 
+        <activity android:name=".activity.RepairHistotyActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"/>
+
+
         <activity android:name=".activity.Login2Activity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
@@ -115,6 +127,12 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:launchMode="singleTask"/>
+
+        <activity android:name=".activity.XunJianHistotyActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"/>
+
 
         <activity android:name=".activity.UserInfoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/main_bg"
+    android:padding="@dimen/d4">
+
+
+    <LinearLayout
+        style="@style/LayoutDetailsH"
+        android:layout_height="@dimen/d32">
+
+        <TextView
+            style="@style/TvDetailsNotif"
+            android:text="@string/item_name"/>
+
+        <TextView
+            android:id="@+id/name"
+            style="@style/TvDetailsValue" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/LayoutDetailsH"
+        android:layout_height="@dimen/d32">
+
+        <TextView
+            android:text="@string/add_time"
+            style="@style/TvDetailsNotif"/>
+
+        <TextView
+            android:id="@+id/time"
+            style="@style/TvDetailsValueYellow"/>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/LayoutDetailsH"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/d4"
+        android:paddingBottom="@dimen/d4">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="centerCrop"
+            android:id="@+id/img"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
