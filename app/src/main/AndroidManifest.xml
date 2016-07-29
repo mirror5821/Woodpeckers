@@ -83,6 +83,11 @@
             android:screenOrientation="portrait"
             android:launchMode="singleTask"/>
 
+        <activity android:name=".activity.ServerRepairEditActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"/>
+
 
 
         <activity android:name=".activity.XunJianFeedBackActivity"

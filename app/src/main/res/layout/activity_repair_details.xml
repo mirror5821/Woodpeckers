@@ -163,6 +163,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/view_history"
                 style="@style/LayoutDetailsH"
                 android:background="@drawable/bg_detail">
 
@@ -170,6 +171,7 @@
                     android:id="@+id/tv_r_history"
                     style="@style/TvDetailsNotif"
                     android:text="@string/repair_history"
+                    android:textColor="#e90f1e"
                     android:layout_width="match_parent"
                     android:drawableRight="@mipmap/ic_next"/>
 

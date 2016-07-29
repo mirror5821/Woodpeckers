@@ -16,6 +16,21 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/view_edit"
+                style="@style/LayoutDetailsH"
+                android:background="@drawable/bg_detail">
+
+                <TextView
+                    android:text=""
+                    style="@style/TvDetailsNotif" />
+
+                <TextView
+                    android:text="编辑"
+                    android:textColor="#0a1e78"
+                    style="@style/TvDetailsValue" />
+            </LinearLayout>
+
+            <LinearLayout
                 style="@style/LayoutDetailsH"
                 android:background="@drawable/bg_detail">
 
@@ -161,6 +176,63 @@
                     android:id="@+id/order_status"
                     style="@style/TvDetailsValueYellow" />
             </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/view_imgs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+
+                    style="@style/LayoutDetailsH"
+                    android:background="@drawable/bg_detail"
+                    android:layout_marginTop="@dimen/d8">
+
+                    <TextView
+                        android:text="维修图片"
+                        style="@style/TvDetailsNotif" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@color/white">
+
+                    <ImageView
+                        android:id="@+id/img1"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_margin="@dimen/d8"
+                        android:src="@mipmap/bg_no_img"
+                        android:scaleType="centerCrop"/>
+
+                    <ImageView
+                        android:id="@+id/img2"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_margin="@dimen/d8"
+                        android:src="@mipmap/bg_no_img"
+                        android:scaleType="centerCrop"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <EditText
+                android:id="@+id/price"
+                style="@style/EtLogin"
+                android:hint="请输入设备价格"
+                android:layout_marginTop="@dimen/d8"
+                android:inputType="numberDecimal"
+                android:visibility="gone"/>
 
             <EditText
                 android:id="@+id/et"

@@ -103,6 +103,14 @@
 
     </LinearLayout>
 
+    <dev.mirror.library.android.view.NoScrollGridView
+        android:id="@+id/gridview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:horizontalSpacing="@dimen/product_list_spacing"
+        android:numColumns="4"
+        android:verticalSpacing="@dimen/product_list_spacing"
+        android:layout_margin="@dimen/view_margin_top"/>
 
 
 

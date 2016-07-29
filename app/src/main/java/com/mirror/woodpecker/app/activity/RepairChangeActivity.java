@@ -38,7 +38,7 @@ public class RepairChangeActivity extends BaseActivity implements AdapterView.On
     private EditText mEtType;
     private EditText mEtName;
     private EditText mEtDes;
-    private EditText mEtPrice;
+//    private EditText mEtPrice;
     private Button mBtn;
     private NoScrollGridView mGridView;
 
@@ -62,7 +62,7 @@ public class RepairChangeActivity extends BaseActivity implements AdapterView.On
 
         mEtName = (EditText)findViewById(R.id.name);
         mEtDes = (EditText)findViewById(R.id.dec);
-        mEtPrice = (EditText)findViewById(R.id.price);
+//        mEtPrice = (EditText)findViewById(R.id.price);
         mEtType = (EditText)findViewById(R.id.type);
         mBtn = (Button)findViewById(R.id.btn);
 
@@ -112,7 +112,7 @@ public class RepairChangeActivity extends BaseActivity implements AdapterView.On
         final String tips = mEtDes.getText().toString();
         final String name = mEtName.getText().toString();
         final String type = mEtType.getText().toString();
-        final String price = mEtPrice.getText().toString();
+//        final String price = mEtPrice.getText().toString();
         if(TextUtils.isEmpty(tips)){
             showToast("请输入提示语");
             return;
@@ -128,10 +128,10 @@ public class RepairChangeActivity extends BaseActivity implements AdapterView.On
             return;
         }
 
-        if(TextUtils.isEmpty(price)){
-            showToast("请输入解决方案");
-            return;
-        }
+//        if(TextUtils.isEmpty(price)){
+//            showToast("请输入解决方案");
+//            return;
+//        }
 
         showProgressDialog("正在提交");
         new Thread(){
@@ -157,7 +157,7 @@ public class RepairChangeActivity extends BaseActivity implements AdapterView.On
                     jb.put("status",6);
                     jb.put("name",name);
                     jb.put("type",type);
-                    jb.put("price",price);
+//                    jb.put("price",price);
                     jb.put("action","adjust_device");
                     jb.put("tips",tips);
 

@@ -3,6 +3,7 @@ package com.mirror.woodpecker.app.activity;
 import android.widget.TextView;
 
 import com.mirror.woodpecker.app.R;
+import com.mirror.woodpecker.app.adapter.PayListImageAdapter;
 import com.mirror.woodpecker.app.app.AppContext;
 import com.mirror.woodpecker.app.model.Pay;
 import com.mirror.woodpecker.app.util.AppAjaxCallback;
@@ -15,6 +16,7 @@ import java.util.List;
 
 import dev.mirror.library.android.Holder.DevRecyclerViewHolder;
 import dev.mirror.library.android.util.DateUtil;
+import dev.mirror.library.android.view.NoScrollGridView;
 
 /**
  * Created by 王沛栋 on 2016-07-26.
@@ -84,6 +86,7 @@ public class PayListActivity extends BaseRecyclerViewActivity<Pay>{
     @Override
     public void setItemView(DevRecyclerViewHolder holder, Object item) {
         final Pay pay = (Pay)item;
+        NoScrollGridView gView = holder.getView(R.id.gridview);
         TextView userName = holder.getView(R.id.username);
         TextView serverName = holder.getView(R.id.server_name);
         TextView phone = holder.getView(R.id.phone);
@@ -95,6 +98,9 @@ public class PayListActivity extends BaseRecyclerViewActivity<Pay>{
         serverName.setText(pay.getPlayname());
         phone.setText(pay.getPhone());
         price.setText("￥"+pay.getMoney());
+        if(pay.getPayimgs() != null)
+            gView.setAdapter(new PayListImageAdapter(getApplicationContext(),pay.getPayimgs()));
+
     }
 }
 

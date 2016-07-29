@@ -5,9 +5,13 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -17,27 +21,42 @@ import android.widget.ImageView;
 import com.iflytek.util.VoiceResult;
 import com.iflytek.util.VoiceToTxUtil;
 import com.mirror.woodpecker.app.R;
+import com.mirror.woodpecker.app.adapter.ImageAddsAdapter;
 import com.mirror.woodpecker.app.app.AppContext;
 import com.mirror.woodpecker.app.model.cache.PhoneCache;
 import com.mirror.woodpecker.app.util.AppAjaxCallback;
-import com.mirror.woodpecker.app.util.AppHttpClient;
 import com.mirror.woodpecker.app.util.DBUtil;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+
+import dev.mirror.library.android.activity.MultiImageSelectorActivity;
+import dev.mirror.library.android.util.ImageTools;
+import dev.mirror.library.android.view.NoScrollGridView;
 
 /**
  * Created by 王沛栋 on 2016/3/10.
  */
-public class RepairAddActivity extends BaseActivity{
+public class RepairAddActivity extends BaseActivity implements AdapterView.OnItemClickListener{
     private AutoCompleteTextView mEtPhone;
     private EditText mEtDes;
     private EditText mTvLoc;
     private Button mBtnPhone;
     private Button mBtn;
     private ImageView mImgMc;
+
+    private NoScrollGridView mGridView;
+    private ImageAddsAdapter mAdapter;
+    private List<String> mList;
+
+    private ImageTools mImageTools;
 
     private AutoCompleteTextView autotext;
     @Override
@@ -78,6 +97,16 @@ public class RepairAddActivity extends BaseActivity{
             mEtPhone.setAdapter(adapter);
         }
 
+
+        mList = new ArrayList<>();
+        mList.add(null);
+
+        mImageTools = new ImageTools(this);
+        mGridView = (NoScrollGridView)findViewById(R.id.gridview);
+        mAdapter = new ImageAddsAdapter(getApplicationContext(),mList);
+        mGridView.setAdapter(mAdapter);
+
+        mGridView.setOnItemClickListener(this);
 
     }
 
@@ -138,6 +167,16 @@ public class RepairAddActivity extends BaseActivity{
                         mEtPhone.setText(num);
                     }
                     break;
+                case REQUEST_IMAGE:
+                    mSelectPath = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
+                    mList.clear();
+                    mAdapter.notifyDataSetChanged();
+
+                    mList.addAll(mSelectPath);
+                    mList.add(null);
+
+                    mAdapter.notifyDataSetChanged();
+                    break;
             }
         }
     }
@@ -195,46 +234,204 @@ public class RepairAddActivity extends BaseActivity{
             return;
         }
 
+        showProgressDialog("正在提交...");
+        new Thread(){
+            @Override
+            public void run() {
+                super.run();
+
+                JSONObject jb = new JSONObject();
+                try{
+                    jb.put("phone", phone);
+                    jb.put("gz_desc", des);
+                    jb.put("gz_postion",loc);
+                    jb.put("uid", AppContext.USER_ID);
+
+                    JSONArray jaa = new JSONArray();
+                    for (int i = 0;i<mList.size()-1;i++){
+                        JSONObject jj = new JSONObject();
+                        jj.put("image",mImageTools.filePathToString(mList.get(i)));//\\\
+//                        jj.put("image",mImageTools.filePathToString(mList.get(i)).replace("\\\\\\/","/"));
+//                jj.put("image","我是图片流"+i);
+                        jaa.put(jj);
+                    }
+                    jb.put("upimg",jaa.toString());
+
+                    try {
+                        writeFileSdcardFile("qq.txt",jb.toString());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        showToast("写入失败"+e.getLocalizedMessage());
+                    }
+
+
+                }catch (JSONException e){
+
+                }
+
+
+                Message message = Message.obtain();
+
+                Bundle b = new Bundle();
+                b.putString(INTENT_ID, jb.toString());
+                message.setData(b);
+
+//                message.obj = jb.toString();
+                message.what = 1;
+                mHandler.sendMessage(message);
+
+            }
+        }.start();
+
+
+
+
         /*if(TextUtils.isEmpty(des)){
             showToast("请输入故障描述");
             return;
         }*/
 
-        /**
-         电话	phone
-         故障位置	gz_postion
-         故障描述	gz_desc
-         登录用户ID		uid
-         */
+//        /**
+//         电话	phone
+//         故障位置	gz_postion
+//         故障描述	gz_desc
+//         登录用户ID		uid
+//         */
+//
+//        AppHttpClient ap = new AppHttpClient();
+//        JSONObject jb = new JSONObject();
+//        try{
+//            jb.put("phone", phone);
+//            jb.put("gz_desc", des);
+//            jb.put("gz_postion",loc);
+//            jb.put("uid", AppContext.USER_ID);
+//
+//        }catch (JSONException e){
+//
+//        }
+//
+//        ap.postData1(REPAIR, jb.toString(), new AppAjaxCallback.onResultListener() {
+//            @Override
+//            public void onResult(String data, String msg) {
+//                isSub = false;
+//                showToast(msg);
+//                startActivity(new Intent(RepairAddActivity.this,RepairDetailsActivity.class).putExtra(INTENT_ID,Integer.valueOf(data)));
+//
+//                DBUtil.savePhoneCache(phone);
+//                finish();
+//            }
+//
+//            @Override
+//            public void onError(String msg) {
+//                isSub = false;
+//                showToast(msg);
+//            }
+//        });
+    }
 
-        AppHttpClient ap = new AppHttpClient();
-        JSONObject jb = new JSONObject();
+    //写数据到SD中的文件
+    public void writeFileSdcardFile(String fileName,String write_str) throws IOException {
         try{
-            jb.put("phone", phone);
-            jb.put("gz_desc", des);
-            jb.put("gz_postion",loc);
-            jb.put("uid", AppContext.USER_ID);
 
-        }catch (JSONException e){
+            File file = new File(Environment.getExternalStorageDirectory(),
+                    fileName);
+            FileOutputStream fout = new FileOutputStream(file);
+            byte [] bytes = write_str.getBytes();
 
+            fout.write(bytes);
+            fout.close();
         }
 
-        ap.postData1(REPAIR, jb.toString(), new AppAjaxCallback.onResultListener() {
-            @Override
-            public void onResult(String data, String msg) {
-                isSub = false;
-                showToast(msg);
-                startActivity(new Intent(RepairAddActivity.this,RepairDetailsActivity.class).putExtra(INTENT_ID,Integer.valueOf(data)));
-
-                DBUtil.savePhoneCache(phone);
-                finish();
-            }
-
-            @Override
-            public void onError(String msg) {
-                isSub = false;
-                showToast(msg);
-            }
-        });
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
+
+    private Handler mHandler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+
+            switch(msg.what){
+                case 1:
+
+                    Bundle b = msg.getData();
+
+                    mHttpClient.postData1(REPAIR,b.getString(INTENT_ID), new AppAjaxCallback.onResultListener() {
+                        @Override
+                        public void onResult(String data, String msg) {
+                            showToast(msg);
+                            cancelProgressDialog();
+                            finish();
+                        }
+
+                        @Override
+                        public void onError(String msg) {
+
+                            showToast(msg);
+                            cancelProgressDialog();
+                        }
+                    });
+                    break;
+
+            }
+        }
+    };
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        //表示点击上传照片的按钮
+        if(position == mList.size()-1){
+            openImage();
+//            mImageTools.showGetImageDialog("选择照片的方式!");
+        }else{//这里应该做其他动作
+            mList.remove(position);
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+
+    private ArrayList<String> mSelectPath;
+    private static final int REQUEST_IMAGE = 2;
+    private void openImage(){
+        int selectedMode = MultiImageSelectorActivity.MODE_MULTI;;
+//        selectedMode = MultiImageSelectorActivity.MODE_SINGLE;
+
+
+        int maxNum = 5;
+        Intent intent = new Intent(RepairAddActivity.this, MultiImageSelectorActivity.class);
+        // 是否显示拍摄图片
+        intent.putExtra(MultiImageSelectorActivity.EXTRA_SHOW_CAMERA, true);
+        // 最大可选择图片数量
+        intent.putExtra(MultiImageSelectorActivity.EXTRA_SELECT_COUNT, maxNum);
+        // 选择模式
+        intent.putExtra(MultiImageSelectorActivity.EXTRA_SELECT_MODE, selectedMode);
+        // 默认选择
+//        if (mSelectPath != null && mSelectPath.size() > 0) {
+//            intent.putExtra(MultiImageSelectorActivity.EXTRA_DEFAULT_SELECTED_LIST, mSelectPath);
+//        }
+        if (mList != null && mList.size() > 1) {
+            mList.remove(mList.size()-1);
+            intent.putExtra(MultiImageSelectorActivity.EXTRA_DEFAULT_SELECTED_LIST, (ArrayList)mList);
+        }
+        startActivityForResult(intent, REQUEST_IMAGE);
+    }
+
+    /*@Override
+    protected void onActivityResult(int requestCode, int resultCode,final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_IMAGE){
+            if(resultCode == RESULT_OK){
+                mSelectPath = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
+                mList.clear();
+                mAdapter.notifyDataSetChanged();
+
+                mList.addAll(mSelectPath);
+                mList.add(null);
+
+                mAdapter.notifyDataSetChanged();
+            }
+        }
+    }*/
+
 }

@@ -50,6 +50,7 @@ public class RepairDetailsActivity extends BaseActivity {
     private LinearLayout mViewRepairMan;
     private LinearLayout mViewOpration;
     private LinearLayout mViewJindu;
+    private LinearLayout mViewHistory;
 
 
     private int mOrderId;
@@ -254,7 +255,8 @@ public class RepairDetailsActivity extends BaseActivity {
         }
 
         mTvOrderStatus.setText(orderStatus[mRepair.getOrder_status()]);
-
+        mViewHistory = (LinearLayout)findViewById(R.id.view_history);
+        mViewHistory.setVisibility(View.GONE);
     }
 
     @Override

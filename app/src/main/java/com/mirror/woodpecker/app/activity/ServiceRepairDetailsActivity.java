@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -46,7 +47,10 @@ public class ServiceRepairDetailsActivity extends BaseActivity {
     private LinearLayout mViewRepairMan;
     private LinearLayout mViewLook;
     private LinearLayout mViewJindu;
-
+    private EditText mEtPrice;
+    private LinearLayout mViewImgs;
+    private ImageView mImg1,mImg2;
+    private LinearLayout mViewEdit;
 
     private int mOrderId;
     private Repair mRepair;
@@ -85,6 +89,12 @@ public class ServiceRepairDetailsActivity extends BaseActivity {
         mTvRepairMan = (TextView)findViewById(R.id.repair_man);
         mTvTime = (TextView)findViewById(R.id.time);
         mTvOrderStatus = (TextView)findViewById(R.id.order_status);
+        mEtPrice = (EditText)findViewById(R.id.price);
+        mViewImgs = (LinearLayout)findViewById(R.id.view_imgs);
+        mImg1 = (ImageView)findViewById(R.id.img1);
+        mImg2 = (ImageView)findViewById(R.id.img2);
+        mViewEdit = (LinearLayout)findViewById(R.id.view_edit);
+        mViewEdit.setOnClickListener(this);
 
         mEt = (EditText)findViewById(R.id.et);
         mBtn = (Button)findViewById(R.id.btn);
@@ -130,7 +140,9 @@ public class ServiceRepairDetailsActivity extends BaseActivity {
          */
 
 
-
+        mEtPrice.setVisibility(View.GONE);
+        mViewLook.setVisibility(View.GONE);
+        mViewImgs.setVisibility(View.GONE);
         switch (mRepair.getOrder_status()){
             case 0:
                 mOrderFlowStatus = 2;
@@ -167,6 +179,7 @@ public class ServiceRepairDetailsActivity extends BaseActivity {
                 mEt.setVisibility(View.VISIBLE);
                 mBtn.setVisibility(View.VISIBLE);
                 mBtn.setText("确定调货");
+                mEtPrice.setVisibility(View.VISIBLE);
                 break;
             case 7:
                 break;
@@ -174,7 +187,13 @@ public class ServiceRepairDetailsActivity extends BaseActivity {
                 mOrderFlowStatus = 8;
                 mEt.setVisibility(View.VISIBLE);
                 mBtn.setVisibility(View.VISIBLE);
+                mViewImgs.setVisibility(View.VISIBLE);
+
+                AppContext.displayImage(mImg1,"http://zmnyw.cn"+mRepair.getPrev_img());
+                AppContext.displayImage(mImg2,"http://zmnyw.cn"+mRepair.getLast_img());
                 mBtn.setText("关闭订单");
+
+
 
                 break;
             case 9:
@@ -205,6 +224,10 @@ public class ServiceRepairDetailsActivity extends BaseActivity {
                 if(mRepair.getOrder_status() == 3){
                     cancalOrder();
                 }
+                break;
+            case R.id.view_edit:
+                startActivity(new Intent(ServiceRepairDetailsActivity.this,
+                        ServerRepairEditActivity.class).putExtra(INTENT_ID,mRepair));
                 break;
         }
     }
@@ -279,6 +302,11 @@ public class ServiceRepairDetailsActivity extends BaseActivity {
                     jb.put("action","firstclose");
                     break;
                 case 6:
+                    String p = mEtPrice.getText().toString();
+                    if(TextUtils.isEmpty(p)){
+                        showToast("请输入设备价格");
+                        return;
+                    }
                     /**
                      * 确认调货(confirm_adjust)
                      订单id	order_id
@@ -290,6 +318,7 @@ public class ServiceRepairDetailsActivity extends BaseActivity {
                     jb.put("uid", AppContext.USER_ID);
                     jb.put("status",7);
                     jb.put("tips",tips);
+                    jb.put("price",p);
                     jb.put("action","confirm_adjust");
                     break;
                 case 8:

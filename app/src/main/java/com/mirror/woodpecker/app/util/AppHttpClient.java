@@ -22,7 +22,6 @@ public class AppHttpClient{
         sb.append(fName);
 
         if(!TextUtils.isEmpty(p)){
-            Log.v("--------------",p.toString());
             System.out.println("-------------------"+p);
         }
         AppAjaxParam param = new AppAjaxParam(fName,sb.toString());

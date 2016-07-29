@@ -46,7 +46,8 @@
                 android:hint="@string/input_price"
                 android:drawablePadding="@dimen/d8"
                 android:inputType="number"
-                android:singleLine="false"/>
+                android:singleLine="false"
+                android:visibility="gone"/>
 
 
             <EditText

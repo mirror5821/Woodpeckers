@@ -3,6 +3,8 @@ package com.mirror.woodpecker.app.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.List;
+
 /**
  * Created by 王沛栋 on 2016-07-26.
  */
@@ -23,6 +25,19 @@ public class Pay implements Parcelable{
     private String kefuid;//20private String ,
     private String order_id;//1478523690private String ,
     private String username;//王桦private String
+    private List<Paths> payimgs;
+
+    public class Paths{
+        private String path;
+
+        public String getPath() {
+            return path;
+        }
+
+        public void setPath(String path) {
+            this.path = path;
+        }
+    }
 
     protected Pay(Parcel in) {
         id = in.readInt();
@@ -166,5 +181,13 @@ public class Pay implements Parcelable{
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public List<Paths> getPayimgs() {
+        return payimgs;
+    }
+
+    public void setPayimgs(List<Paths> payimgs) {
+        this.payimgs = payimgs;
     }
 }

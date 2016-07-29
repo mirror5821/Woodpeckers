@@ -92,6 +92,19 @@
                 android:layout_marginTop="@dimen/d4"
                 android:textSize="18sp"/>
 
+            <dev.mirror.library.android.view.NoScrollGridView
+                android:id="@+id/gridview"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:horizontalSpacing="@dimen/product_list_spacing"
+                android:numColumns="4"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:verticalSpacing="@dimen/product_list_spacing"
+                android:layout_margin="@dimen/view_margin_top"/>
+
             <LinearLayout
                 style="@style/EtLogin"
                 android:hint="@string/input_dec"
@@ -126,6 +139,9 @@
                     android:background="@mipmap/ic_mc"/>
 
             </LinearLayout>
+
+
+
 
 
             <!--<EditText
