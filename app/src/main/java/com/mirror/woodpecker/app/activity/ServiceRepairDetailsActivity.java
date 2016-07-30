@@ -1,19 +1,27 @@
 package com.mirror.woodpecker.app.activity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.mirror.woodpecker.app.R;
+import com.mirror.woodpecker.app.adapter.AddrAdapter;
 import com.mirror.woodpecker.app.app.AppContext;
+import com.mirror.woodpecker.app.model.About;
 import com.mirror.woodpecker.app.model.Repair;
+import com.mirror.woodpecker.app.model.Types;
 import com.mirror.woodpecker.app.util.AppAjaxCallback;
 
 import org.json.JSONException;
@@ -226,11 +234,163 @@ public class ServiceRepairDetailsActivity extends BaseActivity {
                 }
                 break;
             case R.id.view_edit:
-                startActivity(new Intent(ServiceRepairDetailsActivity.this,
-                        ServerRepairEditActivity.class).putExtra(INTENT_ID,mRepair));
+                showEditView();
+//                startActivity(new Intent(ServiceRepairDetailsActivity.this,
+//                        ServerRepairEditActivity.class).putExtra(INTENT_ID,mRepair));
                 break;
         }
     }
+
+    private Types mTypes;
+    /**
+     * 显示编辑的view
+     */
+    private void showEditView(){
+        if(mTypes == null){
+            mHttpClient.postData1(ORDER_TYPE, null, new AppAjaxCallback.onResultListener() {
+                @Override
+                public void onResult(String data, String msg) {
+                    mTypes = JsonUtils.parse(data,Types.class);
+
+                    initEditView();
+                }
+
+                @Override
+                public void onError(String msg) {
+
+                }
+            });
+        }else{
+            initEditView();
+        }
+
+    }
+
+    private AlertDialog.Builder mBuilder;
+    private int id1,id2,id3;
+    private void initEditView(){
+        View view = getLayoutInflater().inflate(R.layout.view_repair_edit,null);
+
+        id1 = 1;
+        id2 = mTypes.getTypelist().get(0).getId();
+        id3 = mTypes.getProjectlist().get(0).getProject_id();
+        //"1":"网页", "2":"电话", "3":"APP"
+        final List<About> abs = new ArrayList<>();
+        String [] strs = {"网页","电话","APP"};
+        int [] ids = {1,2,3};
+        for(int i = 0;i<strs.length;i++){
+            About a = new About();
+            a.setTitle(strs[i]);
+            a.setId(ids[i]);
+
+            abs.add(a);
+        }
+
+        Spinner spinner1 = (Spinner)view.findViewById(R.id.sp1);
+        Spinner spinner2 = (Spinner)view.findViewById(R.id.sp2);
+        Spinner spinner3 = (Spinner)view.findViewById(R.id.sp3);
+        if(mBuilder == null){
+            mBuilder = new AlertDialog.Builder(this);
+        }
+        mBuilder.setView(view);
+        mBuilder.setTitle("编辑维修单");
+        mBuilder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                editRepari();
+            }
+        });
+        mBuilder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        AddrAdapter mAdapter1 = new AddrAdapter(AppContext.getInstance(),abs,1);
+        spinner1.setAdapter(mAdapter1);
+        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                id1 = abs.get(arg2).getId();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+
+            }
+        });
+
+        AddrAdapter mAdapter2 = new AddrAdapter(AppContext.getInstance(),mTypes.getTypelist(),1);
+        spinner2.setAdapter(mAdapter2);
+        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                id2 = mTypes.getTypelist().get(arg2).getId();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+
+            }
+        });
+
+        AddrAdapter mAdapter3 = new AddrAdapter(AppContext.getInstance(),mTypes.getProjectlist(),1);
+        spinner3.setAdapter(mAdapter3);
+        spinner3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                id3 = mTypes.getProjectlist().get(arg2).getProject_id();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+
+            }
+        });
+
+        Dialog d = mBuilder.create();
+        d.show();
+    }
+
+    private void editRepari(){
+        showProgressDialog("正在提交...");
+        JSONObject jb = new JSONObject();
+        try{
+
+            /*订单id	order_id
+            报单类别	order_cat  "1":"网页", "2":"电话", "3":"APP"
+            所属项目	project_id
+            报单类型	order_type_id*/
+            jb.put("order_id",mOrderId);
+            jb.put("order_cat",id1);
+            jb.put("order_type_id",id2);
+            jb.put("project_id",id3);
+        }catch (JSONException e){
+
+        }
+        mHttpClient.postData1(EDIT, jb.toString(), new AppAjaxCallback.onResultListener() {
+            @Override
+            public void onResult(String data, String msg) {
+                showToast(msg);
+                cancelProgressDialog();
+            }
+
+            @Override
+            public void onError(String msg) {
+                showToast(msg);
+                cancelProgressDialog();
+            }
+        });
+    }
+
 
     private void cancalOrder(){
         JSONObject jb = new JSONObject();

@@ -114,6 +114,7 @@ public interface Constants {
     public final static String SERVER_CANCAL_ORDER = "recallapoint";//客服撤回订单
     public final static String PAY_LIST = "paymentlist";//付款凭证历史
     public final static String ORDER_TYPE = "olist";
+    public final static String EDIT = "editorder";//编辑订单
 
     public final static int ORDER_STATUS_ALL = 1;//订单列表状态
     public final static int ORDER_STATUS1 = 1;//订单列表状态
