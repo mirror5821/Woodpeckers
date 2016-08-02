@@ -29,13 +29,30 @@
 
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/dec"
-                style="@style/EtNotify"
-                android:padding="@dimen/d16"
-                android:hint="@string/repair_des"
-                android:textSize="16sp"/>
+                <EditText
+                    android:id="@+id/dec"
+                    style="@style/EtNotify"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:padding="@dimen/d16"
+                    android:hint="@string/repair_des"
+                    android:textSize="16sp"/>
+
+                <ImageView
+                    android:id="@+id/img_mc1"
+                    android:layout_width="28dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="@dimen/d16"
+                    android:background="@mipmap/ic_mc"/>
+
+            </LinearLayout>
+
+
 
             <View style="@style/Line1"
                 android:layout_marginTop="@dimen/d4"
@@ -44,12 +61,29 @@
                 android:layout_marginRight="@dimen/d8"/>
 
 
-            <EditText
-                android:id="@+id/jiejue"
-                style="@style/EtNotify"
-                android:padding="@dimen/d16"
-                android:hint="@string/input_jiejue"
-                android:textSize="16sp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/jiejue"
+                    style="@style/EtNotify"
+                    android:padding="@dimen/d16"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:hint="@string/input_jiejue"
+                    android:textSize="16sp"/>
+
+                <ImageView
+                    android:id="@+id/img_mc2"
+                    android:layout_width="28dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="@dimen/d16"
+                    android:background="@mipmap/ic_mc"/>
+
+            </LinearLayout>
+
 
             <View style="@style/Line1"
                 android:layout_marginTop="@dimen/d4"

@@ -33,7 +33,7 @@ public class JPushReceiver extends BroadcastReceiver{
 
         } else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {
 			try{
-				if(AppContext.USER_ROLE_ID == 3){
+				if(AppContext.USER_ROLE_ID == 3||AppContext.USER_ROLE_ID == 4){
 					ServerNotifUtil.startXunjian(context);
 				}
 			}catch (Exception e){

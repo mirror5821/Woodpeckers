@@ -170,7 +170,7 @@ public class RepairDetailsActivity extends BaseActivity {
         mTvPhone.setText(TextUtils.isEmpty(mRepair.getPhone())?"暂无联系方式":mRepair.getPhone());
         mTvLoc.setText(TextUtils.isEmpty(mRepair.getGz_postion())?"暂无保修位置":mRepair.getGz_postion());
         mTvDes.setText(TextUtils.isEmpty(mRepair.getGz_desc())?"暂无故障描述":mRepair.getGz_desc());
-        //订单类型
+        /*//订单类型
         switch (mRepair.getOrder_type_id()){
             case 0:
                 mTvOrderType.setText("");
@@ -184,12 +184,15 @@ public class RepairDetailsActivity extends BaseActivity {
             case 3:
                 mTvOrderType.setText("APP");
                 break;
-        }
+            default:
+                break;
+        }*/
 
         mTvNo.setText(mRepair.getOrder_id()+"");
         //项目名称
-        mTvOrderBelong.setText(TextUtils.isEmpty(mRepair.getProject_name()) ? "" : mRepair.getProject_name());
-        mTvOrderTypeSystem.setText(TextUtils.isEmpty(mRepair.getCatname()) ? "暂无数据" : mRepair.getCatname());
+        mTvOrderBelong.setText(TextUtils.isEmpty(mRepair.getProject_name()) ? "暂无数据" : mRepair.getProject_name());
+        mTvOrderTypeSystem.setText(TextUtils.isEmpty(mRepair.getType_name()) ? "暂无数据" : mRepair.getType_name());
+        mTvOrderType.setText(TextUtils.isEmpty(mRepair.getCatname()) ? "暂无数据" : mRepair.getCatname());
 
         if(mRepair.getRepair_id() == 0){
             mViewRepairMan.setVisibility(View.GONE);
@@ -256,7 +259,7 @@ public class RepairDetailsActivity extends BaseActivity {
 
         mTvOrderStatus.setText(orderStatus[mRepair.getOrder_status()]);
         mViewHistory = (LinearLayout)findViewById(R.id.view_history);
-        mViewHistory.setVisibility(View.GONE);
+//        mViewHistory.setVisibility(View.GONE);
     }
 
     @Override

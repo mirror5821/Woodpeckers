@@ -7,7 +7,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
+import com.iflytek.util.VoiceResult;
+import com.iflytek.util.VoiceToTxUtil;
 import com.mirror.woodpecker.app.R;
 import com.mirror.woodpecker.app.adapter.ImageAddsAdapter;
 import com.mirror.woodpecker.app.app.AppContext;
@@ -34,6 +37,7 @@ public class RepairFinishActivity extends BaseActivity implements AdapterView.On
     private EditText mEtDes;
     private EditText mEtJiejue;
     private Button mBtn;
+    private ImageView mImgMc1,mImgMc2;
 
     private ImageAddsAdapter mAdapter;
     private List<String> mList;
@@ -60,6 +64,11 @@ public class RepairFinishActivity extends BaseActivity implements AdapterView.On
         mEtName = (EditText)findViewById(R.id.name);
         mEtDes = (EditText)findViewById(R.id.dec);
         mEtJiejue = (EditText)findViewById(R.id.jiejue);
+        mImgMc1 = (ImageView)findViewById(R.id.img_mc1);
+        mImgMc2 = (ImageView)findViewById(R.id.img_mc2);
+
+        mImgMc1.setOnClickListener(this);
+        mImgMc2.setOnClickListener(this);
 
         mBtn = (Button)findViewById(R.id.btn);
         mGridView = (NoScrollGridView)findViewById(R.id.gridview);
@@ -76,6 +85,24 @@ public class RepairFinishActivity extends BaseActivity implements AdapterView.On
         switch (v.getId()){
             case R.id.btn:
                 sub();
+                break;
+            case R.id.img_mc1:
+                VoiceToTxUtil util1 = new VoiceToTxUtil(RepairFinishActivity.this, new VoiceResult() {
+                    @Override
+                    public String getVoiceToTx(String msg) {
+                        mEtDes.setText(msg);
+                        return null;
+                    }
+                });
+                break;
+            case R.id.img_mc2:
+                VoiceToTxUtil util2 = new VoiceToTxUtil(RepairFinishActivity.this, new VoiceResult() {
+                    @Override
+                    public String getVoiceToTx(String msg) {
+                        mEtJiejue.setText(msg);
+                        return null;
+                    }
+                });
                 break;
         }
     }

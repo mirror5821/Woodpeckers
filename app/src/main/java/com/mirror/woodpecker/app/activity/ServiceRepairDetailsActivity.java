@@ -59,6 +59,7 @@ public class ServiceRepairDetailsActivity extends BaseActivity {
     private LinearLayout mViewImgs;
     private ImageView mImg1,mImg2;
     private LinearLayout mViewEdit;
+    private TextView mTvRepairHistroy;
 
     private int mOrderId;
     private Repair mRepair;
@@ -114,6 +115,10 @@ public class ServiceRepairDetailsActivity extends BaseActivity {
 
         mViewJindu = (LinearLayout)findViewById(R.id.view_jindu);
 
+        //维修记录
+        mTvRepairHistroy = (TextView)findViewById(R.id.tv_r_history);
+        mTvRepairHistroy.setOnClickListener(this);
+
         mTvNo.setText(mRepair.getOrder_id()+"");
         mTvPhone.setText(TextUtils.isEmpty(mRepair.getPhone())?"暂无联系方式":mRepair.getPhone());
         mTvLoc.setText(TextUtils.isEmpty(mRepair.getGz_postion())?"暂无保修位置":mRepair.getGz_postion());
@@ -134,8 +139,9 @@ public class ServiceRepairDetailsActivity extends BaseActivity {
                 break;
         }
         //项目名称
-        mTvOrderBelong.setText(TextUtils.isEmpty(mRepair.getProject_name()) ? "暂无故障描述" : mRepair.getProject_name());
-        mTvOrderTypeSystem.setText(TextUtils.isEmpty(mRepair.getCatname()) ? "暂无数据" : mRepair.getCatname());
+        mTvOrderType.setText(TextUtils.isEmpty(mRepair.getCatname()) ? "暂无数据" : mRepair.getCatname());
+        mTvOrderBelong.setText(TextUtils.isEmpty(mRepair.getProject_name()) ? "暂无数据" : mRepair.getProject_name());
+        mTvOrderTypeSystem.setText(TextUtils.isEmpty(mRepair.getType_name()) ? "暂无数据" : mRepair.getType_name());
 
         if(mRepair.getRepair_id() == 0){
             mViewRepairMan.setVisibility(View.GONE);
@@ -238,6 +244,11 @@ public class ServiceRepairDetailsActivity extends BaseActivity {
 //                startActivity(new Intent(ServiceRepairDetailsActivity.this,
 //                        ServerRepairEditActivity.class).putExtra(INTENT_ID,mRepair));
                 break;
+
+            case R.id.tv_r_history:
+                startActivity(new Intent(ServiceRepairDetailsActivity.this,RepairHistotyActivity.class).putExtra(INTENT_ID,mRepair.getProject_id()));
+                break;
+
         }
     }
 

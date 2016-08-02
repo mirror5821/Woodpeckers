@@ -44,6 +44,9 @@ public class UserRepairDetailsActivity extends BaseActivity {
     private Button mBtn;
     private LinearLayout mViewRepairMan;
     private LinearLayout mViewJindu;
+    private TextView mTvRepairHistroy;
+
+    private LinearLayout mViewHistory;
 
 
     private int mOrderId;
@@ -82,6 +85,8 @@ public class UserRepairDetailsActivity extends BaseActivity {
         mTvRepairMan = (TextView)findViewById(R.id.repair_man);
         mTvTime = (TextView)findViewById(R.id.time);
         mTvOrderStatus = (TextView)findViewById(R.id.order_status);
+        mTvRepairHistroy = (TextView)findViewById(R.id.tv_r_history);
+        mTvRepairHistroy.setOnClickListener(this);
 
         mEt = (EditText)findViewById(R.id.et);
         mBtn = (Button)findViewById(R.id.btn);
@@ -93,6 +98,9 @@ public class UserRepairDetailsActivity extends BaseActivity {
         mTvPhone.setText(TextUtils.isEmpty(mRepair.getPhone())?"暂无联系方式":mRepair.getPhone());
         mTvLoc.setText(TextUtils.isEmpty(mRepair.getGz_postion())?"暂无保修位置":mRepair.getGz_postion());
         mTvDes.setText(TextUtils.isEmpty(mRepair.getGz_desc())?"暂无故障描述":mRepair.getGz_desc());
+
+        mViewHistory = (LinearLayout)findViewById(R.id.view_history);
+        mViewHistory.setVisibility(View.GONE);
         //订单类型
         switch (mRepair.getOrder_type_id()){
             case 0:
@@ -107,10 +115,14 @@ public class UserRepairDetailsActivity extends BaseActivity {
             case 3:
                 mTvOrderType.setText("APP");
                 break;
+            default:
+                mTvOrderType.setText("");
+                break;
         }
         //项目名称
-        mTvOrderBelong.setText(TextUtils.isEmpty(mRepair.getProject_name()) ? "暂无故障描述" : mRepair.getProject_name());
-        mTvOrderTypeSystem.setText(TextUtils.isEmpty(mRepair.getCatname()) ? "暂无数据" : mRepair.getCatname());
+        mTvOrderType.setText(TextUtils.isEmpty(mRepair.getCatname()) ? "暂无数据" : mRepair.getCatname());
+        mTvOrderBelong.setText(TextUtils.isEmpty(mRepair.getProject_name()) ? "暂无数据" : mRepair.getProject_name());
+        mTvOrderTypeSystem.setText(TextUtils.isEmpty(mRepair.getProject_name()) ? "暂无数据" : mRepair.getProject_name());
 
         if(mRepair.getRepair_id() == 0){
             mViewRepairMan.setVisibility(View.GONE);
@@ -126,6 +138,7 @@ public class UserRepairDetailsActivity extends BaseActivity {
 
         switch (mRepair.getOrder_status()){
             case 0:
+                setRightTitle("撤回");
                 mTvRepairMan.setVisibility(View.GONE);
                 mEt.setVisibility(View.GONE);
                 mBtn.setVisibility(View.GONE);
@@ -173,6 +186,10 @@ public class UserRepairDetailsActivity extends BaseActivity {
                     });
                 }
 
+                break;
+
+            case R.id.tv_r_history:
+                startActivity(new Intent(UserRepairDetailsActivity.this,RepairHistotyActivity.class).putExtra(INTENT_ID,mRepair.getProject_id()));
                 break;
         }
     }
