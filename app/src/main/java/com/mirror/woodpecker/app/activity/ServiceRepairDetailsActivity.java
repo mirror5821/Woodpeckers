@@ -392,6 +392,8 @@ public class ServiceRepairDetailsActivity extends BaseActivity {
             public void onResult(String data, String msg) {
                 showToast(msg);
                 cancelProgressDialog();
+
+                loadData();
             }
 
             @Override

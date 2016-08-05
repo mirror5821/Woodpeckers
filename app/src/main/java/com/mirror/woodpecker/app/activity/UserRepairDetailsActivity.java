@@ -122,7 +122,7 @@ public class UserRepairDetailsActivity extends BaseActivity {
         //项目名称
         mTvOrderType.setText(TextUtils.isEmpty(mRepair.getCatname()) ? "暂无数据" : mRepair.getCatname());
         mTvOrderBelong.setText(TextUtils.isEmpty(mRepair.getProject_name()) ? "暂无数据" : mRepair.getProject_name());
-        mTvOrderTypeSystem.setText(TextUtils.isEmpty(mRepair.getProject_name()) ? "暂无数据" : mRepair.getProject_name());
+        mTvOrderTypeSystem.setText(TextUtils.isEmpty(mRepair.getType_name()) ? "暂无数据" : mRepair.getType_name());
 
         if(mRepair.getRepair_id() == 0){
             mViewRepairMan.setVisibility(View.GONE);
