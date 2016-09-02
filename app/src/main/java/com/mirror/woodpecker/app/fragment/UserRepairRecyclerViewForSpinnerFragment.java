@@ -52,6 +52,12 @@ public class UserRepairRecyclerViewForSpinnerFragment extends BaseRecyclerViewFr
 
 
     @Override
+    public void onResume() {
+        super.onResume();
+        loadData();
+    }
+
+    @Override
     public void loadData() {
 
         /**

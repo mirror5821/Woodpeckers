@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.mirror.woodpecker.app.R;
 import com.mirror.woodpecker.app.app.AppContext;
+import com.mirror.woodpecker.app.model.Comment;
 import com.mirror.woodpecker.app.model.Repair;
 import com.mirror.woodpecker.app.util.AppAjaxCallback;
 import com.mirror.woodpecker.app.util.SharePreferencesUtil;
@@ -51,10 +52,13 @@ public class RepairDetailsActivity extends BaseActivity {
     private LinearLayout mViewOpration;
     private LinearLayout mViewJindu;
     private LinearLayout mViewHistory;
-
+    private LinearLayout mViewComment;
+    private TextView mTvCommentTime;
+    private TextView mTvCommentContent;
 
     private int mOrderId;
     private Repair mRepair;
+    private Comment mComment;
 
     private LayoutInflater mInflater;
     @Override
@@ -260,6 +264,22 @@ public class RepairDetailsActivity extends BaseActivity {
         mTvOrderStatus.setText(orderStatus[mRepair.getOrder_status()]);
         mViewHistory = (LinearLayout)findViewById(R.id.view_history);
 //        mViewHistory.setVisibility(View.GONE);
+
+        try{
+            mComment = mRepair.getComment();
+            if(mComment != null){
+
+                mViewComment = (LinearLayout)findViewById(R.id.view_comment);
+                mTvCommentTime = (TextView)findViewById(R.id.comment_time);
+                mTvCommentContent = (TextView)findViewById(R.id.comment_dec);
+
+                mTvCommentTime.setText(DateUtil.TimeStamp2Date("yyyy-MM-dd HH:mm", mComment.getAddtime()));
+                mTvCommentContent.setText(mComment.getContent());
+                mViewComment.setVisibility(View.VISIBLE);
+            }
+        }catch (Exception e){
+
+        }
     }
 
     @Override

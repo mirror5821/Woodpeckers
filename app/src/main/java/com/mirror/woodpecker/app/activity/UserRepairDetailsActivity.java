@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.mirror.woodpecker.app.R;
 import com.mirror.woodpecker.app.app.AppContext;
+import com.mirror.woodpecker.app.model.Comment;
 import com.mirror.woodpecker.app.model.Repair;
 import com.mirror.woodpecker.app.util.AppAjaxCallback;
 
@@ -53,6 +54,12 @@ public class UserRepairDetailsActivity extends BaseActivity {
     private Repair mRepair;
 
     private LayoutInflater mInflater;
+
+    private Comment mComment;
+    private LinearLayout mViewComment;
+    private TextView mTvCommentTime;
+    private TextView mTvCommentContent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -166,6 +173,23 @@ public class UserRepairDetailsActivity extends BaseActivity {
         }
 
         mTvOrderStatus.setText(orderStatus[mRepair.getOrder_status()]);
+
+        try{
+            mComment = mRepair.getComment();
+            if(mComment != null){
+
+                mViewComment = (LinearLayout)findViewById(R.id.view_comment);
+                mTvCommentTime = (TextView)findViewById(R.id.comment_time);
+                mTvCommentContent = (TextView)findViewById(R.id.comment_dec);
+
+                mTvCommentTime.setText(DateUtil.TimeStamp2Date("yyyy-MM-dd HH:mm", mComment.getAddtime()));
+                mTvCommentContent.setText(mComment.getContent());
+                mViewComment.setVisibility(View.VISIBLE);
+            }
+        }catch (Exception e){
+
+        }
+
     }
 
     @Override

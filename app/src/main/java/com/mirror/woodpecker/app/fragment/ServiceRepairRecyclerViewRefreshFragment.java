@@ -36,6 +36,11 @@ public class ServiceRepairRecyclerViewRefreshFragment extends BaseRecyclerViewFr
         return 0;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadData();
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

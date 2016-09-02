@@ -180,6 +180,48 @@
 
 
             <LinearLayout
+                android:id="@+id/view_comment"
+                style="@style/LayoutDetailsH"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_detail"
+                android:visibility="gone">
+
+
+
+                <TextView
+                    style="@style/TvDetailsNotif"
+                    android:text="评论时间"
+                    android:layout_height="@dimen/et_normal_height"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/comment_time"
+                        style="@style/TvDetailsValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/et_normal_height"
+                        />
+
+                    <TextView
+                        android:id="@+id/comment_dec"
+                        style="@style/TvDetailsValue"
+                        android:singleLine="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/d20"/>
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/view_history"
                 style="@style/LayoutDetailsH"
                 android:background="@drawable/bg_detail">

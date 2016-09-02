@@ -37,6 +37,8 @@ public class Repair implements Parcelable{
     private int sign;
     private String repairname;
 
+    private Comment comment;
+
     protected Repair(Parcel in) {
         order_id = in.readInt();
         phone = in.readString();
@@ -279,7 +281,15 @@ public class Repair implements Parcelable{
         this.repair_price = repair_price;
     }
 
-//    public String getExt_info() {
+    public Comment getComment() {
+        return comment;
+    }
+
+    public void setComment(Comment comment) {
+        this.comment = comment;
+    }
+
+    //    public String getExt_info() {
 //        return ext_info;
 //    }
 //
