@@ -37,6 +37,7 @@ public class MainTabActivity extends BaseTabActivity implements OnTabSelect{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         checkVersion();
         //得判断第三选项卡中是否已经登陆
 		mFragmentTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {

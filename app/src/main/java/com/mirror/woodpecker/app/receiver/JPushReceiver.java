@@ -42,7 +42,7 @@ public class JPushReceiver extends BroadcastReceiver{
 					if(bundle.getString(JPushInterface.EXTRA_ALERT).equals("您有新订单，请及时处理！")||
 							bundle.getString(JPushInterface.EXTRA_ALERT).equals("您有新的维修单！请尽快处理！")){
 						TxToVoiceUtil voice = new TxToVoiceUtil();
-//						voice.TxToVoice(context,"帅帅好帅");
+						voice.TxToVoice(context,"帅帅好帅");
 						ServerNotifUtil.startXunjian(context);
 					}
 
