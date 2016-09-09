@@ -35,6 +35,7 @@ public class ServiceRepairActionActivity extends BaseActivity {
     private Repair mRepair;
     private List<Repairman> mLists = new ArrayList<>();
     private int mRId;
+    private String mRepairPrice;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +56,13 @@ public class ServiceRepairActionActivity extends BaseActivity {
             mViewPrice.setVisibility(View.VISIBLE);
         }
 
+        mRepairPrice = mRepair.getRepair_price();
+        if(!mRepairPrice.equals("0.00")){
+            mEtPrice.setText(mRepairPrice);
+            mEtPrice.setFocusable(false);
+            mEtPrice.setEnabled(false);
+        }
+
         mBtn.setOnClickListener(this);
         mTv.setOnClickListener(this);
     }
@@ -64,7 +72,12 @@ public class ServiceRepairActionActivity extends BaseActivity {
         super.onClick(v);
         switch (v.getId()){
             case R.id.btn:
-                upPrice();
+                if(!mRepairPrice.equals("0.00")){
+                    sub();
+                }else{
+                    upPrice();
+                }
+
                 break;
             case R.id.tv:
                 loadRepairList();

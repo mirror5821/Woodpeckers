@@ -70,7 +70,8 @@ public class RepairDetailsActivity extends BaseActivity {
         setBack();
 
 
-
+        //关闭推送的声音
+        AppContext.stopPushMediaPlayer();
         mInflater = getLayoutInflater();
         loadData();
     }

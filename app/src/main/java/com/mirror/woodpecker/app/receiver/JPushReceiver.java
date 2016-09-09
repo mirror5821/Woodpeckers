@@ -21,7 +21,6 @@ import cn.jpush.android.api.JPushInterface;
 
 public class JPushReceiver extends BroadcastReceiver{
 	private static final String TAG = "JPush";
-
 	@Override
 	public void onReceive(Context context, Intent intent) {
         Bundle bundle = intent.getExtras();
@@ -42,8 +41,11 @@ public class JPushReceiver extends BroadcastReceiver{
 					if(bundle.getString(JPushInterface.EXTRA_ALERT).equals("您有新订单，请及时处理！")||
 							bundle.getString(JPushInterface.EXTRA_ALERT).equals("您有新的维修单！请尽快处理！")){
 						TxToVoiceUtil voice = new TxToVoiceUtil();
-						voice.TxToVoice(context,"帅帅好帅");
+//						voice.TxToVoice(context,"帅帅好帅");
 						ServerNotifUtil.startXunjian(context);
+
+
+						AppContext.startPushMediaPlayer();
 					}
 
 				}else{
@@ -60,10 +62,12 @@ public class JPushReceiver extends BroadcastReceiver{
 
         } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
             Log.d(TAG, "[MyReceiver] 用户点击打开了通知");
+			AppContext.stopPushMediaPlayer();
 			if(AppContext.USER_ROLE_ID == 3||AppContext.USER_ROLE_ID == 4){
 				try{
 					try{
-
+						ServerNotifUtil.stopXunjian(context);
+						//您有新订单，请及时处理！
 						if(bundle.getString(JPushInterface.EXTRA_ALERT).equals("您有新订单，请及时处理！")||
 								bundle.getString(JPushInterface.EXTRA_ALERT).equals("您有新的维修单！请尽快处理！")){
 							JSONObject jb = new JSONObject(bundle.getString(JPushInterface.EXTRA_EXTRA));
@@ -81,12 +85,11 @@ public class JPushReceiver extends BroadcastReceiver{
 							message.setContent(bundle.getString(JPushInterface.EXTRA_ALERT));
 							i.putExtra("IS_PUSH",true);
 							context.startActivity(i);
-
 						}
 
 					}catch (Exception e){
 					}
-					ServerNotifUtil.stopXunjian(context);
+
 				}catch (Exception e){
 
 				}

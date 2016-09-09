@@ -80,6 +80,8 @@ public class ServiceRepairDetailsActivity extends BaseActivity {
         setBack();
 
         mInflater = getLayoutInflater();
+        //关闭推送的声音
+        AppContext.stopPushMediaPlayer();
         loadData();
     }
 

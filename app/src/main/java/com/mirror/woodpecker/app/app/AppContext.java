@@ -1,8 +1,10 @@
 package com.mirror.woodpecker.app.app;
 
+import android.media.MediaPlayer;
 import android.widget.ImageView;
 
 import com.iflytek.cloud.SpeechUtility;
+import com.mirror.woodpecker.app.R;
 import com.mirror.woodpecker.app.model.Constants;
 import com.mirror.woodpecker.app.model.XunJian;
 import com.mirror.woodpecker.app.util.AppAjaxCallback;
@@ -34,6 +36,8 @@ public class AppContext extends BaseAppContext {
     public static boolean IS_LOGIN = false;
 
     public static boolean IS_XUNJINNING = false;//
+
+    private static MediaPlayer mMediaPlayer;// = MediaPlayer.create(context, R.raw.tx);
 
     /**
      * 返回的数据中role_id为角色ID，数据1代表单位主管，
@@ -90,6 +94,39 @@ public class AppContext extends BaseAppContext {
     }
 
 
+    /**
+     * 推送重复的语音
+     * @return
+     */
+    public static void startPushMediaPlayer(){
+//        if(mMediaPlayer == null){
+//            mMediaPlayer = MediaPlayer.create(getInstance(), R.raw.tx);
+//            mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+//                @Override
+//                public void onCompletion(MediaPlayer mp) {
+//                    mp.start();
+//                }
+//            });
+//        }
+
+        mMediaPlayer = MediaPlayer.create(getInstance(), R.raw.tx);
+        mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.start();
+            }
+        });
+        mMediaPlayer.start();
+    }
+
+    /**
+     * 推送的声音关闭
+     */
+    public static void stopPushMediaPlayer(){
+        if(mMediaPlayer != null){
+            mMediaPlayer.stop();
+        }
+    }
     private boolean isXunjian = false;
     private AppHttpClient mHttpClient;// = new AppHttpClient();
     public void loadXunjian() {

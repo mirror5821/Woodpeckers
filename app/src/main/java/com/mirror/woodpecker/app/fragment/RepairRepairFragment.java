@@ -37,11 +37,14 @@ public class RepairRepairFragment extends BaseFragment {
 
         if(!isLoad){
             isLoad = true;
-            setTitleText("未处理维修单列表");
+            // 维修人员点击进入维修维保时，默认不要显示成未处理的状态的订单列表，
+            // 直接默认成等待接单状态的订单列表。因为维修人员看不到未处理的，
+            // 所以一打开页面就会显示“暂无维修单”或者空白，不合理
+            setTitleText("等待接单维修单列表");
 
             RepairRepairRecyclerViewRefreshFragment fragment = new RepairRepairRecyclerViewRefreshFragment();
             Bundle b = new Bundle();
-            b.putInt(INTENT_ID,0);
+            b.putInt(INTENT_ID,3);
             fragment.setArguments(b);
 
             FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
