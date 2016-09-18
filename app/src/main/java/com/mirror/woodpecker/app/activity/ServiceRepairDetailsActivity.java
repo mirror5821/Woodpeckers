@@ -234,6 +234,8 @@ public class ServiceRepairDetailsActivity extends BaseActivity {
                 mTvCommentTime.setText(DateUtil.TimeStamp2Date("yyyy-MM-dd HH:mm", mComment.getAddtime()));
                 mTvCommentContent.setText(mComment.getContent());
                 mViewComment.setVisibility(View.VISIBLE);
+
+                setRightTitle("");
             }
         }catch (Exception e){
 
